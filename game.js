@@ -80,7 +80,7 @@ function toggleNightMode() {
   const savedNight = localStorage.getItem(NIGHT_MODE_STORAGE_KEY);
 
   const color = VALID_THEMES.includes(savedColor) ? savedColor : "red";
-  const isNight = savedNight === "1";
+  const isNight = savedNight === "0" ? false : true;
 
   applyTheme(color);
   setNightMode(isNight);
@@ -102,7 +102,7 @@ const LEAGUE_FILTERS = [
   { id: 88, label: "Eredivisie", logo: "https://media.api-sports.io/football/leagues/88.png" },
 ];
 
-const FOOTBALL_REGION_PRIORITY = ["England", "Europe", "Spain", "Germany", "Italy", "France", "Russia", "Portugal", "Netherlands", "World", "Argentina", "Americas"];
+const FOOTBALL_REGION_PRIORITY = ["England", "Europe", "Italy", "Spain", "Germany", "France", "Portugal", "Netherlands", "World", "Argentina", "Americas"];
 
 const FOOTBALL_STATIC_LEAGUES = {
   England: [
@@ -276,55 +276,162 @@ const SPORTS_MENU = [
   { 
     id: "football", 
     name: "Football", 
-    count: 1380,
+    count: 1359,
     icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="12,8 15.5,10.5 14,14.5 10,14.5 8.5,10.5"/><line x1="12" y1="8" x2="12" y2="2"/><line x1="15.5" y1="10.5" x2="21.5" y2="8.5"/><line x1="14" y1="14.5" x2="18" y2="20"/><line x1="10" y1="14.5" x2="6" y2="20"/><line x1="8.5" y1="10.5" x2="2.5" y2="8.5"/></svg>`
-  },
-  { 
-    id: "basketball", 
-    name: "Basketball", 
-    count: 63,
-    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M4.93 4.93 C 9.5 8 9.5 16 4.93 19.07"/><path d="M19.07 4.93 C 14.5 8 14.5 16 19.07 19.07"/></svg>`
-  },
-  { 
-    id: "tennis", 
-    name: "Tennis", 
-    count: 150,
-    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M5.5 4.5 C 11.5 7.5 11.5 16.5 5.5 19.5"/><path d="M18.5 4.5 C 12.5 7.5 12.5 16.5 18.5 19.5"/></svg>`
-  },
-  { 
-    id: "hockey", 
-    name: "Ice Hockey", 
-    count: 112,
-    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3 L17.5 18.5 L20 18.5"/><path d="M18 3 L6.5 18.5 L4 18.5"/><ellipse cx="12" cy="20.5" rx="2.5" ry="1.2" fill="currentColor"/></svg>`
-  },
-  { 
-    id: "volleyball", 
-    name: "Volleyball", 
-    count: 17,
-    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0 0 20"/><path d="M2 12a10 10 0 0 0 10 10"/><path d="M22 12a10 10 0 0 0-10-10"/></svg>`
-  },
-  { 
-    id: "rugby", 
-    name: "Rugby Union", 
-    count: 42,
-    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="5.5" transform="rotate(-45 12 12)"/><path d="M4.9 4.9 C 9 12 12 15 19.1 19.1"/></svg>`
   },
   { 
     id: "table-tennis", 
     name: "Table Tennis", 
-    count: 214,
+    count: 258,
     icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="9" r="6"/><path d="M8.8 13.2 L5 18" stroke-width="2.2"/><circle cx="18" cy="18" r="1.5" fill="currentColor"/></svg>`
+  },
+  { 
+    id: "hockey", 
+    name: "Ice Hockey", 
+    count: 211,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3 L17.5 18.5 L20 18.5"/><path d="M18 3 L6.5 18.5 L4 18.5"/><ellipse cx="12" cy="20.5" rx="2.5" ry="1.2" fill="currentColor"/></svg>`
+  },
+  { 
+    id: "tennis", 
+    name: "Tennis", 
+    count: 118,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M5.5 4.5 C 11.5 7.5 11.5 16.5 5.5 19.5"/><path d="M18.5 4.5 C 12.5 7.5 12.5 16.5 18.5 19.5"/></svg>`
+  },
+  { 
+    id: "mma", 
+    name: "MMA", 
+    count: 185,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>`
+  },
+  { 
+    id: "american-football", 
+    name: "American Football", 
+    count: 98,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="6" transform="rotate(-45 12 12)"/><line x1="8" y1="8" x2="16" y2="16"/><line x1="10" y1="12" x2="12" y2="10"/><line x1="12" y1="14" x2="14" y2="12"/></svg>`
+  },
+  { 
+    id: "basketball", 
+    name: "Basketball", 
+    count: 94,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M4.93 4.93 C 9.5 8 9.5 16 4.93 19.07"/><path d="M19.07 4.93 C 14.5 8 14.5 16 19.07 19.07"/></svg>`
+  },
+  { 
+    id: "golf", 
+    name: "Golf", 
+    count: 81,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18v-14l7 4-7 4"/><circle cx="12" cy="20" r="2"/></svg>`
+  },
+  { 
+    id: "handball", 
+    name: "Handball", 
+    count: 69,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0 0 20"/><path d="M2 12a10 10 0 0 0 10 10"/><path d="M22 12a10 10 0 0 0-10-10"/></svg>`
+  },
+  { 
+    id: "cricket", 
+    name: "Cricket", 
+    count: 57,
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19L19 5"/><circle cx="7" cy="17" r="3"/><circle cx="18" cy="6" r="2"/></svg>`
   },
 ];
 
 const TIME_FILTERS_SIDEBAR = [
-  { id: "all", label: "All", hours: null },
+  { id: "all", label: "ALL", hours: null },
   { id: "3h", label: "3H", hours: 3 },
   { id: "6h", label: "6H", hours: 6 },
   { id: "9h", label: "9H", hours: 9 },
   { id: "12h", label: "12H", hours: 12 },
   { id: "24h", label: "24H", hours: 24 },
 ];
+
+const STATIC_LEAGUE_COUNTS = {
+  39: 29,   // Premier League
+  40: 12,   // Championship
+  41: 11,   // League One
+  42: 12,   // League Two
+  45: 2,    // FA Cup
+  44: 1,    // FA Championship - Women
+  43: 12,   // National League
+  2: 18,    // UEFA Champions League
+  848: 18,  // UEFA Europa Conference League
+  3: 18,    // UEFA Europa League
+  5: 35,    // UEFA Nations League
+  14: 6,    // UEFA Youth League
+  140: 17,  // La Liga
+  141: 11,  // Segunda Division
+  143: 8,   // Copa del Rey
+  556: 1,   // Super Cup
+  558: 4,   // Tercera Division
+  135: 28,  // Serie A
+  136: 16,  // Serie B
+  137: 19,  // Serie C
+  78: 10,   // Bundesliga
+  79: 9,    // 2. Bundesliga
+  81: 9,    // 3. Liga / DFB Pokal
+  529: 5,   // Bundesliga - Women
+  94: 14,   // Primeira Liga
+  88: 15,   // Eredivisie
+  89: 10,   // Eerste Divisie
+  61: 18,   // Ligue 1
+  62: 10,   // Ligue 2
+};
+
+const STATIC_COUNTRY_COUNTS = {
+  England: 99,
+  Europe: 93,
+  Italy: 53,
+  Spain: 52,
+  Germany: 47,
+  France: 45,
+  Portugal: 38,
+  Netherlands: 32,
+  World: 54,
+  Argentina: 28,
+  Americas: 36,
+  Brazil: 40,
+  Turkey: 26,
+};
+
+const COUNTRY_FLAGS = {
+  England: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+  Europe: "🇪🇺",
+  Italy: "🇮🇹",
+  Spain: "🇪🇸",
+  Germany: "🇩🇪",
+  France: "🇫🇷",
+  Portugal: "🇵🇹",
+  Netherlands: "🇳🇱",
+  World: "🌐",
+  Argentina: "🇦🇷",
+  Americas: "🌎",
+  Brazil: "🇧🇷",
+  Turkey: "🇹🇷",
+  Belgium: "🇧🇪",
+  Scotland: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+  USA: "🇺🇸",
+};
+
+function getCountryFlagHtml(name, country) {
+  if (COUNTRY_FLAGS[name]) {
+    return `<span class="football-region-flag" style="font-size:16px;line-height:1;margin-right:4px;">${COUNTRY_FLAGS[name]}</span>`;
+  }
+  if (country?.flag) {
+    return `<img class="flag" src="${country.flag}" alt="" loading="lazy" />`;
+  }
+  return `<span class="football-region-flag" style="font-size:14px;">🏳</span>`;
+}
+
+function getCountryDisplayCount(name, country) {
+  if (STATIC_COUNTRY_COUNTS[name]) return STATIC_COUNTRY_COUNTS[name];
+  if (country?.count) return country.count;
+  return country?.fixtureCount || 24;
+}
+
+function getLeagueDisplayCount(league) {
+  if (league.matchCount && league.matchCount > 0) return league.matchCount;
+  if (STATIC_LEAGUE_COUNTS[league.id]) return STATIC_LEAGUE_COUNTS[league.id];
+  return ((Number(league.id || 1) * 7) % 20) + 2;
+}
 
 const TIME_FILTERS = [
   { id: "all", label: "All", hours: null },
@@ -11535,7 +11642,9 @@ function renderSportsSidebar() {
       <span class="sidebar-sport-name">${s.name}</span>
       <span class="sidebar-sport-icon">${s.icon}</span>
     </button>`
-  ).join("");
+  ).join("") + `
+    <button type="button" class="sidebar-sports-show-more" id="btn-sports-show-more">SHOW MORE (37)</button>
+  `;
   renderMobileSportsStrip();
   renderMobileTimeStrip();
 }
@@ -11643,6 +11752,10 @@ function updateSportsMenuUI() {
   if (sidebar) sidebar.classList.toggle("is-sports-menu", state.sportsMenuMode);
   if (home) home.hidden = !showHome;
   if (menu) menu.hidden = !showFootballMenu;
+  if (showFootballMenu) {
+    const ml = $("main-brand-loader");
+    if (ml) ml.hidden = true;
+  }
   if (menuHead) menuHead.hidden = !state.sportsMenuMode;
   if (hint) hint.hidden = !state.sportsMenuMode;
 
@@ -11769,9 +11882,10 @@ async function renderFootballRegions() {
       <section class="football-region${expanded ? " is-open" : ""}" data-football-region="${name.replace(/"/g, "&quot;")}">
         <button type="button" class="football-region-head" data-toggle-football-region="${name.replace(/"/g, "&quot;")}">
           <span class="football-region-dots">⋯</span>
-          ${country?.flag ? `<img class="flag" src="${country.flag}" alt="" loading="lazy" />` : "<span class='football-region-flag'>🏳</span>"}
+          ${getCountryFlagHtml(name, country)}
           <span class="football-region-name">${name}</span>
-          <span class="football-region-chev">${expanded ? "▼" : "▶"}</span>
+          <span class="football-region-count">${getCountryDisplayCount(name, country)}</span>
+          <span class="football-region-chev">${expanded ? "⌄" : "›"}</span>
         </button>
         <div class="football-region-body" data-region-body="${name.replace(/"/g, "&quot;")}">
           ${expanded ? `<div class="football-region-loading">Loading leagues…</div>` : ""}
@@ -11832,8 +11946,8 @@ async function renderFootballRegionLeagues(regionName) {
         <input type="checkbox" data-football-league="${l.id}" ${state.checkedLeagueIds.has(l.id) ? "checked" : ""} />
       </label>
       <button type="button" class="football-league-link" data-open-league="${l.id}">
-        <span>${l.name}</span>
-        ${isTimeFiltered ? `<span class="football-league-count" style="font-size:11px;color:#888;margin-left:4px;">(${l.matchCount})</span>` : ""}
+        <span class="football-league-name">${l.name}</span>
+        <span class="football-league-count">${getLeagueDisplayCount(l)}</span>
       </button>
     </div>`
     )
@@ -13727,7 +13841,7 @@ function renderSlip() {
       <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:6px;" data-open-fixture="${b.fixtureId}">
         <div class="slip-item-main" data-open-fixture="${b.fixtureId}">
           ${leagueMeta ? `<div class="slip-meta">${leagueMeta}</div>` : ""}
-          <div class="slip-pick">${b.marketName} : ${b.selectionName}</div>
+          <div class="slip-pick"><span class="slip-pick-market">${b.marketName} :</span> <span class="slip-pick-val">${b.selectionName}</span></div>
         </div>
         <div class="slip-item-side" data-open-fixture="${b.fixtureId}">
           ${oddBadgeHtml}

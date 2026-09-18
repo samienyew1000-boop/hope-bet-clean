@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-night="true" class="is-night-mode">
 
 <head>
   <meta charset="UTF-8" />
@@ -7,6 +7,18 @@
   <meta name="hope-bet-api" content="http://127.0.0.1:8787" />
   <title>Hope Bet — Sportsbook</title>
   <script>
+    (function () {
+      try {
+        var n = localStorage.getItem("hope-bet-night-mode");
+        if (n === "0") {
+          document.documentElement.removeAttribute("data-night");
+          document.documentElement.classList.remove("is-night-mode");
+        } else {
+          document.documentElement.setAttribute("data-night", "true");
+          document.documentElement.classList.add("is-night-mode");
+        }
+      } catch (e) {}
+    })();
     (function () {
       var path = location.pathname || "";
       if (!path.endsWith("/") && !/\.html?$/i.test(path)) {
@@ -18,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="./style.css?v=20260909_odds_red_v19" />
+  <link rel="stylesheet" href="./style.css?v=20260918_obsidian_orange_v3" />
 </head>
 
 <body>
@@ -1041,6 +1053,13 @@
           </div>
 
           <div id="football-menu-wrap" hidden>
+            <div class="all-events-top-header">
+              <div class="all-events-title-wrap">
+                <span class="all-events-dots">•••</span>
+                <span class="all-events-heading">ALL EVENTS</span>
+              </div>
+              <button type="button" class="all-tournaments-pill-btn" id="btn-all-tournaments">All tournaments</button>
+            </div>
             <div class="football-menu-toolbar">
               <button type="button" class="football-filters-btn" id="football-filters-btn" aria-expanded="false">
                 <span class="football-filters-btn-icon" aria-hidden="true">☷</span>
@@ -1070,8 +1089,13 @@
                 </div>
               </div>
             </div>
-            <div class="football-menu-banner">
-              <span>Football</span>
+            <div class="football-menu-banner" id="football-menu-banner">
+              <div class="football-banner-left">
+                <span class="football-banner-chev">⌄</span>
+                <span class="football-banner-dot">•</span>
+                <span class="football-banner-title">FOOTBALL</span>
+                <span class="football-banner-count" id="football-banner-count">1359</span>
+              </div>
               <div class="football-menu-banner-actions">
                 <button type="button" title="Expand">⛶</button>
                 <button type="button" title="Share">↗</button>

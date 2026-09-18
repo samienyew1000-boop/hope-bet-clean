@@ -1,6 +1,19 @@
 {
   "users": [
     {
+      "id": 68,
+      "username": "testt player",
+      "display_name": "testt Shop Player",
+      "email": "testt_player@hopebet.local",
+      "phone": null,
+      "password_hash": "$2b$10$NVVi3BgB.qfYxT/oqqNPaOshxPXgOFWY9Ijcf3lLwoUU0B3mwsmPq",
+      "role": "player",
+      "status": "active",
+      "created_by_admin_id": 67,
+      "created_by_admin_name": "testt Shop",
+      "created_at": "2026-09-18T09:45:46.553Z"
+    },
+    {
       "id": 67,
       "username": "testt",
       "display_name": "testt Shop",
@@ -1079,6 +1092,12 @@
       "balance": 1000,
       "currency": "ETB",
       "updated_at": "2026-09-18T07:44:40.991Z"
+    },
+    "68": {
+      "user_id": 68,
+      "balance": 0,
+      "currency": "ETB",
+      "updated_at": "2026-09-18T09:45:46.555Z"
     }
   },
   "bets": [
@@ -2793,7 +2812,7 @@
     ]
   },
   "counters": {
-    "user": 67,
+    "user": 68,
     "bet": 18,
     "tx": 117,
     "deposit": 0,
