@@ -22,18 +22,9 @@ if (!process.env.JWT_SECRET || process.env.JWT_SECRET === "change-this-to-a-long
   console.error("[hope-bet-api] FATAL: Set a strong JWT_SECRET in Render environment variables");
 }
 
-const origins = String(process.env.CORS_ORIGIN || "*")
-  .split(",")
-  .map((s) => s.trim())
-  .filter(Boolean);
-
 app.use(
   cors({
-    origin(origin, cb) {
-      if (!origin || origins.includes("*") || origins.includes(origin)) return cb(null, true);
-      if (/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) return cb(null, true);
-      return cb(null, false);
-    },
+    origin: true,
     credentials: true,
   })
 );

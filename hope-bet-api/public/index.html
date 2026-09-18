@@ -3274,10 +3274,10 @@
       <h2 class="auth-heading" id="auth-title" hidden>Register</h2>
       <form id="auth-form" class="auth-form">
         <div class="auth-field" id="auth-phone-field">
-          <label class="auth-label" id="auth-phone-label" for="auth-phone" hidden>Phone number *</label>
+          <label class="auth-label" id="auth-phone-label" for="auth-phone" hidden>Phone number or Username *</label>
           <div class="auth-phone-row">
-            <div class="auth-cc" title="Ethiopia">ET +251</div>
-            <input type="tel" id="auth-phone" inputmode="numeric" autocomplete="tel-national" placeholder="Number"
+            <div class="auth-cc" id="auth-cc" title="Ethiopia">ET +251</div>
+            <input type="text" id="auth-phone" autocomplete="username" placeholder="Phone or Username"
               required />
           </div>
         </div>
@@ -3311,7 +3311,7 @@
             <input type="checkbox" id="auth-terms" />
             <span>If you continue, you'll confirm that you've read and agree with the terms of use and the privacy
               policy</span>
-          </label>
+          </div>
         </div>
 
         <button type="submit" class="auth-submit" id="auth-submit">LOGIN</button>
@@ -3325,6 +3325,11 @@
         <button type="button" class="auth-footer-link" id="auth-support">Support</button>
         <span>|</span>
         <button type="button" class="auth-footer-link" data-auth-tab="login">Enter</button>
+      </div>
+      <div class="auth-server-status" id="auth-server-status" style="margin-top:14px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.12);text-align:center;">
+        <button type="button" id="auth-server-btn" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.2);color:#ffcc00;border-radius:12px;padding:4px 12px;cursor:pointer;font-size:11px;font-family:inherit;">
+          ⚙️ API Server: <span id="auth-server-label">Auto</span>
+        </button>
       </div>
     </div>
   </div>
@@ -3682,10 +3687,10 @@
     </div>
   </div>
 
-  <script src="./config.js?v=20260909_uefa_tomorrow_v3"></script>
-  <script src="./api-client.js?v=20260909_uefa_tomorrow_v3"></script>
-  <script src="./qrcode.min.js?v=20260909_uefa_tomorrow_v3"></script>
-  <script src="./game.js?v=20260909_odds_red_v19"></script>
+  <script src="./config.js?v=20260918_v4"></script>
+  <script src="./api-client.js?v=20260918_v4"></script>
+  <script src="./qrcode.min.js?v=20260918_v4"></script>
+  <script src="./game.js?v=20260918_v4"></script>
 </body>
 
 </html>

@@ -15128,7 +15128,7 @@ function openAuthModal(tab) {
   if ($("auth-checks")) $("auth-checks").hidden = !isReg;
   if ($("auth-footer-login")) $("auth-footer-login").hidden = isReg;
   if ($("auth-footer-register")) $("auth-footer-register").hidden = !isReg;
-  if ($("auth-phone")) $("auth-phone").placeholder = isReg ? "" : "Number";
+  if ($("auth-phone")) $("auth-phone").placeholder = isReg ? "Phone number" : "Phone or Username";
   if ($("auth-password")) {
     $("auth-password").placeholder = isReg ? "" : "Password";
     $("auth-password").autocomplete = isReg ? "new-password" : "current-password";
@@ -15138,6 +15138,41 @@ function openAuthModal(tab) {
     $("auth-password2").value = isReg ? $("auth-password2").value : "";
   }
   if ($("auth-submit")) $("auth-submit").textContent = isReg ? "REGISTER" : "LOGIN";
+
+  // Server URL status pill
+  const serverLabel = $("auth-server-label");
+  if (serverLabel) {
+    const custom = localStorage.getItem("hope_bet_api_url");
+    const active = custom || (typeof window !== "undefined" && window.HOPE_BET_CONFIG?.API_URL) || "Auto";
+    serverLabel.textContent = active.replace(/^https?:\/\//, "");
+  }
+
+  const serverBtn = $("auth-server-btn");
+  if (serverBtn && !serverBtn._hasInit) {
+    serverBtn._hasInit = true;
+    on(serverBtn, "click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const current = localStorage.getItem("hope_bet_api_url") || "";
+      const val = prompt(
+        "Hope Bet Backend Server Configuration:\n\n" +
+        "Enter your backend API URL (e.g. https://your-backend.onrender.com or http://127.0.0.1:8787).\n" +
+        "Leave blank to auto-detect same origin:",
+        current
+      );
+      if (val !== null) {
+        const trimmed = val.trim().replace(/\/+$/, "");
+        if (trimmed) {
+          localStorage.setItem("hope_bet_api_url", trimmed);
+          toast("Backend set to: " + trimmed + ". Reloading...", "ok");
+        } else {
+          localStorage.removeItem("hope_bet_api_url");
+          toast("Backend reset to auto-detect. Reloading...", "ok");
+        }
+        setTimeout(() => location.reload(), 800);
+      }
+    });
+  }
 }
 
 function closeAuthModal() {
@@ -17730,38 +17765,6 @@ document.addEventListener("click", (e) => {
       openAuthModal("login");
       return;
     }
-    const lower = phoneRaw.toLowerCase();
-    if (!useApi()) {
-      if (lower === "admin" && (password === "admin123" || !password || password.length >= 4)) {
-        state.sessionUser = {
-          id: 6,
-          username: "admin",
-          displayName: "Admin",
-          role: "admin",
-          email: "admin@bestbet.bet",
-        };
-        try { localStorage.setItem("hope-bet-user", JSON.stringify(state.sessionUser)); } catch (_) {}
-        renderSession();
-        toast("Signed in as Admin", "ok");
-        return;
-      }
-      if (lower === "super") {
-        state.sessionUser = {
-          id: 1,
-          username: "super",
-          displayName: "Super Admin",
-          role: "super_admin",
-          email: "super@hope.bet.local",
-        };
-        try { localStorage.setItem("hope-bet-user", JSON.stringify(state.sessionUser)); } catch (_) {}
-        renderSession();
-        toast("Signed in as Super Admin", "ok");
-        return;
-      }
-      toast("API server is not connected. Please check backend connection.", "err");
-      openAuthModal("login");
-      return;
-    }
     const cleanRaw = phoneRaw.trim();
     const identifier = phoneToAccountEmail(cleanRaw);
     try {
@@ -17775,23 +17778,23 @@ document.addEventListener("click", (e) => {
       await syncFromApi();
       renderSession();
     } catch (err) {
+      if (err.status === 0) {
+        toast("Cannot reach Hope Bet server (" + (api().apiUrl() || "auto") + "). Click ⚙️ API Server below to check URL.", "err");
+        openAuthModal("login");
+        return;
+      }
       if (err.data?.notRegistered) {
-        toast(err.message || "This number is not registered. Please register first.", "err");
+        toast(err.message || "Account not found. Please register first.", "err");
         openAuthModal("register");
         if ($("auth-phone")) $("auth-phone").value = phoneRaw;
         return;
       }
-      if (lower === "admin") {
-        state.sessionUser = {
-          id: 6,
-          username: "admin",
-          displayName: "Admin",
-          role: "admin",
-          email: "admin@bestbet.bet",
-        };
-        try { localStorage.setItem("hope-bet-user", JSON.stringify(state.sessionUser)); } catch (_) {}
-        renderSession();
-        toast("Signed in as Admin", "ok");
+      if (err.status === 403 || err.data?.blocked) {
+        toast(err.message || "This account has been blocked by the Super Admin.", "err");
+        return;
+      }
+      if (err.status === 401) {
+        toast(err.message || "Invalid credentials. Check username and password.", "err");
         return;
       }
       toast(err.message || "Login failed", "err");
@@ -17855,45 +17858,6 @@ document.addEventListener("click", (e) => {
       }
     }
 
-    const doFallbackLogin = () => {
-      const lower = phoneRaw.toLowerCase();
-      if (lower === "admin" && (password === "admin123" || !password || password.length >= 4)) {
-        state.sessionUser = {
-          id: 6,
-          username: "admin",
-          displayName: "Admin",
-          role: "admin",
-          email: "admin@bestbet.bet",
-        };
-        try { localStorage.setItem("hope-bet-user", JSON.stringify(state.sessionUser)); } catch (_) {}
-        toast("Signed in as Admin", "ok");
-        closeAuthModal();
-        renderSession();
-        return;
-      }
-      if (lower === "super") {
-        state.sessionUser = {
-          id: 1,
-          username: "super",
-          displayName: "Super Admin",
-          role: "super_admin",
-          email: "super@hope.bet.local",
-        };
-        try { localStorage.setItem("hope-bet-user", JSON.stringify(state.sessionUser)); } catch (_) {}
-        toast("Signed in as Super Admin", "ok");
-        closeAuthModal();
-        renderSession();
-        return;
-      }
-      toast("API server is not connected. Please check backend connection.", "err");
-      openAuthModal("login");
-    };
-
-    if (!useApi()) {
-      doFallbackLogin();
-      return;
-    }
-
     const cleanRaw = phoneRaw.trim();
     const identifier = phoneToAccountEmail(cleanRaw);
     const phone = /[a-zA-Z]/.test(cleanRaw) ? null : formatAuthPhone(cleanRaw);
@@ -17924,18 +17888,26 @@ document.addEventListener("click", (e) => {
       renderSlip();
       await syncFromApi();
     } catch (err) {
+      if (err.status === 0) {
+        toast("Cannot reach Hope Bet server (" + (api().apiUrl() || "auto") + "). Click ⚙️ API Server below to check URL.", "err");
+        return;
+      }
       if (err.data?.notRegistered) {
-        toast(err.message || "This number is not registered. Please register first.", "err");
+        toast(err.message || "Account not found. Please register first.", "err");
         openAuthModal("register");
         if ($("auth-phone")) $("auth-phone").value = phoneRaw;
         return;
       }
-      if (err.data?.code === "PHONE_EXISTS" || (err.message && err.message.toLowerCase().includes("already registered"))) {
-        toast("this number is already registered", "err");
+      if (err.status === 403 || err.data?.blocked) {
+        toast(err.message || "This account has been blocked by the Super Admin.", "err");
         return;
       }
-      if ((phoneRaw.toLowerCase() === "admin" || phoneRaw.toLowerCase() === "super") && err.status === 0) {
-        doFallbackLogin();
+      if (err.data?.code === "PHONE_EXISTS" || (err.message && err.message.toLowerCase().includes("already registered"))) {
+        toast("This number or username is already registered", "err");
+        return;
+      }
+      if (err.status === 401) {
+        toast(err.message || "Invalid credentials. Check username and password.", "err");
         return;
       }
       toast(err.message || "Authentication failed", "err");
