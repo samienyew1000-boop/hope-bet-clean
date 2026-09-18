@@ -8,15 +8,19 @@ const FRONTEND_PORT = process.env.PORT || 3000;
 const ROOT_DIR = __dirname;
 const FRONTEND_DIR = path.join(ROOT_DIR, 'frontend');
 const API_DIR = path.join(ROOT_DIR, 'hope-bet-api');
+const INTERNAL_API_PORT = 8787;
 
 // 1. Start Backend API process
 let apiProcess = null;
 const apiScript = path.join(API_DIR, 'src', 'index.js');
 if (fs.existsSync(apiScript)) {
-  console.log('[DevServer] Starting Hope Bet API backend...');
+  console.log(`[DevServer] Starting Hope Bet API backend on internal port ${INTERNAL_API_PORT}...`);
   apiProcess = fork(apiScript, [], {
     cwd: API_DIR,
-    env: { ...process.env }
+    env: {
+      ...process.env,
+      PORT: String(INTERNAL_API_PORT),
+    }
   });
 
   apiProcess.on('error', (err) => {
@@ -41,7 +45,7 @@ const MIME_TYPES = {
   '.ttf': 'font/ttf'
 };
 
-// 3. Static server
+// 3. Static server + API Reverse Proxy
 const server = http.createServer((req, res) => {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -51,6 +55,32 @@ const server = http.createServer((req, res) => {
   if (req.method === 'OPTIONS') {
     res.writeHead(204);
     res.end();
+    return;
+  }
+
+  // Reverse Proxy /api requests to internal backend API
+  if (req.url.startsWith('/api/') || req.url === '/api' || req.url.startsWith('/api?')) {
+    const proxyReq = http.request({
+      hostname: '127.0.0.1',
+      port: INTERNAL_API_PORT,
+      path: req.url,
+      method: req.method,
+      headers: {
+        ...req.headers,
+        host: `127.0.0.1:${INTERNAL_API_PORT}`
+      }
+    }, (proxyRes) => {
+      res.writeHead(proxyRes.statusCode, proxyRes.headers);
+      proxyRes.pipe(res, { end: true });
+    });
+
+    proxyReq.on('error', (err) => {
+      console.error('[DevServer Proxy] Backend connection error:', err.message);
+      res.writeHead(502, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: false, error: 'Cannot connect to Hope Bet API service. Ensure backend is running.' }));
+    });
+
+    req.pipe(proxyReq, { end: true });
     return;
   }
 

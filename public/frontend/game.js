@@ -17758,13 +17758,14 @@ document.addEventListener("click", (e) => {
         toast("Signed in as Super Admin", "ok");
         return;
       }
-      toast("Please register or log in with a valid account", "err");
+      toast("API server is not connected. Please check backend connection.", "err");
       openAuthModal("login");
       return;
     }
-    const identifier = phoneToAccountEmail(phoneRaw);
+    const cleanRaw = phoneRaw.trim();
+    const identifier = phoneToAccountEmail(cleanRaw);
     try {
-      const data = await api().login({ identifier, password });
+      const data = await api().login({ identifier: cleanRaw, phone: cleanRaw, email: identifier, password });
       state.history = [];
       state.slip = [];
       state.betPlacedSuccessTicket = null;
@@ -17884,7 +17885,7 @@ document.addEventListener("click", (e) => {
         renderSession();
         return;
       }
-      toast("Please register or log in with a valid account", "err");
+      toast("API server is not connected. Please check backend connection.", "err");
       openAuthModal("login");
     };
 
@@ -17893,8 +17894,9 @@ document.addEventListener("click", (e) => {
       return;
     }
 
-    const identifier = phoneToAccountEmail(phoneRaw);
-    const phone = /[a-zA-Z]/.test(phoneRaw) ? null : formatAuthPhone(phoneRaw);
+    const cleanRaw = phoneRaw.trim();
+    const identifier = phoneToAccountEmail(cleanRaw);
+    const phone = /[a-zA-Z]/.test(cleanRaw) ? null : formatAuthPhone(cleanRaw);
     const submitBtn = $("auth-submit");
     if (!submitBtn) return;
     const prevLabel = submitBtn.textContent;
@@ -17907,12 +17909,12 @@ document.addEventListener("click", (e) => {
       if (state.authTab === "register") {
         const role = "player";
         const email = identifier;
-        const data = await api().register({ identifier, email, password, phone, role });
+        const data = await api().register({ identifier: cleanRaw, email, password, phone, role });
         state.sessionUser = data.user;
         try { localStorage.setItem("hope-bet-user", JSON.stringify(state.sessionUser)); } catch (_) {}
         toast("Account registered successfully", "ok");
       } else {
-        const data = await api().login({ identifier: phoneRaw, password });
+        const data = await api().login({ identifier: cleanRaw, phone: cleanRaw, email: identifier, password });
         state.sessionUser = data.user;
         try { localStorage.setItem("hope-bet-user", JSON.stringify(state.sessionUser)); } catch (_) {}
         toast("Signed in", "ok");

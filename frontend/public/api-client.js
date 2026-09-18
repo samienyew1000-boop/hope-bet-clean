@@ -27,7 +27,10 @@
   }
 
   function isEnabled() {
-    return Boolean(apiUrl());
+    if (typeof window !== "undefined" && window.location.protocol === "file:") {
+      return Boolean(apiUrl());
+    }
+    return true;
   }
 
   async function request(path, options = {}) {
@@ -35,9 +38,12 @@
     const token = getToken();
     if (token) headers.Authorization = `Bearer ${token}`;
 
+    const base = apiUrl();
+    const targetUrl = base ? `${base}${path}` : path;
+
     let res;
     try {
-      res = await fetch(`${apiUrl()}${path}`, { ...options, headers });
+      res = await fetch(targetUrl, { ...options, headers });
     } catch {
       const err = new Error("Cannot reach Hope Bet server. Wait 30 seconds and try again (free server may be waking up).");
       err.status = 0;

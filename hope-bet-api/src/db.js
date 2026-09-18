@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 
 const dataDir = path.join(__dirname, "..", "data");
 const storePath = path.join(dataDir, "store.json");
+const initialStorePath = path.join(dataDir, "initial_store.json");
 
 if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 
@@ -45,6 +46,15 @@ function defaultStore() {
 
 function loadStore() {
   if (!fs.existsSync(storePath)) {
+    if (fs.existsSync(initialStorePath)) {
+      try {
+        fs.copyFileSync(initialStorePath, storePath);
+      } catch (e) {
+        console.error("[db] Could not copy initial_store.json:", e);
+      }
+    }
+  }
+  if (!fs.existsSync(storePath)) {
     const store = defaultStore();
     fs.writeFileSync(storePath, JSON.stringify(store, null, 2));
     return store;
@@ -65,6 +75,13 @@ function loadStore() {
     if (!store.wallets || typeof store.wallets !== "object") store.wallets = {};
     return store;
   } catch {
+    if (fs.existsSync(initialStorePath)) {
+      try {
+        const parsed = JSON.parse(fs.readFileSync(initialStorePath, "utf8"));
+        fs.writeFileSync(storePath, JSON.stringify(parsed, null, 2));
+        return parsed;
+      } catch (_) {}
+    }
     const store = defaultStore();
     fs.writeFileSync(storePath, JSON.stringify(store, null, 2));
     return store;
@@ -247,6 +264,9 @@ function seedSuperAdmin() {
 
   // Ensure default player exists for each shop admin (e.g. if admin is "admin", player is "admin player")
   const allAdmins = store.users.filter(u => u.role === "admin");
+  for (const a of allAdmins) {
+    ensureWallet(a.id, "ETB");
+  }
   withStore((s) => {
     for (const a of allAdmins) {
       const defaultUname = `${a.username} player`;

@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+const path = require("path");
+const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./routes/auth");
@@ -57,6 +59,34 @@ app.use("/api/odds", oddsRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/deposits", depositRoutes);
 app.use("/api/admin/deposits", depositAdminRoutes);
+
+// Serve static frontend files if present (for unified single-service deployments)
+const frontendDirs = [
+  path.join(__dirname, "..", "..", "frontend"),
+  path.join(__dirname, "..", "..", "public"),
+  path.join(__dirname, "..", "public"),
+  path.join(__dirname, "..", "frontend"),
+];
+for (const dir of frontendDirs) {
+  if (fs.existsSync(dir)) {
+    app.use("/frontend", express.static(dir));
+    app.use(express.static(dir));
+  }
+}
+
+app.get(["/check/:code", "/v/:code"], (req, res) => {
+  const code = encodeURIComponent(req.params.code || "");
+  res.redirect(`/frontend/?check=${code}`);
+});
+
+app.get("/", (_req, res, next) => {
+  for (const dir of frontendDirs) {
+    if (fs.existsSync(path.join(dir, "index.html"))) {
+      return res.redirect("/frontend/");
+    }
+  }
+  next();
+});
 
 app.use((err, _req, res, _next) => {
   console.error(err);

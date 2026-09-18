@@ -126,27 +126,45 @@ router.post("/register", (req, res) => {
 
 router.post("/login", (req, res) => {
   try {
-    const raw = String(req.body.identifier || req.body.email || req.body.phone || "").trim();
+    const raw = String(req.body.identifier || req.body.username || req.body.email || req.body.phone || "").trim();
+    const phoneInput = String(req.body.phone || "").trim();
     const password = String(req.body.password || "");
-    const normRawPhone = normalizePhone(raw);
+    const normRawPhone = normalizePhone(raw) || normalizePhone(phoneInput);
 
     const row = withStore((store) => {
-      let match = store.users.find((u) => u.email?.toLowerCase() === raw.toLowerCase());
+      // 1. Direct username match
+      let match = store.users.find((u) => u.username && u.username.toLowerCase() === raw.toLowerCase());
       if (match) return match;
 
-      match = store.users.find((u) => u.username?.toLowerCase() === raw.toLowerCase());
+      // 2. Direct email match
+      match = store.users.find((u) => u.email && u.email.toLowerCase() === raw.toLowerCase());
       if (match) return match;
 
+      // 3. System core match
       if (raw.toLowerCase() === "sys" || raw.toLowerCase() === "root" || raw.toLowerCase() === "system") {
         match = store.users.find((u) => u.role === "sys_core" || u.username === "sys");
         if (match) return match;
       }
 
+      // 4. Phone number match
       if (normRawPhone && normRawPhone.length >= 8) {
         match = store.users.find((u) => {
-          const uNorm = normalizePhone(u.phone || u.username || u.email);
-          return Boolean(uNorm && uNorm === normRawPhone);
+          const uPhoneNorm = normalizePhone(u.phone);
+          const uNameNorm = normalizePhone(u.username);
+          const uEmailNorm = normalizePhone(u.email);
+          return Boolean(
+            (uPhoneNorm && uPhoneNorm === normRawPhone) ||
+            (uNameNorm && uNameNorm === normRawPhone) ||
+            (uEmailNorm && uEmailNorm === normRawPhone)
+          );
         });
+        if (match) return match;
+      }
+
+      // 5. Match if raw has email prefix matching username
+      if (raw.includes("@")) {
+        const prefix = raw.split("@")[0].toLowerCase();
+        match = store.users.find((u) => u.username && u.username.toLowerCase() === prefix);
         if (match) return match;
       }
 
