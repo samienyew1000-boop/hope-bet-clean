@@ -1,0 +1,3305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>localStorage.setItem("hope_bet_admin_mode", "1"); localStorage.setItem("hope-bet-user", JSON.stringify({id: 3, username: "admin", displayName: "Shop Admin", role: "admin", email: "admin@bestbet.bet"}));</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="hope-bet-api" content="http://127.0.0.1:8787" />
+  <title>Hope Bet — Sportsbook</title>
+  <script>
+    (function () {
+      var path = location.pathname || "";
+      if (!path.endsWith("/") && !/\.html?$/i.test(path)) {
+        location.replace(path + "/" + location.search + location.hash);
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css?v=20260909_odds_red_v19" />
+</head>
+
+<body>
+    <!-- ===== ADMIN HEADER ===== -->
+    <header class="admin-header" id="admin-header" hidden>
+      <!-- Admin Top Bar -->
+      <div class="admin-top-bar">
+        <div class="admin-top-left">
+          <div class="admin-brand">
+            <img src="assets/hope-bet-logo.png" alt="Hope Bet" class="admin-brand-logo" />
+            <span class="admin-brand-name">HOPE BET</span>
+          </div>
+        </div>
+
+        <div class="admin-top-center">
+          <div class="admin-top-stat">
+            <span class="admin-stat-label">Balance</span>
+            <span class="admin-stat-val" id="admin-header-balance">ETB 0.00</span>
+          </div>
+          <div class="admin-top-stat-divider"></div>
+          <div class="admin-top-stat">
+            <span class="admin-stat-label">Credits</span>
+            <span class="admin-stat-val" id="admin-header-credits">ETB 0.00</span>
+          </div>
+          <div class="admin-top-stat-divider"></div>
+          <div class="admin-top-stat">
+            <span class="admin-stat-label">Availability</span>
+            <span class="admin-stat-val" id="admin-header-availability">ETB 0</span>
+          </div>
+        </div>
+
+        <div class="admin-top-right">
+          <div class="admin-lang-pill" title="English / US">
+            <svg width="22" height="15" viewBox="0 0 7410 3900">
+              <rect width="7410" height="3900" fill="#b22234"/>
+              <path d="M0,450H7410M0,1050H7410M0,1650H7410M0,2250H7410M0,2850H7410M0,3450H7410" stroke="#fff" stroke-width="300"/>
+              <rect width="2964" height="2100" fill="#3c3b6e"/>
+              <g fill="#fff">
+                <circle cx="370" cy="210" r="70"/><circle cx="740" cy="210" r="70"/><circle cx="1110" cy="210" r="70"/><circle cx="1480" cy="210" r="70"/><circle cx="1850" cy="210" r="70"/><circle cx="2220" cy="210" r="70"/><circle cx="2590" cy="210" r="70"/>
+                <circle cx="555" cy="420" r="70"/><circle cx="925" cy="420" r="70"/><circle cx="1295" cy="420" r="70"/><circle cx="1665" cy="420" r="70"/><circle cx="2035" cy="420" r="70"/><circle cx="2405" cy="420" r="70"/>
+                <circle cx="370" cy="630" r="70"/><circle cx="740" cy="630" r="70"/><circle cx="1110" cy="630" r="70"/><circle cx="1480" cy="630" r="70"/><circle cx="1850" cy="630" r="70"/><circle cx="2220" cy="630" r="70"/><circle cx="2590" cy="630" r="70"/>
+                <circle cx="555" cy="840" r="70"/><circle cx="925" cy="840" r="70"/><circle cx="1295" cy="840" r="70"/><circle cx="1665" cy="840" r="70"/><circle cx="2035" cy="840" r="70"/><circle cx="2405" cy="840" r="70"/>
+                <circle cx="370" cy="1050" r="70"/><circle cx="740" cy="1050" r="70"/><circle cx="1110" cy="1050" r="70"/><circle cx="1480" cy="1050" r="70"/><circle cx="1850" cy="1050" r="70"/><circle cx="2220" cy="1050" r="70"/><circle cx="2590" cy="1050" r="70"/>
+                <circle cx="555" cy="1260" r="70"/><circle cx="925" cy="1260" r="70"/><circle cx="1295" cy="1260" r="70"/><circle cx="1665" cy="1260" r="70"/><circle cx="2035" cy="1260" r="70"/><circle cx="2405" cy="1260" r="70"/>
+                <circle cx="370" cy="1470" r="70"/><circle cx="740" cy="1470" r="70"/><circle cx="1110" cy="1470" r="70"/><circle cx="1480" cy="1470" r="70"/><circle cx="1850" cy="1470" r="70"/><circle cx="2220" cy="1470" r="70"/><circle cx="2590" cy="1470" r="70"/>
+              </g>
+            </svg>
+          </div>
+          <button type="button" class="admin-user-btn" id="admin-user-btn" title="Admin Account">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </button>
+          <button type="button" class="admin-logout-btn" id="admin-logout-btn" title="Log Out">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            <span>Log Out</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Admin Secondary Nav Bar -->
+      <nav class="admin-nav-bar" id="admin-nav-bar">
+        <button type="button" class="admin-nav-item is-active" data-admin-tab="dashboard">
+          <svg class="admin-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span>Dashboard</span>
+        </button>
+        <button type="button" class="admin-nav-item" data-admin-tab="players">
+          <svg class="admin-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Players</span>
+        </button>
+        <button type="button" class="admin-nav-item" data-admin-tab="sport-coupons">
+          <svg class="admin-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M7 15h2"/></svg>
+          <span>Sport coupons</span>
+        </button>
+        <button type="button" class="admin-nav-item" data-admin-tab="bet">
+          <svg class="admin-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/></svg>
+          <span>Bet</span>
+        </button>
+        <button type="button" class="admin-nav-item" data-admin-tab="deposit">
+          <svg class="admin-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+          <span>Deposit</span>
+        </button>
+        <div class="admin-nav-dropdown-wrap" id="admin-nav-trans-wrap">
+          <button type="button" class="admin-nav-item admin-nav-dropdown-btn" data-admin-tab="transactions" id="admin-nav-trans-btn">
+            <svg class="admin-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M12 9v6"/></svg>
+            <span>Transactions ▾</span>
+          </button>
+          <div class="admin-nav-dropdown-menu" id="admin-nav-trans-menu" hidden>
+            <button type="button" class="admin-dropdown-item" data-trans-mode="withdraw">Withdraw</button>
+            <button type="button" class="admin-dropdown-item" data-trans-mode="deposit">Deposit</button>
+          </div>
+        </div>
+        <button type="button" class="admin-nav-item" data-admin-tab="virtual">
+          <svg class="admin-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <span>Virtual ▾</span>
+        </button>
+        <div class="admin-nav-dropdown-wrap" id="admin-nav-report-wrap">
+          <button type="button" class="admin-nav-item admin-nav-dropdown-btn" data-admin-tab="report" id="admin-nav-report-btn">
+            <svg class="admin-tab-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="6.5" cy="8.5" rx="2.2" ry="3.8"/>
+              <ellipse cx="10.5" cy="8.5" rx="2.2" ry="3.8"/>
+              <ellipse cx="14.5" cy="8.5" rx="2.2" ry="3.8"/>
+              <path d="M3 13.5c1.5-.5 3-.5 4.5 0l4 1.5c2 .7 4.5.7 6.5 0l3-1"/>
+              <path d="M3 13.5v3c2 2 5 3 9 3s7-1 9-3v-3"/>
+            </svg>
+            <span>Report ▾</span>
+          </button>
+          <div class="admin-nav-dropdown-menu admin-report-dropdown-menu" id="admin-nav-report-menu" hidden>
+            <button type="button" class="admin-dropdown-item" data-report-type="summary">Summary</button>
+            <button type="button" class="admin-dropdown-item" data-report-type="betting">Betting</button>
+            <button type="button" class="admin-dropdown-item" data-report-type="players-report">Players Report</button>
+            <button type="button" class="admin-dropdown-item" data-report-type="daily-report">Daily Report</button>
+            <button type="button" class="admin-dropdown-item" data-report-type="bet-type">Bet type</button>
+            <button type="button" class="admin-dropdown-item" data-report-type="transactions">Transactions</button>
+            <button type="button" class="admin-dropdown-item" data-report-type="credit-transactions">Credit Transactions</button>
+            <button type="button" class="admin-dropdown-item" data-report-type="commissions">Commissions</button>
+            <button type="button" class="admin-dropdown-item" data-report-type="bonus-retention">Bonus Retention</button>
+            <button type="button" class="admin-dropdown-item" data-report-type="network-liabilities">Network Liabilities</button>
+          </div>
+        </div>
+        <button type="button" class="admin-nav-item" data-admin-tab="cms">
+          <span>CMS ▾</span>
+        </button>
+        <button type="button" class="admin-nav-item admin-nav-item--messages" data-admin-tab="messages">
+          <svg class="admin-tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>Messages</span>
+          <span class="admin-messages-badge">0</span>
+        </button>
+      </nav>
+    </header>
+
+    <header class="site-header">
+      <!-- TOP UTILITY STRIP -->
+      <div class="top-nav-bar">
+        <div class="top-nav-links">
+          <button type="button" class="top-link is-on" data-nav="sport">Sport</button>
+          <button type="button" class="top-link" data-nav="upcoming">Upcoming</button>
+          <button type="button" class="top-link" data-nav="live">Live</button>
+          <button type="button" class="top-link" data-coming-soon>Tournament</button>
+          <button type="button" class="top-link" data-coming-soon>Fury Flight</button>
+          <button type="button" class="top-link" data-coming-soon>MH5 Family</button>
+          <button type="button" class="top-link" data-coming-soon>Sizzling Star</button>
+          <button type="button" class="top-link" data-coming-soon>Sizzling Blaze</button>
+          <button type="button" class="top-link" data-coming-soon>Virtual</button>
+          <button type="button" class="top-link" data-coming-soon>Special Games</button>
+          <button type="button" class="top-link" data-coming-soon>Promo</button>
+        </div>
+        <div class="top-nav-right">
+          <label class="night-toggle" id="night-toggle" title="Toggle Night Mode">
+            <span class="night-toggle-icon">🌙</span>
+            <div class="night-toggle-track">
+              <div class="night-toggle-thumb"></div>
+            </div>
+          </label>
+          <div class="theme-color-picker" id="theme-color-picker" title="Change Theme Color">
+            <button type="button" class="theme-color-dot is-active" data-theme-color="red" style="--dot-color: #c62828;" title="Red (Default)"></button>
+            <button type="button" class="theme-color-dot" data-theme-color="dark" style="--dot-color: #1f232b;" title="Dark Mode"></button>
+            <button type="button" class="theme-color-dot" data-theme-color="blue" style="--dot-color: #1565c0;" title="Royal Blue"></button>
+            <button type="button" class="theme-color-dot" data-theme-color="green" style="--dot-color: #1b5e20;" title="Emerald Green"></button>
+            <button type="button" class="theme-color-dot" data-theme-color="purple" style="--dot-color: #4a148c;" title="Midnight Purple"></button>
+          </div>
+          <button type="button" class="top-app-pill" data-coming-soon>App</button>
+          <button type="button" class="top-util-link" id="top-live-chat">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+            <span>LIVE CHAT</span>
+          </button>
+          <a href="https://t.me/" target="_blank" rel="noopener noreferrer" class="top-util-icon" title="Telegram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg>
+          </a>
+          <div class="top-lang-dropdown">
+            <span>🇬🇧 English ▾</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN BRAND BAR -->
+      <nav class="main-nav">
+        <a class="main-nav-logo" href="./">
+          <img id="brand-logo" src="assets/hope-bet-logo.png" alt="Hope Bet" />
+        </a>
+        <div class="main-nav-tabs">
+          <button type="button" class="main-nav-tab is-on" data-nav="sport">SPORT</button>
+          <button type="button" class="main-nav-tab" data-nav="upcoming"><span class="tab-badge-new">NEW</span>UPCOMING</button>
+          <button type="button" class="main-nav-tab" data-nav="live">LIVE</button>
+          <button type="button" class="main-nav-tab" data-nav="tournament" data-coming-soon><span class="tab-badge-new">NEW</span>TOURNAMENT</button>
+          <button type="button" class="main-nav-tab" data-nav="fury-flight" data-coming-soon><span class="tab-badge-new">NEW</span>FURY FLIGHT</button>
+          <button type="button" class="main-nav-tab" data-nav="mh5" data-coming-soon><span class="tab-badge-new">NEW</span>MH5 FAMILY</button>
+          <button type="button" class="main-nav-tab" data-nav="sizzling" data-coming-soon><span class="tab-badge-new">NEW</span>SIZZLING STAR</button>
+          <span class="nav-arrow-down">▾</span>
+        </div>
+        <div class="main-nav-right">
+          <span class="nav-action-icon" title="Leaderboard" data-coming-soon>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffd700"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0011 15.9V19H7v2h10v-2h-4v-3.1a5.01 5.01 0 003.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg>
+          </span>
+          <span class="nav-action-icon" title="VIP Club" data-coming-soon>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffd700"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 15l-4-4 1.41-1.41L10 13.17l6.59-6.59L18 8l-8 8z"/></svg>
+          </span>
+          <button type="button" class="main-nav-promo" data-coming-soon>PROMOTIONS</button>
+          
+          <div class="nav-auth-guest" id="utility-guest">
+            <span class="nav-pipe">|</span>
+            <button type="button" class="main-nav-link" id="header-login-btn">Log In</button>
+            <button type="button" class="main-nav-create" id="header-register-btn">Create Account</button>
+          </div>
+
+          <div class="nav-auth-logged" id="utility-authed" hidden>
+            <button type="button" class="nav-circle-btn" id="nav-btn-history" title="Bet History" aria-label="Bet History">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+              </svg>
+            </button>
+            <button type="button" class="nav-circle-btn nav-circle-btn--badge" id="nav-btn-bonuses" title="Bonuses" aria-label="Bonuses">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35L12 4l-.5-.65C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.1 0-2 .9-2 2v2h20V8c0-1.1-.9-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM2 19c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-7H2v7z"/>
+              </svg>
+              <span class="nav-circle-badge" id="nav-bonus-badge">0</span>
+            </button>
+            <button type="button" class="nav-circle-btn" id="nav-btn-jackpots" title="My Jackpots" aria-label="My Jackpots">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffb300">
+                <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0011 15.9V19H7v2h10v-2h-4v-3.1a5.01 5.01 0 003.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
+              </svg>
+            </button>
+            <button type="button" class="nav-circle-btn" id="nav-btn-vip" title="VIP Club" aria-label="VIP Club">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffb300">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.5v-7l5 3.5-5 3.5z"/>
+                <path d="M12 6c-1.5 0-2.8.6-3.8 1.6l1.4 1.4C10.3 8.4 11.1 8 12 8s1.7.4 2.4 1l1.4-1.4C14.8 6.6 13.5 6 12 6z" fill="#ffe082"/>
+              </svg>
+            </button>
+            <div class="nav-avatar-badge" id="nav-user-avatar" title="Account">9</div>
+
+            <div class="nav-balance-box" id="nav-real-balance-box" role="button" tabindex="0" title="Real Balance">
+              <span class="nav-balance-title">Real Balance</span>
+              <span class="nav-balance-amount"><strong id="balance">0</strong> <em id="currency-label">ETB</em></span>
+            </div>
+
+            <div class="nav-balance-box" id="nav-bonus-balance-box" role="button" tabindex="0" title="Bonus Balance">
+              <span class="nav-balance-title">Bonus Balance</span>
+              <span class="nav-balance-amount"><strong id="bonus-balance">0.00</strong> <em id="bonus-currency">ETB</em> <svg class="nav-balance-chevron" width="10" height="6" viewBox="0 0 10 6" fill="currentColor"><path d="M0 0l5 6 5-6z"/></svg></span>
+            </div>
+
+            <button type="button" class="btn-deposit-header" id="btn-deposit">Deposit</button>
+
+            <button type="button" class="nav-logout-icon-btn" id="btn-join" title="Sign Out" aria-label="Sign Out">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- SUB NAV STRIP -->
+      <nav class="sub-nav" id="sub-nav">
+        <button type="button" class="sub-nav-item is-on" data-subnav="sports">Sports</button>
+        <button type="button" class="sub-nav-item" data-subnav="daily">Daily Events</button>
+        <button type="button" class="sub-nav-item" data-subnav="all-events">All Events</button>
+        <button type="button" class="sub-nav-item" data-subnav="upcoming">Upcoming</button>
+        <button type="button" class="sub-nav-item" data-subnav="inplay">Inplay Calendar</button>
+        <button type="button" class="sub-nav-item" data-subnav="my-bets" id="sub-nav-my-bets" hidden>My Bets</button>
+        <button type="button" class="sub-nav-item" data-subnav="results" id="sub-nav-results">Result</button>
+      </nav>
+    </header>
+
+    <div class="mobile-top" id="mobile-top">
+      <button type="button" class="mobile-top-brand" id="btn-mobile-home" aria-label="Hope Bet home">
+        <img src="assets/hope-bet-logo.png" alt="Hope Bet" />
+      </button>
+
+      <!-- GUEST ACTIONS (Logged Out) -->
+      <div class="mobile-header-actions" id="mobile-guest-actions">
+        <button type="button" class="mobile-btn-login" id="mobile-btn-login">Log In</button>
+        <button type="button" class="mobile-btn-signup" id="mobile-btn-signup">Sign Up</button>
+        <button type="button" class="mobile-top-btn" id="btn-mobile-guest-account" aria-label="Account">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/></svg>
+        </button>
+      </div>
+
+      <!-- AUTHED ACTIONS (Logged In) -->
+      <div class="mobile-header-actions" id="mobile-authed-actions" hidden>
+        <div class="mobile-balance-pill" id="mobile-balance-pill">
+          <span class="mobile-balance-val" id="mobile-balance-val">0.00 ETB</span>
+          <button type="button" class="mobile-deposit-plus" id="mobile-balance-deposit-btn" title="Deposit">+</button>
+        </div>
+        <button type="button" class="mobile-top-btn" id="mobile-btn-bonuses" aria-label="Bonuses" title="Bonuses">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.51 15.49 0 12.36 0c-1.73 0-3.27.79-4.36 2.04C6.91.79 5.37 0 3.64 0 .51 0-2 2.51-2 4.64c0 .48.11.92.18 1.36H-2v2h22V6zm-7.64 0c-.42-1.17-1.48-2-2.72-2-.88 0-1.64.4-2.16 1.02A2.636 2.636 0 0 1 5.36 3c-.9 0-1.64.75-1.64 1.64 0 .3.08.57.18.82l-1.08.54H20zm-8.72 0H2.1c.1-.25.18-.52.18-.82C2.28 4.29 3 3.5 3.91 3.5c.82 0 1.52.51 1.8 1.22l.53 1.28zM2 8v12h8V8H2zm12 0v12h8V8h-8z"/></svg>
+        </button>
+        <button type="button" class="mobile-top-btn" id="btn-mobile-auth-account" aria-label="Account" title="Profile">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- MOBILE MAIN NAVIGATION TABS -->
+    <nav class="mobile-main-nav" id="mobile-main-nav" aria-label="Main navigation">
+      <button type="button" class="mobile-nav-tab is-active" data-mobile-nav="sports">SPORT</button>
+      <button type="button" class="mobile-nav-tab has-badge" data-mobile-nav="upcoming">
+        <span class="mobile-tab-badge">NEW</span>
+        UPCOMING
+      </button>
+      <button type="button" class="mobile-nav-tab" data-mobile-nav="live">LIVE</button>
+      <button type="button" class="mobile-nav-tab has-badge" data-mobile-nav="tournament">
+        <span class="mobile-tab-badge">NEW</span>
+        TOURNAMENT
+      </button>
+      <button type="button" class="mobile-nav-tab" data-mobile-nav="virtual">FURY FLI...</button>
+    </nav>
+
+    <div class="mobile-sports-strip" id="mobile-sports-strip" aria-label="Sports"></div>
+    <div class="mobile-time-strip" id="mobile-time-strip" hidden></div>
+    <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop" hidden>
+      <button type="button" class="account-drawer-close-btn" id="btn-close-account" aria-label="Close account">✕</button>
+    </div>
+    <aside class="account-drawer" id="account-drawer" aria-label="Account Drawer">
+      <div class="account-drawer-body" id="account-drawer-body">
+
+        <!-- GUEST (LOGGED OUT) VIEW - Image 1 -->
+        <div class="account-guest" id="account-guest">
+          <p class="account-prompt">Account already existing?</p>
+          <button type="button" class="account-cta account-cta--login" data-account-auth="login">LOGIN</button>
+
+          <p class="account-prompt">New user?</p>
+          <button type="button" class="account-cta account-cta--register" data-account-auth="register">REGISTER</button>
+
+          <button type="button" class="account-row-btn" id="account-live-chat">
+            <span class="account-row-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 9H7v-2h10v2z"/>
+              </svg>
+            </span>
+            <span class="account-row-label">LIVE CHAT</span>
+          </button>
+
+          <button type="button" class="account-row-btn account-row--lang" id="account-lang-btn">
+            <span class="account-lang-flag">🇬🇧</span>
+            <span class="account-row-label">English</span>
+            <span class="account-row-arrow">⌄</span>
+          </button>
+
+          <div class="account-apps-grid">
+            <button type="button" class="account-app-card" id="account-android">
+              <svg class="account-app-icon" viewBox="0 0 24 24" width="22" height="22" fill="#3DDC84">
+                <path d="M17.5 9c-.3 0-.5.1-.7.2l-1-1.7.5-.3c.2-.1.2-.3.1-.5s-.3-.2-.5-.1l-.5.3-1.1-1.9c-.1-.2-.3-.2-.5-.1s-.2.3-.1.5l.3.5-1.7 1c-.4-.4-1-.7-1.6-.7s-1.2.2-1.6.7l-1.7-1 .3-.5c.1-.2 0-.4-.1-.5s-.4-.1-.5.1l-1.1 1.9-.5-.3c-.2-.1-.4 0-.5.1s-.1.4.1.5l.5.3-1 1.7C5 9.1 4.8 9 4.5 9 3.1 9 2 10.1 2 11.5v5c0 .3.2.5.5.5h1v3c0 .8.7 1.5 1.5 1.5S6.5 20.3 6.5 19.5v-3h11v3c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-3h1c.3 0 .5-.2.5-.5v-5C22 10.1 20.9 9 19.5 9h-2zM8 12.5c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm8 0c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z"/>
+              </svg>
+              <div class="account-app-texts">
+                <small>Application</small>
+                <strong>Android</strong>
+              </div>
+            </button>
+
+            <button type="button" class="account-app-card" id="account-ios">
+              <svg class="account-app-icon" viewBox="0 0 24 24" width="22" height="22" fill="#ffffff">
+                <path d="M18.7 12.6c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.8-3.1.8-.7 0-1.7-.7-2.8-.7-1.4 0-2.7.8-3.5 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.6 2.2 2.7 2.1 1.1 0 1.5-.7 2.8-.7s1.7.7 2.8.7c1.2 0 1.9-1 2.6-2 .8-1.2 1.1-2.3 1.2-2.4-.1 0-2.2-.8-2.2-3.6zM15.5 6.4c.6-.7 1-1.7.9-2.7-1 .1-2.1.6-2.7 1.4-.6.7-1.1 1.7-.9 2.7 1 0 2.1-.5 2.7-1.4z"/>
+              </svg>
+              <div class="account-app-texts">
+                <small>Application</small>
+                <strong>IOS</strong>
+              </div>
+            </button>
+          </div>
+
+          <!-- Theme toggle -->
+          <div class="account-theme-wrap">
+            <button type="button" class="account-theme-switch" id="account-theme-switch-guest" aria-label="Toggle theme">
+              <span class="theme-switch-knob">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+              </span>
+            </button>
+            <div class="account-theme-color-picker">
+              <button type="button" class="theme-color-dot is-active" data-theme-color="red" style="--dot-color: #c62828;" title="Red (Default)"></button>
+              <button type="button" class="theme-color-dot" data-theme-color="dark" style="--dot-color: #1f232b;" title="Dark Mode"></button>
+              <button type="button" class="theme-color-dot" data-theme-color="blue" style="--dot-color: #1565c0;" title="Royal Blue"></button>
+              <button type="button" class="theme-color-dot" data-theme-color="green" style="--dot-color: #1b5e20;" title="Emerald Green"></button>
+              <button type="button" class="theme-color-dot" data-theme-color="purple" style="--dot-color: #4a148c;" title="Midnight Purple"></button>
+            </div>
+          </div>
+
+          <!-- Social media -->
+          <div class="account-social">
+            <p>Follow Our Social Media!</p>
+            <a class="account-social-circle is-tg" href="https://t.me/" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#0088cc"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- SIGNED IN (LOGGED IN) VIEW - Image 2 -->
+        <div class="account-signed" id="account-signed" hidden>
+          <!-- User header -->
+          <div class="acct-signed-user-bar">
+            <svg class="acct-user-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+            </svg>
+            <strong class="acct-user-id" id="account-signed-name">939292694</strong>
+          </div>
+
+          <!-- Deposit & Withdraw quick actions -->
+          <div class="acct-action-grid">
+            <button type="button" class="acct-btn-deposit-yellow" id="account-deposit">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              <span>Deposit</span>
+            </button>
+            <button type="button" class="acct-btn-withdraw-red" id="account-withdraw-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="17" y1="7" x2="7" y2="7"></line>
+                <polyline points="10 4 7 7 10 10"></polyline>
+                <line x1="7" y1="17" x2="17" y2="17"></line>
+                <polyline points="14 14 17 17 14 20"></polyline>
+              </svg>
+              <span>Withdraw</span>
+            </button>
+          </div>
+
+          <!-- Balance Breakdown Card -->
+          <div class="acct-balance-card">
+            <div class="acct-bal-line">
+              <span class="acct-bal-label">Real Balance</span>
+              <strong class="acct-bal-val" id="acct-card-real-bal">0.00 ETB</strong>
+            </div>
+            <div class="acct-bal-line">
+              <span class="acct-bal-label">Bonus Balance</span>
+              <strong class="acct-bal-val" id="acct-card-bonus-bal">0.00 ETB</strong>
+            </div>
+            <div class="acct-bal-total-row">
+              <span class="acct-bal-total-label">Total Balance</span>
+              <strong class="acct-bal-total-val" id="acct-card-total-bal">0.00 ETB</strong>
+            </div>
+            <div class="acct-bal-subline">
+              <span>Balance Withdrawable</span>
+              <strong id="acct-card-withdrawable">0.00 ETB</strong>
+            </div>
+            <div class="acct-bal-subline">
+              <span>Balance Not Withdrawable</span>
+              <strong id="acct-card-not-withdrawable">0.00 ETB</strong>
+            </div>
+            <div class="acct-bal-subline">
+              <span>Bonus Balance</span>
+              <strong id="acct-card-bonus-breakdown">0.00 ETB</strong>
+            </div>
+          </div>
+
+          <!-- Navigation Group 1 -->
+          <div class="acct-menu-group">
+            <button type="button" class="acct-group-row" data-acct-nav="history">
+              <span class="acct-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+              </span>
+              <span class="acct-row-title">Account History</span>
+              <span class="acct-row-chevron">&#x203A;</span>
+            </button>
+            <button type="button" class="acct-group-row" data-acct-nav="profile">
+              <span class="acct-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+                </svg>
+              </span>
+              <span class="acct-row-title">Profile</span>
+              <span class="acct-row-chevron">&#x203A;</span>
+            </button>
+          </div>
+
+          <!-- Navigation Group 2 -->
+          <div class="acct-menu-group">
+            <button type="button" class="acct-group-row" data-acct-nav="bet-history">
+              <span class="acct-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                  <path d="m9 14 2 2 4-4"/>
+                </svg>
+              </span>
+              <span class="acct-row-title">Bet history</span>
+              <span class="acct-row-chevron">&#x203A;</span>
+            </button>
+            <button type="button" class="acct-group-row" data-acct-nav="jackpots">
+              <span class="acct-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0 0 11 15.9V19H7v2h10v-2h-4v-3.1a5.01 5.01 0 0 0 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
+                </svg>
+              </span>
+              <span class="acct-row-title">My Jackpots</span>
+              <span class="acct-row-chevron">&#x203A;</span>
+            </button>
+            <button type="button" class="acct-group-row" data-acct-nav="messages">
+              <span class="acct-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              </span>
+              <span class="acct-row-title">Messages</span>
+              <span class="acct-row-chevron">&#x203A;</span>
+            </button>
+            <button type="button" class="acct-group-row" data-acct-nav="bonuses">
+              <span class="acct-row-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.51 15.49 0 12.36 0c-1.73 0-3.27.79-4.36 2.04C6.91.79 5.37 0 3.64 0 .51 0-2 2.51-2 4.64c0 .48.11.92.18 1.36H-2v2h22V6zm-7.64 0c-.42-1.17-1.48-2-2.72-2-.88 0-1.64.4-2.16 1.02A2.636 2.636 0 0 1 5.36 3c-.9 0-1.64.75-1.64 1.64 0 .3.08.57.18.82l-1.08.54H20zm-8.72 0H2.1c.1-.25.18-.52.18-.82C2.28 4.29 3 3.5 3.91 3.5c.82 0 1.52.51 1.8 1.22l.53 1.28zM2 8v12h8V8H2zm12 0v12h8V8h-8z"/>
+                </svg>
+              </span>
+              <span class="acct-row-title">Bonus</span>
+              <span class="acct-row-chevron">&#x203A;</span>
+            </button>
+          </div>
+
+          <!-- Language selector -->
+          <button type="button" class="account-row-btn account-row--lang" id="account-signed-lang-btn">
+            <span class="account-lang-flag">🇬🇧</span>
+            <span class="account-row-label">English</span>
+            <span class="account-row-arrow">⌄</span>
+          </button>
+
+          <!-- Theme toggle -->
+          <div class="account-theme-wrap">
+            <button type="button" class="account-theme-switch" id="account-theme-switch-signed" aria-label="Toggle theme">
+              <span class="theme-switch-knob">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+              </span>
+            </button>
+            <div class="account-theme-color-picker">
+              <button type="button" class="theme-color-dot is-active" data-theme-color="red" style="--dot-color: #c62828;" title="Red (Default)"></button>
+              <button type="button" class="theme-color-dot" data-theme-color="dark" style="--dot-color: #1f232b;" title="Dark Mode"></button>
+              <button type="button" class="theme-color-dot" data-theme-color="blue" style="--dot-color: #1565c0;" title="Royal Blue"></button>
+              <button type="button" class="theme-color-dot" data-theme-color="green" style="--dot-color: #1b5e20;" title="Emerald Green"></button>
+              <button type="button" class="theme-color-dot" data-theme-color="purple" style="--dot-color: #4a148c;" title="Midnight Purple"></button>
+            </div>
+          </div>
+
+          <!-- Logout button -->
+          <button type="button" class="acct-logout-line-btn" id="account-signout">
+            <span class="acct-logout-circle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </span>
+            <span class="acct-logout-text">Logout</span>
+          </button>
+        </div>
+
+      </div>
+    </aside>
+    <button type="button" class="mobile-slip-fab" id="mobile-slip-fab" hidden aria-label="Open betslip">
+      <span class="mobile-slip-fab-count" id="mobile-slip-count">0</span>
+      <span class="mobile-slip-fab-odds">
+        <span class="mobile-slip-fab-label">TOTAL ODDS</span>
+        <strong id="mobile-slip-odds">0.00</strong>
+      </span>
+    </button>
+
+    <!-- MOBILE MENU DRAWER (matches Image 2) -->
+    <div class="mobile-menu-backdrop" id="mobile-menu-backdrop" hidden>
+      <button type="button" class="mobile-menu-close-btn" id="mobile-menu-close" aria-label="Close menu">✕</button>
+    </div>
+    <aside class="mobile-menu-drawer" id="mobile-menu-drawer" aria-label="Mobile Navigation Menu">
+      <div class="mobile-menu-header">
+        <img src="assets/hope-bet-logo.png" alt="Hope Bet" class="mobile-menu-logo" />
+      </div>
+
+      <!-- APP DOWNLOADS ROW -->
+      <div class="mobile-menu-apps">
+        <button type="button" class="mobile-menu-app-card" id="mmenu-app-android">
+          <span class="mmenu-app-icon-wrap">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="#3DDC84">
+              <path d="M17.5 9c-.3 0-.5.1-.7.2l-1-1.7.5-.3c.2-.1.2-.3.1-.5s-.3-.2-.5-.1l-.5.3-1.1-1.9c-.1-.2-.3-.2-.5-.1s-.2.3-.1.5l.3.5-1.7 1c-.4-.4-1-.7-1.6-.7s-1.2.2-1.6.7l-1.7-1 .3-.5c.1-.2 0-.4-.1-.5s-.4-.1-.5.1l-1.1 1.9-.5-.3c-.2-.1-.4 0-.5.1s-.1.4.1.5l.5.3-1 1.7C5 9.1 4.8 9 4.5 9 3.1 9 2 10.1 2 11.5v5c0 .3.2.5.5.5h1v3c0 .8.7 1.5 1.5 1.5S6.5 20.3 6.5 19.5v-3h11v3c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-3h1c.3 0 .5-.2.5-.5v-5C22 10.1 20.9 9 19.5 9h-2zM8 12.5c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm8 0c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z"/>
+            </svg>
+          </span>
+          <div class="mmenu-app-info">
+            <span class="mmenu-app-sub">Application</span>
+            <strong class="mmenu-app-title">Android</strong>
+          </div>
+        </button>
+
+        <button type="button" class="mobile-menu-app-card" id="mmenu-app-ios">
+          <span class="mmenu-app-icon-wrap">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="#ffffff">
+              <path d="M18.7 12.6c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.8-3.1.8-.7 0-1.7-.7-2.8-.7-1.4 0-2.7.8-3.5 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.6 2.2 2.7 2.1 1.1 0 1.5-.7 2.8-.7s1.7.7 2.8.7c1.2 0 1.9-1 2.6-2 .8-1.2 1.1-2.3 1.2-2.4-.1 0-2.2-.8-2.2-3.6zM15.5 6.4c.6-.7 1-1.7.9-2.7-1 .1-2.1.6-2.7 1.4-.6.7-1.1 1.7-.9 2.7 1 0 2.1-.5 2.7-1.4z"/>
+            </svg>
+          </span>
+          <div class="mmenu-app-info">
+            <span class="mmenu-app-sub">Application</span>
+            <strong class="mmenu-app-title">IOS</strong>
+          </div>
+        </button>
+      </div>
+
+      <!-- MENU CARDS STACK -->
+      <nav class="mobile-menu-nav">
+        <!-- 1. Sport -->
+        <button type="button" class="mmenu-nav-card" data-mmenu="sport">
+          <div class="mmenu-card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="12 7 15.5 9.5 14 14 10 14 8.5 9.5" fill="currentColor"></polygon>
+              <line x1="12" y1="2" x2="12" y2="7"></line>
+              <line x1="15.5" y1="9.5" x2="20.5" y2="7.5"></line>
+              <line x1="14" y1="14" x2="18.5" y2="17.5"></line>
+              <line x1="10" y1="14" x2="5.5" y2="17.5"></line>
+              <line x1="8.5" y1="9.5" x2="3.5" y2="7.5"></line>
+            </svg>
+          </div>
+          <div class="mmenu-card-text">
+            <strong class="mmenu-card-title">Sport</strong>
+            <span class="mmenu-card-sub">Most powerfull leagues!</span>
+          </div>
+        </button>
+
+        <!-- 2. Upcoming -->
+        <button type="button" class="mmenu-nav-card" data-mmenu="upcoming">
+          <div class="mmenu-card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="12 7 15.5 9.5 14 14 10 14 8.5 9.5" fill="currentColor"></polygon>
+              <line x1="12" y1="2" x2="12" y2="7"></line>
+              <line x1="15.5" y1="9.5" x2="20.5" y2="7.5"></line>
+              <line x1="14" y1="14" x2="18.5" y2="17.5"></line>
+              <line x1="10" y1="14" x2="5.5" y2="17.5"></line>
+              <line x1="8.5" y1="9.5" x2="3.5" y2="7.5"></line>
+            </svg>
+          </div>
+          <div class="mmenu-card-text">
+            <strong class="mmenu-card-title">Upcoming</strong>
+            <span class="mmenu-card-sub">Play Upcoming Matches!</span>
+          </div>
+        </button>
+
+        <!-- 3. Live -->
+        <button type="button" class="mmenu-nav-card" data-mmenu="live">
+          <div class="mmenu-card-icon scoreboard-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+              <line x1="12" y1="5" x2="12" y2="19" stroke-dasharray="2 2"></line>
+              <text x="7" y="15" font-size="8" font-weight="900" text-anchor="middle" fill="currentColor" stroke="none">0</text>
+              <text x="17" y="15" font-size="8" font-weight="900" text-anchor="middle" fill="currentColor" stroke="none">0</text>
+            </svg>
+          </div>
+          <div class="mmenu-card-text">
+            <strong class="mmenu-card-title">Live</strong>
+            <span class="mmenu-card-sub">Up to 30,000 events!</span>
+          </div>
+        </button>
+
+        <!-- 4. Tournament -->
+        <button type="button" class="mmenu-nav-card" data-mmenu="tournament">
+          <div class="mmenu-card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+              <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0 0 11 15.9V19H7v2h10v-2h-4v-3.1a5.01 5.01 0 0 0 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
+              <polygon points="12 7.5 13.2 9.9 15.8 10.3 13.9 12.1 14.4 14.7 12 13.5 9.6 14.7 10.1 12.1 8.2 10.3 10.8 9.9" fill="#ffd700"/>
+            </svg>
+          </div>
+          <div class="mmenu-card-text">
+            <strong class="mmenu-card-title">Tournament</strong>
+            <span class="mmenu-card-sub">Race on spinss!!</span>
+          </div>
+        </button>
+
+        <!-- 5. Virtual -->
+        <button type="button" class="mmenu-nav-card" data-mmenu="virtual">
+          <div class="mmenu-card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+              <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S20.17 9 21 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            </svg>
+          </div>
+          <div class="mmenu-card-text">
+            <strong class="mmenu-card-title">Virtual</strong>
+            <span class="mmenu-card-sub">Up to 50 virtual games providers</span>
+          </div>
+          <span class="mmenu-card-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+          </span>
+        </button>
+
+        <!-- 6. Special Games -->
+        <button type="button" class="mmenu-nav-card" data-mmenu="special-games">
+          <div class="mmenu-card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+              <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S20.17 9 21 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            </svg>
+          </div>
+          <div class="mmenu-card-text">
+            <strong class="mmenu-card-title">Special Games</strong>
+            <span class="mmenu-card-sub">Unlock Special Games and Beyond</span>
+          </div>
+          <span class="mmenu-card-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+          </span>
+        </button>
+
+        <!-- 7. Promo -->
+        <button type="button" class="mmenu-nav-card" data-mmenu="promo">
+          <div class="mmenu-card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+              <path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.51 15.49 0 12.36 0c-1.73 0-3.27.79-4.36 2.04C6.91.79 5.37 0 3.64 0 .51 0-2 2.51-2 4.64c0 .48.11.92.18 1.36H-2v2h22V6zm-7.64 0c-.42-1.17-1.48-2-2.72-2-.88 0-1.64.4-2.16 1.02A2.636 2.636 0 0 1 5.36 3c-.9 0-1.64.75-1.64 1.64 0 .3.08.57.18.82l-1.08.54H20zm-8.72 0H2.1c.1-.25.18-.52.18-.82C2.28 4.29 3 3.5 3.91 3.5c.82 0 1.52.51 1.8 1.22l.53 1.28zM2 8v12h8V8H2zm12 0v12h8V8h-8z"/>
+            </svg>
+          </div>
+          <div class="mmenu-card-text">
+            <strong class="mmenu-card-title">Promo</strong>
+            <span class="mmenu-card-sub">Best Bonuses available</span>
+          </div>
+        </button>
+
+        <!-- 8. Providers -->
+        <button type="button" class="mmenu-nav-card" data-mmenu="providers">
+          <div class="mmenu-card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <div class="mmenu-card-text">
+            <strong class="mmenu-card-title">Providers</strong>
+            <span class="mmenu-card-sub">View all Providers</span>
+          </div>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- MOBILE BOTTOM NAVIGATION BAR -->
+    <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <button type="button" class="mobile-bnav-item" id="mobile-bnav-menu">
+        <span class="mobile-bnav-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+        <span class="mobile-bnav-label">Menu</span>
+      </button>
+
+      <button type="button" class="mobile-bnav-item" id="mobile-bnav-mybets">
+        <span class="mobile-bnav-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+            <path d="m9 14 2 2 4-4"/>
+          </svg>
+        </span>
+        <span class="mobile-bnav-label">Mybets</span>
+      </button>
+
+      <button type="button" class="mobile-bnav-item" id="mobile-bnav-results">
+        <span class="mobile-bnav-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+            <path d="m9 15 2 2 4-4"></path>
+          </svg>
+        </span>
+        <span class="mobile-bnav-label">Result</span>
+      </button>
+
+      <button type="button" class="mobile-bnav-item" id="mobile-bnav-live">
+        <span class="mobile-bnav-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.93 4.93a10 10 0 0 0 0 14.14"/>
+            <path d="M7.76 7.76a6 6 0 0 0 0 8.48"/>
+            <circle cx="12" cy="12" r="2"/>
+            <path d="M16.24 7.76a6 6 0 0 1 0 8.48"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          </svg>
+        </span>
+        <span class="mobile-bnav-label">Live</span>
+      </button>
+
+      <button type="button" class="mobile-bnav-item" id="mobile-bnav-chat">
+        <span class="mobile-bnav-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+          </svg>
+        </span>
+        <span class="mobile-bnav-label">Chat</span>
+      </button>
+    </nav>
+
+    <!-- ===== ADMIN BET CASHIER BAR ===== -->
+    <div class="admin-bet-bar" id="admin-bet-bar" hidden>
+      <div class="admin-bet-bar-container">
+        <h1 class="admin-bet-heading">Bet</h1>
+        <div class="admin-bet-card">
+          <!-- 1. Player select -->
+          <div class="admin-bet-col admin-bet-col--player">
+            <label class="admin-bet-label" for="admin-bet-player-select">Player</label>
+            <div class="admin-filter-select-wrap">
+              <select class="admin-filter-select admin-bet-select" id="admin-bet-player-select">
+                <option value="">Select player</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 2. Balance -->
+          <div class="admin-bet-col admin-bet-col--balance">
+            <label class="admin-bet-label">Balance</label>
+            <div class="admin-bet-balance-box">
+              <div class="admin-bet-balance-text">
+                <span class="admin-bet-balance-amount" id="admin-bet-player-balance">ETB 0</span>
+                <span class="admin-bet-balance-bonus" id="admin-bet-player-bonus">Bonus: 0</span>
+              </div>
+              <button type="button" class="admin-bet-balance-btn" id="admin-bet-refresh-balance" title="Refresh player balance">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. Sport type toggle -->
+          <div class="admin-bet-col admin-bet-col--sporttype">
+            <label class="admin-bet-label">Sport type</label>
+            <div class="admin-bet-toggle-group" id="admin-bet-sport-type-toggle">
+              <button type="button" class="admin-bet-toggle-btn is-active" data-sport-type="prematch">Prematch</button>
+              <button type="button" class="admin-bet-toggle-btn" data-sport-type="live">Live</button>
+            </div>
+          </div>
+
+          <!-- 4. Fast deposit -->
+          <div class="admin-bet-col admin-bet-col--fastdeposit">
+            <label class="admin-bet-label">Fast deposit</label>
+            <div class="admin-bet-fast-btns">
+              <button type="button" class="admin-bet-btn-fast" data-amount="5">5 ETB</button>
+              <button type="button" class="admin-bet-btn-fast" data-amount="10">10 ETB</button>
+              <button type="button" class="admin-bet-btn-fast" data-amount="20">20 ETB</button>
+              <button type="button" class="admin-bet-btn-fast" data-amount="50">50 ETB</button>
+            </div>
+          </div>
+
+          <!-- 5. Custom deposite -->
+          <div class="admin-bet-col admin-bet-col--custom">
+            <label class="admin-bet-label" for="admin-bet-custom-amount">Custom deposite</label>
+            <div class="admin-bet-custom-wrap">
+              <input type="number" class="admin-bet-custom-input" id="admin-bet-custom-amount" placeholder="Insert amount" min="1" step="1" />
+              <button type="button" class="admin-bet-btn-transfer" id="admin-bet-transfer-btn">Transfer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="web-body">
+      <aside class="sidebar" id="sidebar">
+        <button type="button" class="drawer-close" id="btn-close-sidebar" aria-label="Close menu">&times;</button>
+        <div class="sidebar-menu-top" id="sidebar-menu-top-bar">
+          <span class="sidebar-menu-title">Sports Menu</span>
+          <button type="button" class="sidebar-menu-toggle-btn" id="sidebar-menu-collapse-btn" title="Collapse Sports Menu" aria-label="Toggle Sports Menu">
+            <svg class="icon-collapse" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="2" y="5" width="9" height="2.5" rx="0.5"/>
+              <rect x="2" y="10.75" width="9" height="2.5" rx="0.5"/>
+              <rect x="2" y="16.5" width="7" height="2.5" rx="0.5"/>
+              <rect x="19" y="3" width="2" height="18" rx="0.5"/>
+              <path d="M12 12l4-2.5v5z"/>
+            </svg>
+            <svg class="icon-expand" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+              <rect x="3" y="3" width="2" height="18" rx="0.5"/>
+              <rect x="13" y="5" width="9" height="2.5" rx="0.5"/>
+              <rect x="13" y="10.75" width="9" height="2.5" rx="0.5"/>
+              <rect x="13" y="16.5" width="7" height="2.5" rx="0.5"/>
+              <path d="M11 12l-4-2.5v5z"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="sidebar-search-header" id="sidebar-search-toggle" role="button" tabindex="0" aria-expanded="true">
+          <span class="sidebar-search-title">Search Event</span>
+          <span class="sidebar-search-arrow" id="sidebar-search-arrow">▲</span>
+        </div>
+
+        <div class="sidebar-search" id="sidebar-search-panel">
+          <p class="sidebar-search-hint">Insert the events name or at least one team in the form below</p>
+          <div class="sidebar-search-wrap">
+            <span class="sidebar-search-ico">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            </span>
+            <input type="search" id="event-search" placeholder="Search Event" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="sidebar-block" id="sidebar-menu-filters">
+          <div class="sidebar-section-header">
+            <span>Quick Filter</span>
+            <span class="sidebar-arrow">▲</span>
+          </div>
+          <div class="filter-chips filter-chips--time filter-chips--sidebar" id="time-filters"></div>
+          <button type="button" class="btn-inplay" id="btn-inplay">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.1.8-1.2-4.5-2.7V7z"/></svg>
+            <span>In-Play</span>
+          </button>
+        </div>
+
+        <div class="sidebar-block" id="sidebar-sports-block">
+          <div class="sidebar-title sidebar-block--home"><span>Sports</span></div>
+          <div class="sidebar-list sidebar-list--sports" id="sidebar-sports"></div>
+        </div>
+
+        <div class="sidebar-block sidebar-block--compact sidebar-block--home">
+          <div class="sidebar-title">
+            <span>TOP LEAGUES</span>
+            <em id="top-league-count">0</em>
+          </div>
+          <div class="sidebar-list" id="sidebar-leagues"></div>
+        </div>
+
+        <div class="sidebar-block sidebar-block--compact sidebar-block--home">
+          <div class="sidebar-title">
+            <span>COUNTRIES</span>
+            <em id="country-count">0</em>
+          </div>
+          <div class="sidebar-list" id="sidebar-countries"></div>
+        </div>
+      </aside>
+
+      <main class="content">
+        <section class="content-view is-active" id="view-sports" data-view="sports">
+          <div id="sports-home-wrap">
+            <div class="ad-carousel" id="ad-carousel">
+              <button type="button" class="ad-carousel-btn ad-carousel-btn--prev" id="ad-prev"
+                aria-label="Previous">‹</button>
+              <div class="ad-carousel-track" id="ad-carousel-track"></div>
+              <button type="button" class="ad-carousel-btn ad-carousel-btn--next" id="ad-next"
+                aria-label="Next">›</button>
+              <div class="ad-carousel-dots" id="ad-carousel-dots"></div>
+            </div>
+
+            <!-- TOP MATCHES HORIZONTAL CAROUSEL (matching reference image) -->
+            <div class="top-matches-header-bar">
+              <span class="section-dots">&#x2022;&#x2022;&#x2022;</span>
+              <span class="header-bar-title">Top Matches</span>
+            </div>
+            <div class="top-matches-carousel-wrap">
+              <button type="button" class="top-matches-nav-btn top-matches-nav-btn--prev" id="top-matches-prev" aria-label="Previous">‹</button>
+              <div class="top-matches-track" id="popular-carousel"></div>
+              <button type="button" class="top-matches-nav-btn top-matches-nav-btn--next" id="top-matches-next" aria-label="Next">›</button>
+            </div>
+
+            <!-- TOP LEAGUES RED BAR WITH SPORT TABS (matching reference image) -->
+            <div class="top-leagues-bar">
+              <div class="top-leagues-bar-title">
+                <span class="section-dots">&#x2022;&#x2022;&#x2022;</span>
+                <span>Top Leagues</span>
+              </div>
+              <div class="league-sport-tabs" id="league-sport-tabs">
+                <button type="button" class="league-sport-tab is-on" data-league-sport="football">Football</button>
+                <button type="button" class="league-sport-tab" data-league-sport="basketball" data-coming-soon>Basketball</button>
+                <button type="button" class="league-sport-tab" data-league-sport="tennis" data-coming-soon>Tennis</button>
+                <button type="button" class="league-sport-tab" data-league-sport="hockey" data-coming-soon>Ice Hockey</button>
+                <button type="button" class="league-sport-tab" data-league-sport="handball" data-coming-soon>Handball</button>
+                <button type="button" class="league-sport-tab" data-league-sport="baseball" data-coming-soon>Baseball</button>
+              </div>
+            </div>
+            <div class="top-leagues-grid" id="top-leagues-grid"></div>
+
+            <!-- SELECTED LEAGUE MATCHES TABLE (default: Premier League) -->
+            <div class="home-matches-section" id="home-league-matches-section"></div>
+
+            <!-- UPCOMING GAMES SECTION -->
+            <div class="home-matches-section" id="home-upcoming-section">
+              <div class="home-section-head">
+                <h2><span class="section-dots">&#x2022;&#x2022;&#x2022;</span> Upcoming Games</h2>
+              </div>
+              <div id="home-upcoming-table"></div>
+            </div>
+
+            <!-- POPULAR GAMES SECTION -->
+            <div class="home-matches-section" id="home-popular-section">
+              <div class="home-section-head">
+                <h2><span class="section-dots">&#x2022;&#x2022;&#x2022;</span> Popular Games</h2>
+              </div>
+              <div id="home-popular-table"></div>
+            </div>
+          </div>
+
+          <div id="football-menu-wrap" hidden>
+            <div class="football-menu-toolbar">
+              <button type="button" class="football-filters-btn" id="football-filters-btn" aria-expanded="false">
+                <span class="football-filters-btn-icon" aria-hidden="true">☷</span>
+                Filters <span class="football-filters-btn-chev">▾</span>
+              </button>
+              <button type="button" class="btn-open-selected" id="btn-open-selected-leagues" hidden>
+                Open selected leagues
+              </button>
+            </div>
+            <button type="button" class="floating-open-selected" id="floating-open-selected" hidden aria-label="Open selected leagues">
+              <span class="floating-open-selected-badge" id="floating-open-selected-badge">0</span>
+              <span class="floating-open-selected-text" id="floating-open-selected-text">Open Selected</span>
+              <span class="floating-open-selected-icon" aria-hidden="true">➔</span>
+            </button>
+            <div class="football-filters-panel" id="football-filters-panel" hidden>
+              <button type="button" class="football-filters-panel-head" data-filters-collapse>
+                <span class="football-filters-chev" aria-hidden="true">▲</span>
+                <span class="football-filters-icon" aria-hidden="true">☷</span>
+                <span>Filters</span>
+              </button>
+              <div class="football-filters-body">
+                <div class="football-time-slider-wrap">
+                  <input type="range" class="football-time-slider" id="football-time-slider" min="0" max="0" value="0"
+                    step="1" aria-label="Filter matches by time" />
+                  <div class="football-time-ticks" id="football-time-ticks"></div>
+                  <div class="football-time-labels" id="football-time-labels"></div>
+                </div>
+              </div>
+            </div>
+            <div class="football-menu-banner">
+              <span>Football</span>
+              <div class="football-menu-banner-actions">
+                <button type="button" title="Expand">⛶</button>
+                <button type="button" title="Share">↗</button>
+              </div>
+            </div>
+            <div class="football-regions" id="football-regions"></div>
+          </div>
+
+          <div class="filter-bar">
+            <div class="league-filter-bar" id="league-filter-bar"></div>
+          </div>
+          <div class="league-dropdown-backdrop" id="league-dropdown-backdrop" hidden></div>
+
+          <div class="board-head">
+            <h3 id="board-title">All Leagues</h3>
+            <div class="board-market-tabs" id="board-market-tabs">
+              <button type="button" class="board-m-tab is-active" data-board-market="main">Main (1X2, DC, Totals)</button>
+              <button type="button" class="board-m-tab" data-board-market="btts">Both Teams Score</button>
+              <button type="button" class="board-m-tab" data-board-market="ou">Over / Under</button>
+              <button type="button" class="board-m-tab" data-board-market="dnb">Draw No Bet</button>
+              <button type="button" class="board-m-tab" data-board-market="dc">Double Chance</button>
+            </div>
+            <div class="board-markets" id="board-markets-cols">
+              <span>1X2</span>
+              <span>Double Chance</span>
+              <span>O/U 2.5</span>
+            </div>
+          </div>
+
+          <div class="board-wrap">
+            <div class="board-loading" id="board-loading" hidden>Loading fixtures…</div>
+            <div class="match-board" id="match-board"></div>
+          </div>
+        </section>
+
+        <section class="content-view" id="view-leagues" data-view="leagues" hidden>
+          <button type="button" class="match-back" id="leagues-back">‹ Back to Football menu</button>
+          <div class="football-menu-toolbar football-menu-toolbar--league">
+            <button type="button" class="football-filters-btn" id="league-filters-btn" aria-expanded="false">
+              <span class="football-filters-btn-icon" aria-hidden="true">☷</span>
+              Filters <span class="football-filters-btn-chev">▾</span>
+            </button>
+          </div>
+          <div class="football-filters-panel" id="league-filters-panel" hidden>
+            <button type="button" class="football-filters-panel-head" data-filters-collapse>
+              <span class="football-filters-chev" aria-hidden="true">▲</span>
+              <span class="football-filters-icon" aria-hidden="true">☷</span>
+              <span>Filters</span>
+            </button>
+            <div class="football-filters-body">
+              <div class="football-time-slider-wrap">
+                <input type="range" class="football-time-slider" id="league-time-slider" min="0" max="0" value="0"
+                  step="1" aria-label="Filter matches by time" />
+                <div class="football-time-ticks" id="league-time-ticks"></div>
+                <div class="football-time-labels" id="league-time-labels"></div>
+              </div>
+            </div>
+          </div>
+          <div class="league-page-head">
+            <h2 id="league-page-title">Matches</h2>
+            <div class="board-markets" id="league-board-markets-cols">
+              <span>1X2</span>
+              <span>Double Chance</span>
+              <span>O/U 2.5</span>
+            </div>
+          </div>
+          <div class="board-wrap league-page-board-wrap">
+            <div class="board-loading" id="league-page-loading" hidden>Loading fixtures…</div>
+            <div class="match-board" id="league-page-board"></div>
+          </div>
+        </section>
+
+        <section class="content-view match-detail-view" id="view-match" data-view="match" hidden>
+          <div class="md-breadcrumb">
+            <button type="button" class="md-breadcrumb-back" id="match-back" aria-label="Back to matches">‹</button>
+            <span class="md-breadcrumb-dots" aria-hidden="true">⋮</span>
+            <span class="md-breadcrumb-path" id="match-breadcrumb"></span>
+          </div>
+          <div class="md-hero" id="match-hero"></div>
+          <div class="md-tabs-wrap">
+            <div class="md-tabs" id="market-tabs"></div>
+          </div>
+          <div class="md-toolbar">
+            <button type="button" class="md-toolbar-btn" id="md-collapse-all"
+              aria-label="Collapse all markets">▾</button>
+            <button type="button" class="md-toolbar-btn" id="md-fav-markets" aria-label="Favourite markets">☆</button>
+            <div class="md-search">
+              <span class="md-search-icon" aria-hidden="true">⌕</span>
+              <input type="search" id="market-search" placeholder="Search..." autocomplete="off" />
+            </div>
+          </div>
+          <div class="md-loading" id="match-loading" hidden>Loading markets…</div>
+          <div class="md-markets" id="match-markets"></div>
+        </section>
+
+        <section class="content-view" id="view-check-bet" data-view="check-bet" hidden>
+          <div class="check-bet-page">
+            <section class="check-bet-card">
+              <div class="check-bet-card-head">Load booked bet</div>
+              <p class="check-bet-card-copy">
+                Insert the code to load or <button type="button" class="check-bet-link" data-focus-check="check">check
+                  it</button> here.
+              </p>
+              <div class="check-bet-card-row">
+                <input type="text" id="page-load-booked-code" placeholder="Insert the code here..."
+                  autocomplete="off" />
+                <button type="button" class="btn-load-tool" data-load="booked">Load</button>
+              </div>
+            </section>
+
+            <section class="check-bet-card">
+              <div class="check-bet-card-head">Load Ticket</div>
+              <p class="check-bet-card-copy">Insert the id to load ticket.</p>
+              <div class="check-bet-card-row">
+                <input type="text" id="page-load-ticket-id" placeholder="Insert the id here..." autocomplete="off" />
+                <button type="button" class="btn-load-tool" data-load="ticket">Load</button>
+              </div>
+            </section>
+
+            <section class="check-bet-card" id="check-bet-focus">
+              <div class="check-bet-card-head">Check Your Bet</div>
+              <p class="check-bet-card-copy">Your Bet ID</p>
+              <div class="check-bet-card-row">
+                <input type="text" id="page-check-bet-id" placeholder="Insert the code here..." autocomplete="off" />
+                <button type="button" class="btn-load-tool" data-load="check">Load</button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ===== SYSTEM PROVISIONING VIEW ===== -->
+        <section class="content-view sys-portal-view" id="view-sys" data-view="sys" hidden>
+          <div class="sys-container">
+            <!-- System Top Header -->
+            <header class="sys-header">
+              <div class="sys-header-left">
+                <div class="sys-brand-badge">SYSTEM</div>
+                <div class="sys-brand-title">
+                  <h1>Super Admin Provisioning</h1>
+                  <span class="sys-brand-subtitle">Core Platform Management</span>
+                </div>
+              </div>
+              <div class="sys-header-stats">
+                <div class="sys-stat-card">
+                  <span class="sys-stat-label">Super Admins</span>
+                  <span class="sys-stat-val" id="sys-stat-superadmins">0</span>
+                </div>
+              </div>
+              <div class="sys-header-actions">
+                <button type="button" class="sys-btn sys-btn--secondary" id="sys-global-refresh-btn" title="Refresh">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+                  <span>Refresh</span>
+                </button>
+                <button type="button" class="sys-btn sys-btn--danger" id="sys-logout-btn" title="Log Out">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                  <span>Log Out</span>
+                </button>
+              </div>
+            </header>
+
+            <!-- Super Admins Directory Panel -->
+            <div class="sys-panel">
+              <div class="sys-panel-head">
+                <div>
+                  <h2 class="sys-panel-title">Super Admin Directory</h2>
+                  <p class="sys-panel-desc">Platform Super Admin accounts provisioned on Hope Bet.</p>
+                </div>
+                <button type="button" class="sys-btn sys-btn--primary" id="sys-open-create-superadmin-btn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  <span>Create Super Admin</span>
+                </button>
+              </div>
+
+              <div class="sys-table-wrapper">
+                <table class="sys-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 70px;">ID</th>
+                      <th>Username</th>
+                      <th>Full Name / Label</th>
+                      <th>Contact Info</th>
+                      <th>Role</th>
+                      <th>Shops Managed</th>
+                      <th>Created Date</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sys-superadmins-tbody">
+                    <tr><td colspan="8" class="sys-table-loading">Loading Super Admins…</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== SYSTEM: CREATE SUPER ADMIN MODAL ===== -->
+        <div class="sys-modal-backdrop" id="sys-create-superadmin-modal" hidden>
+          <div class="sys-modal-dialog">
+            <div class="sys-modal-head">
+              <h3>Create Super Admin</h3>
+              <button type="button" class="sys-modal-close" id="sys-close-create-superadmin-btn" aria-label="Close">✕</button>
+            </div>
+            <form id="sys-create-superadmin-form" class="sys-modal-form">
+              <div class="sys-form-group">
+                <label for="sys-new-sa-username">Username *</label>
+                <input type="text" id="sys-new-sa-username" placeholder="e.g. superadmin2" required autocomplete="off" />
+              </div>
+              <div class="sys-form-group">
+                <label for="sys-new-sa-password">Password *</label>
+                <input type="password" id="sys-new-sa-password" placeholder="At least 6 characters" minlength="6" required autocomplete="new-password" />
+              </div>
+              <div class="sys-form-group">
+                <label for="sys-new-sa-displayname">Display Label</label>
+                <input type="text" id="sys-new-sa-displayname" placeholder="e.g. Super Admin 2" />
+              </div>
+              <div class="sys-form-group">
+                <label for="sys-new-sa-phone">Mobile Phone</label>
+                <input type="text" id="sys-new-sa-phone" placeholder="e.g. +251911000000" />
+              </div>
+              <div class="sys-form-group">
+                <label for="sys-new-sa-email">Email</label>
+                <input type="email" id="sys-new-sa-email" placeholder="e.g. superadmin@hope.bet" />
+              </div>
+              <div class="sys-modal-actions">
+                <button type="button" class="sys-btn sys-btn--secondary" id="sys-cancel-create-superadmin-btn">Cancel</button>
+                <button type="submit" class="sys-btn sys-btn--primary" id="sys-submit-create-superadmin-btn">Create Super Admin</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- ===== SUPER ADMIN PORTAL VIEW ===== -->
+        <section class="content-view super-admin-portal-view" id="view-super-admin" data-view="super-admin" hidden>
+          <div class="sa-container">
+            <!-- Super Admin Top Header -->
+            <header class="sa-header">
+              <div class="sa-header-left">
+                <div class="sa-brand-badge">SUPER ADMIN</div>
+                <div class="sa-brand-title">
+                  <h1>Hope Bet Management</h1>
+                  <span class="sa-brand-subtitle">Master Control & Shop Supervision</span>
+                </div>
+              </div>
+              <div class="sa-header-stats">
+                <div class="sa-stat-card">
+                  <span class="sa-stat-label">Total Shops</span>
+                  <span class="sa-stat-val" id="sa-stat-admins">0</span>
+                </div>
+                <div class="sa-stat-card">
+                  <span class="sa-stat-label">Total Players</span>
+                  <span class="sa-stat-val" id="sa-stat-players">0</span>
+                </div>
+                <div class="sa-stat-card">
+                  <span class="sa-stat-label">Master Balance</span>
+                  <span class="sa-stat-val" id="sa-stat-balance">0.00 ETB</span>
+                </div>
+              </div>
+              <div class="sa-header-actions">
+                <button type="button" class="sa-btn sa-btn--secondary" id="sa-global-refresh-btn" title="Refresh Data">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+                  <span>Refresh</span>
+                </button>
+                <button type="button" class="sa-btn sa-btn--danger" id="sa-logout-btn" title="Log Out">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                  <span>Log Out</span>
+                </button>
+              </div>
+            </header>
+
+            <!-- Navigation Tabs -->
+            <nav class="sa-nav-tabs">
+              <button type="button" class="sa-tab-btn is-active" data-sa-tab="admins" id="sa-tab-admins-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+                <span>Shops / Admins</span>
+                <span class="sa-tab-count" id="sa-tab-admins-count">0</span>
+              </button>
+              <button type="button" class="sa-tab-btn" data-sa-tab="players" id="sa-tab-players-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>All Players (Across All Shops)</span>
+                <span class="sa-tab-count" id="sa-tab-players-count">0</span>
+              </button>
+              <button type="button" class="sa-tab-btn" data-sa-tab="settings" id="sa-tab-settings-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span>Deposit & Payment Settings</span>
+              </button>
+            </nav>
+
+            <!-- TAB 1: SHOPS / ADMINS -->
+            <div class="sa-tab-content is-active" id="sa-content-admins">
+              <div class="sa-panel">
+                <div class="sa-panel-head">
+                  <div>
+                    <h2 class="sa-panel-title">Shop / Admin Accounts</h2>
+                    <p class="sa-panel-desc">Only Super Admin can create Shop Admins. Each Shop Admin handles deposits & withdrawals only for their own players.</p>
+                  </div>
+                  <button type="button" class="sa-btn sa-btn--primary" id="sa-open-create-admin-btn">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    <span>Create Shop Admin</span>
+                  </button>
+                </div>
+
+                <div class="sa-table-wrapper">
+                  <table class="sa-table">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Shop / Branch Name</th>
+                        <th>Created Players</th>
+                        <th>Shop Balance (Credit)</th>
+                        <th>Created Date</th>
+                        <th>Status</th>
+                        <th style="text-align: right;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="sa-admins-tbody">
+                      <tr><td colspan="8" class="sa-table-empty">Loading shop admins...</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 2: ALL PLAYERS -->
+            <div class="sa-tab-content" id="sa-content-players" hidden>
+              <div class="sa-panel">
+                <div class="sa-panel-head">
+                  <div>
+                    <h2 class="sa-panel-title">Global Players Directory</h2>
+                    <p class="sa-panel-desc">Complete oversight of all players across all shops. You can deposit and withdraw for any player in the system.</p>
+                  </div>
+                  <div class="sa-filter-bar">
+                    <div class="sa-search-box">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                      <input type="text" id="sa-players-search" placeholder="Search by ID, username, phone..." autocomplete="off" />
+                    </div>
+                    <select id="sa-players-admin-filter" class="sa-select">
+                      <option value="">All Shops / Sources</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="sa-table-wrapper">
+                  <table class="sa-table">
+                    <thead>
+                      <tr>
+                        <th>Player ID</th>
+                        <th>Username / Phone</th>
+                        <th>Full Name</th>
+                        <th>Registered By (Shop)</th>
+                        <th>Balance</th>
+                        <th>Bets</th>
+                        <th>Registered</th>
+                        <th style="text-align: right;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="sa-players-tbody">
+                      <tr><td colspan="8" class="sa-table-empty">Loading players...</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 3: DEPOSIT & PAYMENT SETTINGS -->
+            <div class="sa-tab-content" id="sa-content-settings" hidden>
+              <div class="sa-panel">
+                <div class="sa-panel-head">
+                  <div>
+                    <h2 class="sa-panel-title">Payment & Deposit Receiver Numbers</h2>
+                    <p class="sa-panel-desc">Adjust the mobile number and account details displayed to all players on the Telebirr and CBE Birr deposit screen.</p>
+                  </div>
+                </div>
+
+                <form id="sa-settings-form" class="sa-settings-grid">
+                  <div class="sa-form-group">
+                    <label class="sa-form-label">Telebirr Receiver Phone Number</label>
+                    <div class="sa-input-icon-wrap">
+                      <span class="sa-input-badge">Telebirr</span>
+                      <input type="text" id="sa-cfg-telebirr" class="sa-form-input" placeholder="e.g. 0937383800" required />
+                    </div>
+                    <span class="sa-form-hint">Displayed to players when they choose Telebirr deposit.</span>
+                  </div>
+
+                  <div class="sa-form-group">
+                    <label class="sa-form-label">CBE Birr Receiver Account Number</label>
+                    <div class="sa-input-icon-wrap">
+                      <span class="sa-input-badge">CBE Birr</span>
+                      <input type="text" id="sa-cfg-cbe" class="sa-form-input" placeholder="e.g. 1000123456789" required />
+                    </div>
+                    <span class="sa-form-hint">Displayed to players when they choose CBE Birr transfer.</span>
+                  </div>
+
+                  <div class="sa-form-group">
+                    <label class="sa-form-label">Minimum Deposit Amount (ETB)</label>
+                    <input type="number" id="sa-cfg-min" class="sa-form-input" placeholder="100" min="1" required />
+                    <span class="sa-form-hint">Lowest allowed single deposit transaction.</span>
+                  </div>
+
+                  <div class="sa-form-group">
+                    <label class="sa-form-label">Maximum Deposit Amount (ETB)</label>
+                    <input type="number" id="sa-cfg-max" class="sa-form-input" placeholder="75000" min="100" required />
+                    <span class="sa-form-hint">Highest allowed single deposit transaction.</span>
+                  </div>
+
+                  <div class="sa-form-actions">
+                    <button type="submit" class="sa-btn sa-btn--primary" id="sa-save-settings-btn" style="padding: 0.75rem 2rem;">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                      <span>Save Live Deposit Settings</span>
+                    </button>
+                    <span id="sa-settings-status" class="sa-status-indicator"></span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- MODAL: Create Shop Admin -->
+          <div class="sa-modal-backdrop" id="sa-create-admin-modal" hidden>
+            <div class="sa-modal">
+              <div class="sa-modal-head">
+                <div class="sa-modal-title-row">
+                  <span class="sa-modal-icon">🏢</span>
+                  <h3>Create New Shop Admin</h3>
+                </div>
+                <button type="button" class="sa-modal-close" id="sa-close-create-admin-btn">&times;</button>
+              </div>
+              <form id="sa-create-admin-form" class="sa-modal-body">
+                <div class="sa-form-group">
+                  <label class="sa-form-label">Shop Admin Username *</label>
+                  <input type="text" id="sa-admin-input-username" class="sa-form-input" placeholder="e.g. bole_shop1" required autocomplete="off" />
+                  <span class="sa-form-hint">Used by the shop cashier to log in.</span>
+                </div>
+                <div class="sa-form-group">
+                  <label class="sa-form-label">Password * (min 6 characters)</label>
+                  <input type="password" id="sa-admin-input-password" class="sa-form-input" placeholder="Enter secure password" required minlength="6" />
+                </div>
+                <div class="sa-form-group">
+                  <label class="sa-form-label">Shop / Branch Display Name</label>
+                  <input type="text" id="sa-admin-input-name" class="sa-form-input" placeholder="e.g. Bole Branch Shop #1" />
+                </div>
+                <div class="sa-form-group">
+                  <label class="sa-form-label">Shop Contact Phone (optional)</label>
+                  <input type="text" id="sa-admin-input-phone" class="sa-form-input" placeholder="e.g. 0911223344" />
+                </div>
+                <div class="sa-form-group">
+                  <label class="sa-form-label">Initial Credit / Float (ETB)</label>
+                  <input type="number" id="sa-admin-input-credit" class="sa-form-input" placeholder="0" min="0" value="0" />
+                  <span class="sa-form-hint">Initial balance assigned to this shop's cashier float.</span>
+                </div>
+                <div class="sa-modal-actions">
+                  <button type="button" class="sa-btn sa-btn--secondary" id="sa-cancel-create-admin-btn">Cancel</button>
+                  <button type="submit" class="sa-btn sa-btn--primary">Create Shop Admin</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- MODAL: Transfer Funds for Admin (Deposit / Withdraw) -->
+          <div class="sa-modal-backdrop" id="sa-admin-transfer-modal" hidden>
+            <div class="sa-modal">
+              <div class="sa-modal-head">
+                <div class="sa-modal-title-row">
+                  <span class="sa-modal-icon">💳</span>
+                  <h3>Shop Float Transfer</h3>
+                </div>
+                <button type="button" class="sa-modal-close" id="sa-close-admin-transfer-btn">&times;</button>
+              </div>
+              <form id="sa-admin-transfer-form" class="sa-modal-body">
+                <input type="hidden" id="sa-transfer-admin-id" />
+                <div class="sa-modal-summary" id="sa-transfer-admin-summary">
+                  Loading admin info...
+                </div>
+                <div class="sa-form-group">
+                  <label class="sa-form-label">Operation Type</label>
+                  <div class="sa-op-selector">
+                    <label class="sa-op-option">
+                      <input type="radio" name="sa-admin-op" value="deposit" checked />
+                      <span>➕ Deposit (Add Float)</span>
+                    </label>
+                    <label class="sa-op-option">
+                      <input type="radio" name="sa-admin-op" value="withdraw" />
+                      <span>➖ Withdraw (Deduct Float)</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="sa-form-group">
+                  <label class="sa-form-label">Amount (ETB) *</label>
+                  <input type="number" id="sa-transfer-admin-amount" class="sa-form-input" placeholder="e.g. 5000" min="1" required />
+                </div>
+                <div class="sa-form-group">
+                  <label class="sa-form-label">Note / Reference (optional)</label>
+                  <input type="text" id="sa-transfer-admin-reason" class="sa-form-input" placeholder="e.g. Daily float top-up" />
+                </div>
+                <div class="sa-modal-actions">
+                  <button type="button" class="sa-btn sa-btn--secondary" id="sa-cancel-admin-transfer-btn">Cancel</button>
+                  <button type="submit" class="sa-btn sa-btn--primary" id="sa-submit-admin-transfer-btn">Execute Transfer</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- MODAL: Transfer Funds for Player (Deposit / Withdraw) -->
+          <div class="sa-modal-backdrop" id="sa-player-transfer-modal" hidden>
+            <div class="sa-modal">
+              <div class="sa-modal-head">
+                <div class="sa-modal-title-row">
+                  <span class="sa-modal-icon">👤</span>
+                  <h3>Player Balance Adjustment</h3>
+                </div>
+                <button type="button" class="sa-modal-close" id="sa-close-player-transfer-btn">&times;</button>
+              </div>
+              <form id="sa-player-transfer-form" class="sa-modal-body">
+                <input type="hidden" id="sa-transfer-player-id" />
+                <div class="sa-modal-summary" id="sa-transfer-player-summary">
+                  Loading player info...
+                </div>
+                <div class="sa-form-group">
+                  <label class="sa-form-label">Operation Type</label>
+                  <div class="sa-op-selector">
+                    <label class="sa-op-option">
+                      <input type="radio" name="sa-player-op" value="deposit" checked />
+                      <span>➕ Deposit (Credit Player)</span>
+                    </label>
+                    <label class="sa-op-option">
+                      <input type="radio" name="sa-player-op" value="withdraw" />
+                      <span>➖ Withdraw (Debit Player)</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="sa-form-group">
+                  <label class="sa-form-label">Amount (ETB) *</label>
+                  <input type="number" id="sa-transfer-player-amount" class="sa-form-input" placeholder="e.g. 500" min="1" required />
+                </div>
+                <div class="sa-form-group">
+                  <label class="sa-form-label">Note / Reference (optional)</label>
+                  <input type="text" id="sa-transfer-player-reason" class="sa-form-input" placeholder="e.g. Super Admin manual adjustment" />
+                </div>
+                <div class="sa-modal-actions">
+                  <button type="button" class="sa-btn sa-btn--secondary" id="sa-cancel-player-transfer-btn">Cancel</button>
+                  <button type="submit" class="sa-btn sa-btn--primary" id="sa-submit-player-transfer-btn">Execute Transfer</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== ADMIN DASHBOARD VIEW ===== -->
+        <section class="content-view admin-dashboard-view" id="view-admin-dashboard" data-view="admin-dashboard" hidden>
+          <div class="admin-dashboard-container">
+            <h1 class="admin-dashboard-heading">Dashboard</h1>
+
+            <!-- Top 3 KPI Cards with Connectors -->
+            <div class="admin-kpi-row">
+              <div class="admin-kpi-card admin-kpi-card--white">
+                <div class="admin-kpi-header">
+                  <span class="admin-kpi-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                  </span>
+                  <span class="admin-kpi-title">Players</span>
+                </div>
+                <div class="admin-kpi-value" id="admin-kpi-players">1</div>
+              </div>
+
+              <div class="admin-kpi-connector"></div>
+
+              <div class="admin-kpi-card admin-kpi-card--dark">
+                <div class="admin-kpi-header">
+                  <span class="admin-kpi-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </span>
+                  <span class="admin-kpi-title">Players 24h</span>
+                </div>
+                <div class="admin-kpi-value" id="admin-kpi-players-24h">0</div>
+              </div>
+
+              <div class="admin-kpi-connector"></div>
+
+              <div class="admin-kpi-card admin-kpi-card--dark">
+                <div class="admin-kpi-header">
+                  <span class="admin-kpi-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </span>
+                  <span class="admin-kpi-title">Players 7d</span>
+                </div>
+                <div class="admin-kpi-value" id="admin-kpi-players-7d">0</div>
+              </div>
+            </div>
+
+            <!-- Promoter Code & Affiliation Link Row -->
+            <div class="admin-promo-row">
+              <div class="admin-promo-card admin-promo-card--code">
+                <div class="admin-promo-header">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  <span>Promoter code</span>
+                </div>
+                <div class="admin-promo-code-box" id="admin-promo-code">HB7611994</div>
+              </div>
+
+              <div class="admin-promo-card admin-promo-card--link">
+                <div class="admin-promo-link-top">
+                  <span class="admin-promo-link-label">Affiliation link</span>
+                  <button type="button" class="admin-btn-qr" id="admin-btn-print-qr">Print QR Code</button>
+                </div>
+                <div class="admin-promo-input-wrap">
+                  <input type="text" class="admin-promo-input" id="admin-affiliation-link" value="https://hopebet.et/signup/?promoter_code=HB7611994" readonly />
+                  <button type="button" class="admin-btn-copy" id="admin-btn-copy-link" title="Copy link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 1: REGISTRATION STATS -->
+            <div class="admin-section-panel">
+              <div class="admin-panel-header">
+                <div class="admin-panel-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polygon points="12,8 15.5,10.5 14,14.5 10,14.5 8.5,10.5"/></svg>
+                  <span>Registration Stats</span>
+                </div>
+                <span class="admin-panel-subtext">Sport stats of last 7 days</span>
+              </div>
+              <div class="admin-panel-body">
+                <div class="admin-stat-card admin-stat-card--total">
+                  <div class="admin-stat-total-label">Total</div>
+                  <div class="admin-stat-total-value" id="admin-reg-total">0</div>
+                  <div class="admin-stat-total-accent"></div>
+                </div>
+                <div class="admin-chart-wrapper" id="admin-chart-registration">
+                  <!-- Dynamic SVG Chart rendered by game.js -->
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 2: SPORT -->
+            <div class="admin-section-panel">
+              <div class="admin-panel-header">
+                <div class="admin-panel-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polygon points="12,8 15.5,10.5 14,14.5 10,14.5 8.5,10.5"/></svg>
+                  <span>Sport</span>
+                </div>
+                <span class="admin-panel-subtext">Sport stats of last 7 days</span>
+              </div>
+              <div class="admin-panel-body">
+                <div class="admin-stat-card admin-stat-card--grid">
+                  <div class="admin-grid-cell">
+                    <span class="admin-grid-label">Bet</span>
+                    <span class="admin-grid-value" id="admin-sport-bet">0</span>
+                  </div>
+                  <div class="admin-grid-cell">
+                    <span class="admin-grid-label">Win</span>
+                    <span class="admin-grid-value" id="admin-sport-win">0</span>
+                  </div>
+                  <div class="admin-grid-cell">
+                    <span class="admin-grid-label">Profit</span>
+                    <span class="admin-grid-value" id="admin-sport-profit">0</span>
+                  </div>
+                  <div class="admin-grid-cell">
+                    <span class="admin-grid-label">% Win</span>
+                    <span class="admin-grid-value" id="admin-sport-pct">0%</span>
+                  </div>
+                </div>
+                <div class="admin-chart-wrapper" id="admin-chart-sport">
+                  <!-- Dynamic SVG Chart rendered by game.js -->
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 3: CASINO, CASINO LIVE, VIRTUAL -->
+            <div class="admin-section-panel">
+              <div class="admin-panel-header">
+                <div class="admin-panel-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polygon points="12,8 15.5,10.5 14,14.5 10,14.5 8.5,10.5"/></svg>
+                  <span>Casino, Casino Live, Virtual</span>
+                </div>
+                <span class="admin-panel-subtext">Casino, Casino Live, Virtual stats of last 7 days</span>
+              </div>
+              <div class="admin-panel-body">
+                <div class="admin-stat-card admin-stat-card--grid">
+                  <div class="admin-grid-cell">
+                    <span class="admin-grid-label">Bet</span>
+                    <span class="admin-grid-value" id="admin-casino-bet">0</span>
+                  </div>
+                  <div class="admin-grid-cell">
+                    <span class="admin-grid-label">Win</span>
+                    <span class="admin-grid-value" id="admin-casino-win">0</span>
+                  </div>
+                  <div class="admin-grid-cell">
+                    <span class="admin-grid-label">Profit</span>
+                    <span class="admin-grid-value" id="admin-casino-profit">0</span>
+                  </div>
+                  <div class="admin-grid-cell">
+                    <span class="admin-grid-label">% Win</span>
+                    <span class="admin-grid-value" id="admin-casino-pct">0%</span>
+                  </div>
+                </div>
+                <div class="admin-chart-wrapper" id="admin-chart-casino">
+                  <!-- Dynamic SVG Chart rendered by game.js -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ===== ADMIN PLAYERS VIEW ===== -->
+        <section class="content-view admin-players-view" id="view-admin-players" data-view="admin-players" hidden>
+          <div class="admin-players-container">
+            <!-- Header with Title, Search Bar & "+ New player" Button -->
+            <div class="admin-page-header">
+              <h1 class="admin-page-title">Players</h1>
+              <div class="admin-page-header-actions">
+                <div class="admin-players-quick-search-wrap">
+                  <svg class="admin-players-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <input type="text" id="admin-players-quick-search" class="admin-players-search-input" placeholder="Search players by username, phone, name, ID..." autocomplete="off" />
+                  <button type="button" class="admin-players-search-clear" id="admin-players-search-clear" title="Clear search" hidden>&times;</button>
+                </div>
+                <button type="button" class="admin-btn-new-player" id="admin-btn-new-player">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  <span>New player</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Search / Filter Card matching reference screenshot -->
+            <div class="admin-filter-card">
+              <!-- Row 1: 6 columns -->
+              <div class="admin-filter-row admin-filter-row--six">
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-filter-id">ID</label>
+                  <input type="text" class="admin-filter-input" id="admin-filter-id" placeholder="ID" />
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-filter-name">Name</label>
+                  <input type="text" class="admin-filter-input" id="admin-filter-name" placeholder="Name" />
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-filter-lastname">Lastname</label>
+                  <input type="text" class="admin-filter-input" id="admin-filter-lastname" placeholder="Lastname" />
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-filter-email">Email</label>
+                  <input type="email" class="admin-filter-input" id="admin-filter-email" placeholder="Email" />
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-filter-phone">Mobile phone</label>
+                  <input type="text" class="admin-filter-input" id="admin-filter-phone" placeholder="Mobile phone" />
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-filter-username">Username</label>
+                  <input type="text" class="admin-filter-input" id="admin-filter-username" placeholder="Username" />
+                </div>
+              </div>
+
+              <!-- Row 2: Parent, Last access, Registration date, Last Login Ip, Action Buttons -->
+              <div class="admin-filter-row admin-filter-row--bottom">
+                <div class="admin-filter-field admin-filter-field--parent">
+                  <label class="admin-filter-label" for="admin-filter-parent">Parent</label>
+                  <div class="admin-filter-select-wrap">
+                    <select class="admin-filter-select" id="admin-filter-parent">
+                      <option value="">- Select -</option>
+                      <option value="all">All</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="admin-filter-field admin-filter-field--range">
+                  <label class="admin-filter-label">Last access</label>
+                  <div class="admin-filter-range-inputs">
+                    <input type="text" class="admin-filter-input" id="admin-filter-access-from" placeholder="From" />
+                    <input type="text" class="admin-filter-input" id="admin-filter-access-to" placeholder="To" />
+                  </div>
+                </div>
+
+                <div class="admin-filter-field admin-filter-field--range">
+                  <label class="admin-filter-label">Registration date</label>
+                  <div class="admin-filter-range-inputs">
+                    <input type="text" class="admin-filter-input" id="admin-filter-reg-from" placeholder="From" />
+                    <input type="text" class="admin-filter-input" id="admin-filter-reg-to" placeholder="To" />
+                  </div>
+                </div>
+
+                <div class="admin-filter-field admin-filter-field--ip">
+                  <label class="admin-filter-label" for="admin-filter-ip">Last Login Ip</label>
+                  <input type="text" class="admin-filter-input" id="admin-filter-ip" placeholder="Last Login IP" />
+                </div>
+
+                <div class="admin-filter-actions">
+                  <button type="button" class="admin-btn-blue admin-btn-search" id="admin-btn-player-search">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <span>Search</span>
+                  </button>
+                  <button type="button" class="admin-btn-blue admin-btn-setting" id="admin-btn-player-settings">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <span>Setting</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table of Players -->
+            <div class="admin-table-panel">
+              <div class="admin-table-wrap">
+                <table class="admin-table" id="admin-players-table">
+                  <thead>
+                    <tr>
+                      <th style="width:60px;">ID</th>
+                      <th>Username</th>
+                      <th>Full Name</th>
+                      <th>Mobile Phone</th>
+                      <th>Email</th>
+                      <th style="text-align:right;">Balance</th>
+                      <th style="text-align:center;">Bets</th>
+                      <th>Registered</th>
+                      <th style="text-align:center;">Status</th>
+                      <th style="text-align:center; width:150px;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-players-tbody">
+                    <tr><td colspan="10" class="admin-table-loading">Loading players…</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="admin-table-footer">
+                <span id="admin-players-count">Showing 0 players</span>
+                <button type="button" class="admin-btn-refresh-table" id="admin-btn-refresh-players">↻ Refresh</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ===== ADMIN SPORT COUPONS VIEW ===== -->
+        <section class="content-view admin-coupons-view" id="view-admin-coupons" data-view="admin-coupons" hidden>
+          <div class="admin-coupons-container">
+            <!-- Header with Title -->
+            <div class="admin-page-header">
+              <h1 class="admin-page-title">Sport coupons</h1>
+            </div>
+
+            <!-- 3-Row Filter Card matching reference screenshot -->
+            <div class="admin-filter-card admin-coupons-filter-card">
+              <!-- ROW 1 -->
+              <div class="admin-filter-row admin-coupons-row-1">
+                <div class="admin-filter-field admin-filter-field--date">
+                  <label class="admin-filter-label" for="admin-coupon-from">From</label>
+                  <div class="admin-input-icon-wrap">
+                    <input type="datetime-local" class="admin-filter-input" id="admin-coupon-from" />
+                  </div>
+                </div>
+                <div class="admin-filter-field admin-filter-field--date">
+                  <label class="admin-filter-label" for="admin-coupon-to">To</label>
+                  <div class="admin-input-icon-wrap">
+                    <input type="datetime-local" class="admin-filter-input" id="admin-coupon-to" />
+                  </div>
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-bettype">Bet type</label>
+                  <div class="admin-filter-select-wrap">
+                    <select class="admin-filter-select" id="admin-coupon-bettype">
+                      <option value="all">All</option>
+                      <option value="issued">Issued</option>
+                      <option value="won">Won</option>
+                      <option value="lost">Lost</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-category">Category</label>
+                  <div class="admin-filter-select-wrap">
+                    <select class="admin-filter-select" id="admin-coupon-category">
+                      <option value="">- All -</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-currency">Currency</label>
+                  <div class="admin-filter-select-wrap">
+                    <select class="admin-filter-select" id="admin-coupon-currency">
+                      <option value="ETB">ETB</option>
+                      <option value="all">- All -</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-status">Status</label>
+                  <div class="admin-filter-select-wrap">
+                    <select class="admin-filter-select" id="admin-coupon-status">
+                      <option value="all">- All -</option>
+                      <option value="open">Open</option>
+                      <option value="won">Won</option>
+                      <option value="lost">Lost</option>
+                      <option value="cashed_out">Cashed Out</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ROW 2 -->
+              <div class="admin-filter-row admin-coupons-row-2">
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-user">User / Parent</label>
+                  <input type="text" class="admin-filter-input" id="admin-coupon-user" placeholder="All" />
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-betid">Bet ID</label>
+                  <input type="text" class="admin-filter-input" id="admin-coupon-betid" placeholder="Bet ID" />
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-betcode">Bet code</label>
+                  <input type="text" class="admin-filter-input" id="admin-coupon-betcode" placeholder="Bet code" />
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-missing">Missing Events</label>
+                  <input type="text" class="admin-filter-input" id="admin-coupon-missing" placeholder="Missing Events" />
+                </div>
+                <div class="admin-filter-field admin-filter-field--toggle">
+                  <label class="admin-filter-label">Only Paids</label>
+                  <label class="admin-toggle-switch">
+                    <input type="checkbox" id="admin-coupon-only-paids" />
+                    <span class="admin-toggle-slider"></span>
+                  </label>
+                </div>
+                <div class="admin-filter-field admin-filter-field--toggle">
+                  <label class="admin-filter-label">Include Bonus Bet</label>
+                  <label class="admin-toggle-switch">
+                    <input type="checkbox" id="admin-coupon-include-bonus" />
+                    <span class="admin-toggle-slider"></span>
+                  </label>
+                </div>
+                <div class="admin-filter-field admin-filter-field--half">
+                  <label class="admin-filter-label" for="admin-coupon-win-gt">Win &gt;</label>
+                  <input type="number" class="admin-filter-input" id="admin-coupon-win-gt" placeholder="Win >" />
+                </div>
+                <div class="admin-filter-field admin-filter-field--half">
+                  <label class="admin-filter-label" for="admin-coupon-win-lt">Win &lt;</label>
+                  <input type="number" class="admin-filter-input" id="admin-coupon-win-lt" placeholder="Win <" />
+                </div>
+              </div>
+
+              <!-- ROW 3 -->
+              <div class="admin-filter-row admin-coupons-row-3">
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-sport">Sport</label>
+                  <div class="admin-filter-select-wrap">
+                    <select class="admin-filter-select" id="admin-coupon-sport">
+                      <option value="all">- All -</option>
+                      <option value="football">Football</option>
+                      <option value="basketball">Basketball</option>
+                      <option value="tennis">Tennis</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-cat2">Category</label>
+                  <div class="admin-filter-select-wrap">
+                    <select class="admin-filter-select" id="admin-coupon-cat2">
+                      <option value="">- All -</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-tournament">Tournament</label>
+                  <div class="admin-filter-select-wrap">
+                    <select class="admin-filter-select" id="admin-coupon-tournament">
+                      <option value="">- All -</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-match">Match</label>
+                  <input type="text" class="admin-filter-input" id="admin-coupon-match" placeholder="Match" />
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-market">Market</label>
+                  <div class="admin-filter-select-wrap">
+                    <select class="admin-filter-select" id="admin-coupon-market">
+                      <option value="">- All -</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-outcome">Outcome</label>
+                  <div class="admin-filter-select-wrap">
+                    <select class="admin-filter-select" id="admin-coupon-outcome">
+                      <option value="">- All -</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="admin-filter-field">
+                  <label class="admin-filter-label" for="admin-coupon-order">Order by</label>
+                  <div class="admin-filter-select-wrap">
+                    <select class="admin-filter-select" id="admin-coupon-order">
+                      <option value="desc">Descending</option>
+                      <option value="asc">Ascending</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="admin-filter-actions admin-coupons-actions">
+                  <button type="button" class="admin-btn-blue admin-btn-search" id="admin-btn-coupon-search">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <span>Search</span>
+                  </button>
+                  <button type="button" class="admin-btn-export" id="admin-btn-coupon-export" title="Export CSV">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>Export</span>
+                  </button>
+                  <button type="button" class="admin-btn-blue admin-btn-setting" id="admin-btn-coupon-setting" title="Settings">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <span>Setting</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Coupons Table Panel -->
+            <div class="admin-table-panel">
+              <div class="admin-table-wrap">
+                <table class="admin-table" id="admin-coupons-table">
+                  <thead>
+                    <tr>
+                      <th style="width:130px;">Bet Code</th>
+                      <th>User</th>
+                      <th>Date / Time</th>
+                      <th style="text-align:center;">Type / Selections</th>
+                      <th style="text-align:right;">Total Odds</th>
+                      <th style="text-align:right;">Stake</th>
+                      <th style="text-align:right;">Potential Win</th>
+                      <th style="text-align:center;">Status</th>
+                      <th style="text-align:center; width:90px;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-coupons-tbody">
+                    <tr><td colspan="9" class="admin-table-loading">Loading coupons…</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="admin-table-footer">
+                <span id="admin-coupons-count">Showing 0 coupons</span>
+                <button type="button" class="admin-btn-refresh-table" id="admin-btn-refresh-coupons">↻ Refresh</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ===== ADMIN DEPOSIT (TRANSFER) VIEW ===== -->
+        <section class="content-view admin-deposit-view" id="view-admin-deposit" data-view="admin-deposit" hidden>
+          <div class="admin-transfer-container">
+            <h1 class="admin-transfer-heading">Transfer</h1>
+
+            <div class="admin-transfer-card">
+              <!-- LEFT COLUMN: Selected User & Balance -->
+              <div class="admin-transfer-left">
+                <div class="admin-transfer-user-box">
+                  <div class="admin-transfer-field-label">Selected user</div>
+                  <div class="admin-transfer-selected-name" id="admin-transfer-sel-user">—</div>
+
+                  <div class="admin-transfer-balance-heading">Balance</div>
+
+                  <div class="admin-transfer-stat-row">
+                    <span class="admin-transfer-stat-label">Balance:</span>
+                    <strong class="admin-transfer-stat-value" id="admin-transfer-user-bal">ETB 0.00</strong>
+                  </div>
+
+                  <div class="admin-transfer-stat-row">
+                    <span class="admin-transfer-stat-label">Credits:</span>
+                    <strong class="admin-transfer-stat-value" id="admin-transfer-user-cred">ETB 0.00</strong>
+                  </div>
+
+                  <div class="admin-transfer-stat-row">
+                    <span class="admin-transfer-stat-label">Availability:</span>
+                    <strong class="admin-transfer-stat-value" id="admin-transfer-user-avail">ETB 0.00</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- RIGHT COLUMN: Transfer Form -->
+              <div class="admin-transfer-right">
+                <form id="admin-transfer-form" class="admin-transfer-form-inner">
+                  <!-- Row 1: Operation Type & User Type -->
+                  <div class="admin-transfer-form-row admin-transfer-form-row--two">
+                    <div class="admin-transfer-form-group">
+                      <label class="admin-transfer-label" for="admin-transfer-op-type">Operation Type</label>
+                      <div class="admin-filter-select-wrap">
+                        <select class="admin-filter-select" id="admin-transfer-op-type">
+                          <option value="deposit">Deposit</option>
+                          <option value="withdraw">Withdraw</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="admin-transfer-form-group">
+                      <label class="admin-transfer-label" for="admin-transfer-user-type">User Type</label>
+                      <div class="admin-filter-select-wrap">
+                        <select class="admin-filter-select" id="admin-transfer-user-type">
+                          <option value="player">Player</option>
+                          <option value="agent">Agent</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Row 2: Search user -->
+                  <div class="admin-transfer-form-row">
+                    <div class="admin-transfer-form-group admin-transfer-form-group--full">
+                      <label class="admin-transfer-label" for="admin-transfer-player-select">Search user</label>
+                      <div class="admin-filter-select-wrap">
+                        <select class="admin-filter-select admin-transfer-select-user" id="admin-transfer-player-select">
+                          <option value="">Search user</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Row 3: Amount & Reason -->
+                  <div class="admin-transfer-form-row admin-transfer-form-row--two">
+                    <div class="admin-transfer-form-group">
+                      <label class="admin-transfer-label" for="admin-transfer-amount">Amount</label>
+                      <input type="number" class="admin-filter-input" id="admin-transfer-amount" placeholder="Amount" min="1" step="1" required />
+                    </div>
+
+                    <div class="admin-transfer-form-group">
+                      <label class="admin-transfer-label" for="admin-transfer-reason">Reason</label>
+                      <input type="text" class="admin-filter-input" id="admin-transfer-reason" placeholder="Reason" />
+                    </div>
+                  </div>
+
+                  <!-- Row 4: Big TRANSFER Button -->
+                  <div class="admin-transfer-action-row">
+                    <button type="submit" class="admin-transfer-submit-btn" id="admin-transfer-submit-btn">
+                      TRANSFER
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== ADMIN TRANSACTIONS VIEW ===== -->
+        <section class="content-view admin-transactions-view" id="view-admin-transactions" data-view="admin-transactions" hidden>
+          <div class="admin-trans-container">
+            <!-- Header bar with title and Withdraw/Deposit mode toggle -->
+            <div class="admin-trans-mode-bar">
+              <h1 class="admin-trans-heading" id="admin-trans-heading">Transactions — Withdraw</h1>
+              <div class="admin-trans-mode-pills">
+                <button type="button" class="admin-trans-mode-btn is-active" data-trans-mode="withdraw" id="admin-trans-pill-withdraw">Withdraw</button>
+                <button type="button" class="admin-trans-mode-btn" data-trans-mode="deposit" id="admin-trans-pill-deposit">Deposit</button>
+              </div>
+            </div>
+
+            <!-- Payment Method Card (Matching reference media_1788780221307.png) -->
+            <div class="admin-trans-card">
+              <div class="admin-trans-method-row">
+                <!-- Logo: Stylized Voucher logo with scissors V -->
+                <div class="admin-trans-logo-col">
+                  <div class="admin-voucher-brand" title="Voucher">
+                    <svg class="admin-voucher-svg" width="136" height="36" viewBox="0 0 136 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="25" r="3.2" stroke="#00b4a7" stroke-width="2" fill="none"/>
+                      <circle cx="24" cy="25" r="3.2" stroke="#00b4a7" stroke-width="2" fill="none"/>
+                      <circle cx="18" cy="18" r="1.3" fill="#00b4a7"/>
+                      <line x1="12.5" y1="22" x2="23.5" y2="8" stroke="#00b4a7" stroke-width="2.4" stroke-linecap="round"/>
+                      <line x1="23.5" y1="22" x2="12.5" y2="8" stroke="#00b4a7" stroke-width="2.4" stroke-linecap="round"/>
+                      <text x="32" y="24" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="700" fill="#1e293b" letter-spacing="-0.3">oucher</text>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Column: Service Fee -->
+                <div class="admin-trans-info-col">
+                  <div class="admin-trans-info-label">Service Fee</div>
+                  <div class="admin-trans-info-value" id="admin-trans-fee-val">Fee</div>
+                </div>
+
+                <!-- Column: Process Time -->
+                <div class="admin-trans-info-col">
+                  <div class="admin-trans-info-label">Process Time</div>
+                  <div class="admin-trans-info-value" id="admin-trans-time-val">Instant</div>
+                </div>
+
+                <!-- Column: Action Button (Green outline button) -->
+                <div class="admin-trans-btn-col">
+                  <button type="button" class="admin-trans-action-btn" id="admin-trans-main-btn" data-action="withdraw">
+                    Withdraw
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Transactions History Table -->
+            <div class="admin-trans-history-card">
+              <div class="admin-trans-history-header">
+                <div class="admin-trans-history-title-wrap">
+                  <h3 class="admin-trans-history-title">Transaction Log</h3>
+                  <span class="admin-trans-history-count" id="admin-trans-count">0 items</span>
+                </div>
+                <div class="admin-trans-history-actions">
+                  <div class="admin-filter-select-wrap" style="width: 140px;">
+                    <select class="admin-filter-select" id="admin-trans-filter-type">
+                      <option value="all">All Types</option>
+                      <option value="withdraw">Withdrawals</option>
+                      <option value="deposit">Deposits</option>
+                      <option value="voucher">Vouchers</option>
+                    </select>
+                  </div>
+                  <button type="button" class="admin-btn-white" id="admin-trans-refresh-btn">Refresh</button>
+                </div>
+              </div>
+              <div class="admin-table-container">
+                <table class="admin-data-table" id="admin-trans-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Type</th>
+                      <th>User</th>
+                      <th>Amount</th>
+                      <th>Reference / Voucher</th>
+                      <th>Balance After</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-trans-tbody">
+                    <tr><td colspan="7" class="admin-table-empty">Loading transactions…</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== ADMIN REPORT VIEW ===== -->
+        <section class="content-view admin-report-view" id="view-admin-report" data-view="admin-report" hidden>
+          <div class="admin-report-container">
+            <div class="admin-report-header">
+              <h1 class="admin-report-heading" id="admin-report-heading">Report — Summary</h1>
+            </div>
+
+            <!-- Report Filters / Date Range Card -->
+            <div class="admin-report-card">
+              <div class="admin-report-filter-bar">
+                <div class="admin-filter-group">
+                  <label class="admin-filter-label" for="admin-report-date-from">From</label>
+                  <input type="date" class="admin-filter-input" id="admin-report-date-from" />
+                </div>
+                <div class="admin-filter-group">
+                  <label class="admin-filter-label" for="admin-report-date-to">To</label>
+                  <input type="date" class="admin-filter-input" id="admin-report-date-to" />
+                </div>
+                <div class="admin-filter-group" style="align-self: flex-end;">
+                  <button type="button" class="admin-btn-blue" id="admin-report-btn-search">Generate</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Report Content Body -->
+            <div class="admin-report-card" id="admin-report-body-card">
+              <div class="admin-report-content" id="admin-report-content">
+                <div class="admin-report-placeholder">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.8">
+                    <ellipse cx="6.5" cy="8.5" rx="2.2" ry="3.8"/>
+                    <ellipse cx="10.5" cy="8.5" rx="2.2" ry="3.8"/>
+                    <ellipse cx="14.5" cy="8.5" rx="2.2" ry="3.8"/>
+                    <path d="M3 13.5c1.5-.5 3-.5 4.5 0l4 1.5c2 .7 4.5.7 6.5 0l3-1"/>
+                    <path d="M3 13.5v3c2 2 5 3 9 3s7-1 9-3v-3"/>
+                  </svg>
+                  <h3 style="margin: 12px 0 6px; color: #1e293b;" id="admin-report-active-title">Summary Report</h3>
+                  <p style="margin: 0; color: #64748b; font-size: 13px;">Report metrics and analytics will appear here based on selected date range.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+                        <section class="content-view" id="view-my-bets" data-view="my-bets" hidden>
+          <div class="my-bets-page">
+            <div class="my-bets-topbar">
+              <div class="my-bets-tabs" id="my-bets-status-tabs">
+                <button type="button" class="my-bets-tab" data-mybets-status="closed">Closed</button>
+                <button type="button" class="my-bets-tab" data-mybets-status="live">Live</button>
+                <button type="button" class="my-bets-tab is-on" data-mybets-status="in-course">In Course</button>
+              </div>
+              <div class="my-bets-search">
+                <input type="search" id="my-bets-search" placeholder="Insert ticket code here.." autocomplete="off" />
+                <button type="button" class="my-bets-search-btn" id="my-bets-search-btn" aria-label="Search ticket">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </button>
+              </div>
+              <div class="my-bets-tabs my-bets-tabs--time" id="my-bets-time-tabs">
+                <button type="button" class="my-bets-tab is-on" data-mybets-time="today">Today</button>
+                <button type="button" class="my-bets-tab" data-mybets-time="week">1 Week</button>
+                <button type="button" class="my-bets-tab" data-mybets-time="all">All</button>
+              </div>
+              <button type="button" class="my-bets-close" id="my-bets-close" aria-label="Close">✕</button>
+            </div>
+            <div class="my-bets-body" id="my-bets-list"></div>
+          </div>
+        </section>
+
+        <!-- RESULTS VIEW -->
+        <section class="content-view" id="view-results" data-view="results" hidden>
+          <div class="results-page">
+            <div class="results-flashscore-topbar">
+              <div class="results-status-tabs" id="results-status-tabs">
+                <button type="button" class="results-tab-btn" data-results-tab="all">ALL</button>
+                <button type="button" class="results-tab-btn" data-results-tab="live">LIVE</button>
+                <button type="button" class="results-tab-btn is-active" data-results-tab="odds">ODDS</button>
+                <button type="button" class="results-tab-btn" data-results-tab="finished">FINISHED</button>
+                <button type="button" class="results-tab-btn" data-results-tab="scheduled">SCHEDULED</button>
+                <button type="button" class="results-tab-btn results-tab-fav" data-results-tab="favorites">★ FAVORITES <span class="results-fav-badge" id="results-fav-badge" style="display:none;">0</span></button>
+              </div>
+
+              <div class="results-date-nav">
+                <button type="button" class="results-date-arrow" id="results-prev-btn" title="Previous Day">‹</button>
+                <label class="results-date-badge" for="results-date-picker" title="Select Date">
+                  <svg class="results-cal-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span id="results-date-label">13/09 SU</span>
+                  <input type="date" id="results-date-picker" class="results-date-picker-input" />
+                </label>
+                <button type="button" class="results-date-arrow" id="results-next-btn" title="Next Day">›</button>
+              </div>
+            </div>
+
+            <div class="results-flashscore-body" id="results-list">
+              <div class="results-loading">
+                <div class="results-spinner"></div>
+                <span>Loading matches...</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="betslip-panel" id="betslip-panel">
+        <button type="button" class="drawer-close" id="btn-close-betslip" aria-label="Close betslip">&times;</button>
+        <div class="betslip-header">
+          <span class="betslip-title">Betslip</span>
+          <span class="betslip-badge" id="slip-tab-count">0</span>
+        </div>
+        
+        <div class="betslip-empty-notice" id="slip-empty-notice">
+          No bet has been selected. To select a bet, please click on the respective odds
+        </div>
+
+        <!-- BET PLACED SUCCESS PANEL -->
+        <div class="betslip-panel-success" id="panel-bet-success" hidden>
+          <div class="betslip-success-content">
+            <div class="betslip-success-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <h3 class="betslip-success-title">Your Bet Has Been Placed</h3>
+            <p class="betslip-success-subtitle">Good Luck !</p>
+
+            <div class="betslip-success-actions">
+              <button type="button" class="btn-repeat-bet" id="btn-repeat-bet">REPEAT BET</button>
+              <button type="button" class="btn-print-ticket" id="btn-print-ticket">PRINT TICKET</button>
+            </div>
+
+            <button type="button" class="btn-continue-bet" id="btn-continue-bet">CONTINUE</button>
+          </div>
+        </div>
+
+        <div class="betslip-panel-slip" id="panel-slip" hidden>
+          <div class="betslip-list" id="slip-list"></div>
+
+          <div class="betslip-mode-bar">
+            <button type="button" class="btn-betslip-mode" id="btn-betslip-mode">SINGLE</button>
+          </div>
+
+          <div class="betslip-foot" id="slip-foot">
+            <div class="betslip-odds-row" id="betslip-odds-row">
+              <span class="betslip-odds-label">Odds</span>
+              <strong class="betslip-odds-val" id="total-odds">0.00</strong>
+            </div>
+
+            <div class="stake-row">
+              <span class="stake-label">Stake</span>
+              <div class="stake-stepper-pill">
+                <button type="button" class="stake-step-circle" id="stake-minus">−</button>
+                <input type="number" id="stake-input" min="20" step="1" value="20" placeholder="Stake.." />
+                <button type="button" class="stake-step-circle" id="stake-plus">+</button>
+              </div>
+            </div>
+
+            <div class="quick-stakes-row">
+              <div class="quick-stakes" id="quick-stakes"></div>
+              <button type="button" class="quick-stake-edit" id="btn-quick-stake-edit" title="Custom stake">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+              </button>
+            </div>
+
+            <div class="betslip-bonus-banner" id="betslip-bonus-banner">
+              <span class="bonus-banner-text" id="bonus-banner-text">Add one more event to get</span>
+              <strong class="bonus-banner-pct" id="bonus-banner-pct">8% bonus</strong>
+            </div>
+
+            <div class="potential-winning-box">
+              <div class="pw-title">Potential Winning</div>
+              <div class="pw-amount-line">
+                <span class="pw-val" id="potential-win">0.00</span>
+                <span class="pw-cur">ETB</span>
+              </div>
+            </div>
+
+            <div class="betslip-meta-row">
+              <div class="meta-odds-type">
+                <span class="meta-check">✓</span>
+                <span>Odds Type</span>
+              </div>
+              <button type="button" class="meta-settings" data-coming-soon>
+                <span>Settings</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54A.484.484 0 0 0 14 2h-4c-.25 0-.46.18-.49.42l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.63 8.49c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.485.485 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.49.41h4c.25 0 .46-.18.49-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+              </button>
+            </div>
+
+            <div class="betslip-auth-notice" id="slip-auth-notice">
+              <span class="auth-notice-ico">ⓘ</span>
+              <span>You need to login to be able to place a bet.</span>
+            </div>
+
+            <div class="betslip-actions-block">
+              <button type="button" class="btn-share-dark" id="btn-share-slip">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-7 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+                <span>SHARE</span>
+              </button>
+              <div class="betslip-dual-actions">
+                <button type="button" class="btn-cancel-red" id="btn-clear-slip">
+                  <span class="btn-act-ico">✖</span>
+                  <span>CANCEL</span>
+                </button>
+                <button type="button" class="btn-place-green" id="btn-place">
+                  <span>PLACE BET</span>
+                  <span class="btn-act-ico">📋</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="betslip-tools" id="betslip-tools">
+          <div class="betslip-tool">
+            <div class="betslip-tool-head">Load booked bet</div>
+            <p>Insert the code to load or <a href="#" class="check-it-link" data-coming-soon>check it</a> here</p>
+            <div class="betslip-tool-row">
+              <input type="text" id="load-booked-code" placeholder="Insert the code here..." />
+              <button type="button" class="btn-load-red" data-load="booked">Load</button>
+            </div>
+          </div>
+          <div class="betslip-tool">
+            <div class="betslip-tool-head">Load Ticket</div>
+            <p>Insert the id to load ticket</p>
+            <div class="betslip-tool-row">
+              <input type="text" id="load-ticket-id" placeholder="Insert the id here" />
+              <button type="button" class="btn-load-red" data-load="ticket">Load</button>
+            </div>
+          </div>
+          <div class="betslip-tool">
+            <div class="betslip-tool-head">Check Your Bet</div>
+            <p>Your Bet ID</p>
+            <div class="betslip-tool-row">
+              <input type="text" id="check-bet-id" placeholder="Insert the code here..." />
+              <button type="button" class="btn-load-red" data-load="check">Load</button>
+            </div>
+          </div>
+          <div class="betslip-tool">
+            <div class="betslip-tool-head">Last winnings</div>
+            <div class="last-winnings" id="last-winnings">
+              <div class="last-winnings-head">
+                <span>Winner</span><span>Stake</span><span>Date</span>
+              </div>
+              <div class="last-winnings-body" id="last-winnings-body">
+                <p class="last-winnings-empty">No recent wins</p>
+              </div>
+            </div>
+          </div>
+          <!-- Red "Load booked bet" footer bar -->
+          <button type="button" class="betslip-load-booked-bar" data-load="booked">Load booked bet</button>
+        </div>
+
+        <div class="betslip-panel-bets" id="panel-bets" hidden>
+          <div class="bet-history" id="bet-history"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+  <div class="boot-error" id="boot-error" hidden></div>
+
+  <!-- ===== ACCOUNT MODAL ===== -->
+  <div class="acct-modal-backdrop" id="account-modal" hidden></div>
+  <div class="acct-modal" id="account-modal-panel" hidden>
+    <!-- LEFT SIDEBAR -->
+    <aside class="acct-sidebar">
+      <div class="acct-sidebar-logo"><img src="assets/hope-bet-logo.png" alt="Hope Bet" /></div>
+      <nav class="acct-nav">
+        <button type="button" class="acct-nav-item" data-acct-section="profile">
+          <span class="acct-nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/></svg></span>
+          <span class="acct-nav-label">My Profile</span>
+          <span class="acct-nav-arrow">&#x203A;</span>
+        </button>
+        <button type="button" class="acct-nav-item" data-acct-section="bonuses">
+          <span class="acct-nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35L12 4l-.5-.65C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.1 0-2 .9-2 2v2h20V8c0-1.1-.9-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM2 19c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-7H2v7z"/></svg></span>
+          <span class="acct-nav-label">Bonuses</span>
+          <span class="acct-nav-arrow">&#x203A;</span>
+        </button>
+        <button type="button" class="acct-nav-item" data-acct-section="bet-history">
+          <span class="acct-nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zm-5-7h-2v2h2v2h2v-2h2v-2h-2v-2h-2v2z"/></svg></span>
+          <span class="acct-nav-label">Bet History</span>
+          <span class="acct-nav-arrow">&#x203A;</span>
+        </button>
+        <button type="button" class="acct-nav-item" data-acct-section="jackpots">
+          <span class="acct-nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0011 15.9V19H7v2h10v-2h-4v-3.1a5.01 5.01 0 003.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg></span>
+          <span class="acct-nav-label">My Jackpots</span>
+          <span class="acct-nav-arrow">&#x203A;</span>
+        </button>
+        <button type="button" class="acct-nav-item" data-acct-section="history">
+          <span class="acct-nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 3a9 9 0 00-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0013 21a9 9 0 000-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg></span>
+          <span class="acct-nav-label">History</span>
+          <span class="acct-nav-arrow">&#x203A;</span>
+        </button>
+        <button type="button" class="acct-nav-item" data-acct-section="payments">
+          <span class="acct-nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg></span>
+          <span class="acct-nav-label">Payments</span>
+          <span class="acct-nav-arrow">&#x203A;</span>
+        </button>
+        <button type="button" class="acct-nav-item" data-acct-section="messages">
+          <span class="acct-nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
+          <span class="acct-nav-label">Messages</span>
+          <span class="acct-nav-arrow">&#x203A;</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- RIGHT CONTENT -->
+    <div class="acct-content">
+      <div class="acct-content-header" id="acct-content-header">
+        <div class="acct-header-inner" id="acct-header-inner"></div>
+        <button type="button" class="acct-close" id="account-modal-close">&#x2715;</button>
+      </div>
+
+      <!-- Mobile Navigation Bar (visible only on mobile/smaller screens when sidebar is hidden) -->
+      <nav class="acct-mobile-nav" id="acct-mobile-nav">
+        <button type="button" class="acct-mobile-nav-item" data-acct-section="profile">Profile</button>
+        <button type="button" class="acct-mobile-nav-item" data-acct-section="bonuses">Bonuses</button>
+        <button type="button" class="acct-mobile-nav-item" data-acct-section="bet-history">Bet History</button>
+        <button type="button" class="acct-mobile-nav-item" data-acct-section="jackpots">Jackpots</button>
+        <button type="button" class="acct-mobile-nav-item" data-acct-section="history">History</button>
+        <button type="button" class="acct-mobile-nav-item" data-acct-section="payments">Payments</button>
+        <button type="button" class="acct-mobile-nav-item" data-acct-section="messages">Messages</button>
+      </nav>
+
+      <!-- MY PROFILE -->
+      <div class="acct-section" id="acct-section-profile">
+        <!-- Sub-panel 1: My Details -->
+        <div class="profile-subpanel" id="profile-subpanel-details">
+          <div class="profile-grid">
+            <!-- Left column -->
+            <div class="profile-col">
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-screen-name">Screen Name</label>
+                <input type="text" class="profile-field-input" id="profile-screen-name" readonly />
+              </div>
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-first-name">First Name</label>
+                <input type="text" class="profile-field-input" id="profile-first-name" readonly />
+              </div>
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-email">E-mail</label>
+                <input type="email" class="profile-field-input" id="profile-email" readonly />
+              </div>
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-gender">Gender</label>
+                <input type="text" class="profile-field-input" id="profile-gender" value="Gender not set" readonly />
+              </div>
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-city">City of Residence</label>
+                <input type="text" class="profile-field-input" id="profile-city" readonly />
+              </div>
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-address">Address</label>
+                <input type="text" class="profile-field-input" id="profile-address" readonly />
+              </div>
+            </div>
+
+            <!-- Right column -->
+            <div class="profile-col">
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-username">Username</label>
+                <input type="text" class="profile-field-input" id="profile-username" readonly />
+              </div>
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-last-name">Last Name</label>
+                <input type="text" class="profile-field-input" id="profile-last-name" readonly />
+              </div>
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-dob">Date of Birth</label>
+                <input type="text" class="profile-field-input" id="profile-dob" value="Date of Birth not set" readonly />
+              </div>
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-country">Country of Residence</label>
+                <div class="profile-select-wrap">
+                  <select class="profile-field-select" id="profile-country" disabled>
+                    <option selected>COUNTRY OF RESIDENCE NOT SET</option>
+                    <option>ETHIOPIA</option>
+                  </select>
+                </div>
+              </div>
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-zip">Zip</label>
+                <input type="text" class="profile-field-input" id="profile-zip" readonly />
+              </div>
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-phone">Phone number</label>
+                <input type="text" class="profile-field-input" id="profile-phone" readonly />
+              </div>
+            </div>
+          </div>
+
+          <p class="profile-security-note">For security reasons, in order to change your data please contact our support.</p>
+        </div>
+
+        <!-- Sub-panel 2: Change Password -->
+        <div class="profile-subpanel" id="profile-subpanel-password" hidden>
+          <div class="profile-password-card">
+            <h3 class="profile-password-title">Change Password</h3>
+            <form id="profile-password-form" class="profile-password-form">
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-current-pass">Current Password</label>
+                <input type="password" class="profile-field-input" id="profile-current-pass" required placeholder="Enter current password" />
+              </div>
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-new-pass">New Password</label>
+                <input type="password" class="profile-field-input" id="profile-new-pass" required minlength="6" placeholder="Enter new password" />
+              </div>
+              <div class="profile-field-group">
+                <label class="profile-field-label" for="profile-confirm-pass">Confirm New Password</label>
+                <input type="password" class="profile-field-input" id="profile-confirm-pass" required minlength="6" placeholder="Repeat new password" />
+              </div>
+              <button type="submit" class="btn-profile-submit" id="btn-change-password-submit">Update Password</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- BONUSES -->
+      <div class="acct-section" id="acct-section-bonuses">
+        <div class="acct-placeholder"><p>No active bonuses at the moment.</p><p style="font-size:11px;color:#aaa;">Check back later for promotions.</p></div>
+      </div>
+
+      <!-- BET HISTORY -->
+      <div class="acct-section" id="acct-section-bet-history">
+        <div class="acct-filters-bar">
+          <div class="acct-filter-fields">
+            <div class="acct-filter-group">
+              <label class="acct-filter-label" for="bet-history-period">Period</label>
+              <div class="acct-select-wrap">
+                <select class="acct-select" id="bet-history-period">
+                  <option value="today">Today</option>
+                  <option value="yesterday">Yesterday</option>
+                  <option value="3days">3 Days</option>
+                  <option value="1week" selected>1 Week</option>
+                  <option value="1month">1 Month</option>
+                  <option value="all">All</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="acct-filter-group">
+              <label class="acct-filter-label" for="bet-history-type">Bet Type</label>
+              <div class="acct-select-wrap">
+                <select class="acct-select" id="bet-history-type">
+                  <option value="all" selected>All</option>
+                  <option value="single">Single</option>
+                  <option value="multiple">Multiple</option>
+                  <option value="system">System</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="acct-filter-actions">
+            <button type="button" class="btn-apply-filters" id="btn-apply-bet-filters">Apply Filters</button>
+          </div>
+        </div>
+
+        <div class="acct-table-container" id="acct-bet-history-body">
+          <div class="acct-placeholder">Loading bet history…</div>
+        </div>
+      </div>
+
+      <!-- MY JACKPOTS -->
+      <div class="acct-section" id="acct-section-jackpots">
+        <div class="acct-placeholder"><p>No jackpot entries found.</p></div>
+      </div>
+
+      <!-- HISTORY -->
+      <div class="acct-section" id="acct-section-history">
+        <div id="acct-history-body"><div class="acct-placeholder">Loading transaction history…</div></div>
+      </div>
+
+            <!-- PAYMENTS -->
+      <div class="acct-section" id="acct-section-payments">
+        <!-- Payments Navigation Tabs (Deposit / Withdraw) -->
+        <div class="payments-nav-tabs">
+          <button type="button" class="payments-nav-tab is-active" data-payments-tab="deposit">Deposit</button>
+          <button type="button" class="payments-nav-tab" data-payments-tab="withdraw">Withdraw</button>
+        </div>
+
+        <!-- DEPOSIT BODY -->
+        <div class="payments-body" id="payments-body-deposit">
+          <div class="deposit-methods-list" id="deposit-methods-list">
+            <div class="deposit-loading">Loading payment methods…</div>
+          </div>
+          <div class="deposit-form-panel" id="deposit-form-panel" hidden>
+            <!-- Top summary row matching reference screenshot -->
+            <div class="deposit-view-header">
+              <div class="deposit-view-logo-wrap">
+                <img src="./assets/telebirr.png" alt="Method" id="deposit-view-logo" class="deposit-view-logo" />
+              </div>
+              <div class="deposit-view-meta-col">
+                <span class="deposit-view-meta-label">Service Fee</span>
+                <span class="deposit-view-meta-val" id="deposit-view-fee">Free</span>
+              </div>
+              <div class="deposit-view-meta-col">
+                <span class="deposit-view-meta-label">Process Time</span>
+                <span class="deposit-view-meta-val" id="deposit-view-time">Instant</span>
+              </div>
+              <div class="deposit-view-meta-col">
+                <span class="deposit-view-meta-label">Min. Amount</span>
+                <span class="deposit-view-meta-val" id="deposit-view-min">100 ETB</span>
+              </div>
+              <div class="deposit-view-meta-col">
+                <span class="deposit-view-meta-label">Max. Amount</span>
+                <span class="deposit-view-meta-val" id="deposit-view-max">75000 ETB</span>
+              </div>
+            </div>
+
+            <!-- Main deposit form grid with 2 columns -->
+            <form id="deposit-form" class="deposit-view-grid">
+              <!-- Left Column: Step-by-step instructions -->
+              <div class="deposit-view-col deposit-view-col--left">
+                <div class="deposit-step-group" id="deposit-receiver-wrap">
+                  <div class="deposit-step-title" id="deposit-step1-title">1. Copy Mobile number from the Mobile number field</div>
+                  <label class="deposit-input-label" id="deposit-receiver-label" for="deposit-receiver-number">Receiver Mobile Number</label>
+                  <div class="deposit-copy-input-wrap">
+                    <input type="text" id="deposit-receiver-number" class="deposit-copy-input" readonly value="0937383800" />
+                    <button type="button" class="deposit-copy-btn" id="deposit-copy-btn" title="Copy Number">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="deposit-step-group">
+                  <div class="deposit-step-title" id="deposit-step2-title">2. Go to the Telebirr app, choose "Send Money to Individual" paste the Mobile number and make the transfer</div>
+                </div>
+
+                <div class="deposit-step-group">
+                  <div class="deposit-step-title">3. Next, copy the transaction number and paste it into the Transaction Reference field</div>
+                  <label class="deposit-input-label" for="deposit-reference">Transaction ID</label>
+                  <input type="text" id="deposit-reference" class="deposit-field-input" placeholder="ABCD123456" required />
+                </div>
+
+                <div class="deposit-step-group">
+                  <label class="deposit-input-label" for="deposit-promo">Promo Code</label>
+                  <input type="text" id="deposit-promo" class="deposit-field-input" placeholder="ABCD1234" />
+                </div>
+
+                <input type="hidden" id="deposit-method" value="telebirr" />
+              </div>
+
+              <!-- Right Column: Amount selection & Submit -->
+              <div class="deposit-view-col deposit-view-col--right">
+                <div class="deposit-amount-header">Select or type in the amount to be deposited.</div>
+                <div class="deposit-quick-amounts">
+                  <button type="button" class="deposit-quick-btn" data-amt="100">100</button>
+                  <button type="button" class="deposit-quick-btn" data-amt="500">500</button>
+                  <button type="button" class="deposit-quick-btn" data-amt="1000">1000</button>
+                  <button type="button" class="deposit-quick-btn" data-amt="3000">3000</button>
+                  <button type="button" class="deposit-quick-btn" data-amt="5000">5000</button>
+                  <button type="button" class="deposit-quick-btn" data-amt="10000">10000</button>
+                </div>
+
+                <div class="deposit-action-row">
+                  <div class="deposit-amount-input-wrap">
+                    <input type="number" id="deposit-amount" class="deposit-amount-input" min="100" max="75000" step="1" placeholder="Amount" required />
+                  </div>
+                  <button type="submit" class="deposit-submit-btn" id="deposit-submit">DEPOSIT</button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Bottom link: Return to methods list -->
+            <div class="deposit-view-footer">
+              <button type="button" class="deposit-choose-another-btn" id="deposit-form-back">
+                CHOOSE ANOTHER DEPOSIT METHOD
+              </button>
+            </div>
+
+            <div class="deposit-history" id="deposit-history"></div>
+          </div>
+        </div>
+
+        <!-- WITHDRAW BODY (Matching Reference Screenshots) -->
+        <div class="payments-body" id="payments-body-withdraw" hidden>
+          <!-- 1. Withdrawal Method Cards -->
+          <div class="withdraw-methods-list" id="withdraw-methods-list">
+            <div class="deposit-loading">Loading withdrawal methods…</div>
+          </div>
+
+          <!-- 2. Withdrawal Form Panel -->
+          <div class="withdraw-form-panel" id="withdraw-form-panel" hidden>
+            <!-- Top summary row matching screenshot -->
+            <div class="withdraw-view-header">
+              <div class="withdraw-view-logo-wrap">
+                <img src="./assets/cbebirr.png" alt="Method" id="withdraw-view-logo" class="withdraw-view-logo" />
+              </div>
+              <div class="withdraw-view-meta-col">
+                <span class="withdraw-view-meta-label">Service Fee</span>
+                <span class="withdraw-view-meta-val" id="withdraw-view-fee">Free</span>
+              </div>
+              <div class="withdraw-view-meta-col">
+                <span class="withdraw-view-meta-label">Process Time</span>
+                <span class="withdraw-view-meta-val" id="withdraw-view-time">Instant</span>
+              </div>
+              <div class="withdraw-view-meta-col">
+                <span class="withdraw-view-meta-label">Min. Amount</span>
+                <span class="withdraw-view-meta-val" id="withdraw-view-min">500 ETB</span>
+              </div>
+              <div class="withdraw-view-meta-col">
+                <span class="withdraw-view-meta-label">Max. Amount</span>
+                <span class="withdraw-view-meta-val" id="withdraw-view-max">50000 ETB</span>
+              </div>
+            </div>
+
+            <!-- Form -->
+            <form id="withdraw-form" class="withdraw-view-form">
+              <div class="withdraw-field-group">
+                <label class="withdraw-input-label" id="withdraw-account-label" for="withdraw-account-number">Commercial Bank Account Number</label>
+                <input type="text" id="withdraw-account-number" class="withdraw-field-input" placeholder="Enter 13-digit account number" required />
+              </div>
+
+              <div class="withdraw-amount-header">Select or type in the amount to be withdrawn.</div>
+
+              <!-- Quick amount buttons (3x2 grid) -->
+              <div class="withdraw-quick-amounts">
+                <button type="button" class="withdraw-quick-btn" data-amt="500">500</button>
+                <button type="button" class="withdraw-quick-btn" data-amt="2000">2000</button>
+                <button type="button" class="withdraw-quick-btn" data-amt="5000">5000</button>
+                <button type="button" class="withdraw-quick-btn" data-amt="10000">10000</button>
+                <button type="button" class="withdraw-quick-btn" data-amt="20000">20000</button>
+                <button type="button" class="withdraw-quick-btn" data-amt="25000">25000</button>
+              </div>
+
+              <!-- Amount input -->
+              <div class="withdraw-amount-input-wrap">
+                <input type="number" id="withdraw-amount" class="withdraw-amount-input" min="500" max="50000" step="1" placeholder="Amount" required />
+              </div>
+
+              <input type="hidden" id="withdraw-method" value="cbe" />
+
+              <!-- Submit button -->
+              <button type="submit" class="withdraw-submit-btn" id="withdraw-submit">WITHDRAW</button>
+            </form>
+
+            <!-- Bottom link: Return to methods list -->
+            <div class="withdraw-view-footer">
+              <button type="button" class="withdraw-choose-another-btn" id="withdraw-form-back">
+                CHOOSE ANOTHER WITHDRAWAL METHOD
+              </button>
+            </div>
+
+            <div class="withdraw-history" id="withdraw-history"></div>
+          </div>
+        </div>
+
+        <div class="payments-body" id="payments-body-withdrawal-request" hidden>
+          <div class="acct-placeholder"><p>Submit your withdrawal request through our support team.</p></div>
+        </div>
+      </div>
+
+      <!-- MESSAGES -->
+      <div class="acct-section" id="acct-section-messages">
+        <div class="acct-placeholder"><p>No messages yet.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-modal" id="auth-modal" hidden>
+    <div class="auth-card auth-card--hope" id="auth-card">
+      <button type="button" class="auth-close" id="auth-close" aria-label="Close">×</button>
+      <div class="auth-brand">
+        <img src="assets/hope-bet-logo.png" alt="Hope Bet" />
+        <strong>Hope Bet</strong>
+      </div>
+      <h2 class="auth-heading" id="auth-title" hidden>Register</h2>
+      <form id="auth-form" class="auth-form">
+        <div class="auth-field" id="auth-phone-field">
+          <label class="auth-label" id="auth-phone-label" for="auth-phone" hidden>Phone number *</label>
+          <div class="auth-phone-row">
+            <div class="auth-cc" title="Ethiopia">ET +251</div>
+            <input type="tel" id="auth-phone" inputmode="numeric" autocomplete="tel-national" placeholder="Number"
+              required />
+          </div>
+        </div>
+
+        <div class="auth-field">
+          <label class="auth-label auth-label--reg" for="auth-password" hidden data-reg-only>Password</label>
+          <div class="auth-pass-wrap">
+            <input type="password" id="auth-password" placeholder="Password" required minlength="6"
+              autocomplete="current-password" />
+            <button type="button" class="auth-eye" data-toggle-pass="auth-password"
+              aria-label="Show password">👁</button>
+          </div>
+        </div>
+
+        <div class="auth-confirm-wrap" id="auth-confirm-wrap" hidden>
+          <label class="auth-label" for="auth-password2">Confirm Password</label>
+          <div class="auth-pass-wrap">
+            <input type="password" id="auth-password2" placeholder="Confirm Password" minlength="6"
+              autocomplete="new-password" />
+            <button type="button" class="auth-eye" data-toggle-pass="auth-password2"
+              aria-label="Show password">👁</button>
+          </div>
+        </div>
+
+        <div class="auth-checks" id="auth-checks" hidden>
+          <label class="auth-check">
+            <input type="checkbox" id="auth-age" />
+            <span>I confirm that I am OVER 18 *</span>
+          </label>
+          <label class="auth-check">
+            <input type="checkbox" id="auth-terms" />
+            <span>If you continue, you'll confirm that you've read and agree with the terms of use and the privacy
+              policy</span>
+          </label>
+        </div>
+
+        <button type="submit" class="auth-submit" id="auth-submit">LOGIN</button>
+      </form>
+      <div class="auth-footer" id="auth-footer-login">
+        <button type="button" class="auth-footer-link" id="auth-forgot">Forgot Password</button>
+        <span>|</span>
+        <button type="button" class="auth-footer-link" data-auth-tab="register">Create Account</button>
+      </div>
+      <div class="auth-footer" id="auth-footer-register" hidden>
+        <button type="button" class="auth-footer-link" id="auth-support">Support</button>
+        <span>|</span>
+        <button type="button" class="auth-footer-link" data-auth-tab="login">Enter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SHARE ON SOCIALS / BOOKED BET MODAL ===== -->
+  <div class="share-modal-backdrop" id="share-modal-backdrop" hidden></div>
+  <div class="share-modal" id="share-modal" hidden>
+    <div class="share-modal-header">
+      <span class="share-modal-title">Share on Socials</span>
+      <button type="button" class="share-modal-close" id="share-modal-close" aria-label="Close">✕</button>
+    </div>
+
+    <div class="share-modal-body">
+      <!-- Top Summary Card -->
+      <div class="share-summary-row">
+        <div class="share-code-block">
+          <div class="share-booked-subtitle">Your bet has been booked</div>
+          <div class="share-code-wrapper">
+            <span class="share-code-val" id="share-code-val">*00000*</span>
+            <button type="button" class="share-copy-btn" id="share-copy-code" title="Copy code">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="share-stats-block">
+          <div class="share-stat-col">
+            <div class="share-stat-label">BETTING DATE</div>
+            <div class="share-stat-value" id="share-date-val">05/09/2026</div>
+          </div>
+          <div class="share-stat-col">
+            <div class="share-stat-label">TOTAL STAKE</div>
+            <div class="share-stat-value" id="share-stake-val">0.00</div>
+          </div>
+          <div class="share-stat-col">
+            <div class="share-stat-label">WIN AMOUNT</div>
+            <div class="share-stat-value" id="share-win-val">0.00</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table of Events -->
+      <div class="share-table-wrap">
+        <table class="share-events-table">
+          <thead>
+            <tr>
+              <th>Event Date</th>
+              <th>Tournament</th>
+              <th>Event</th>
+              <th>Market</th>
+              <th>Odd</th>
+            </tr>
+          </thead>
+          <tbody id="share-table-body">
+            <!-- Populated dynamically -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Actions Bar -->
+      <div class="share-actions-bar">
+        <div class="share-left-btns">
+          <button type="button" class="btn-share-repeat" id="share-repeat-bet">REPEAT BET</button>
+        </div>
+
+        <div class="share-center-socials">
+          <button type="button" class="share-social-circle is-whatsapp" id="share-social-wa" title="Share on WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          </button>
+          <button type="button" class="share-social-circle is-facebook" id="share-social-fb" title="Share on Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </button>
+          <button type="button" class="share-social-circle is-x" id="share-social-x" title="Share on X">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffffff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </button>
+          <button type="button" class="share-social-circle is-telegram" id="share-social-tg" title="Share on Telegram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          </button>
+          <button type="button" class="share-copy-link-btn" id="share-copy-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            <span>Copy link</span>
+          </button>
+        </div>
+
+        <div class="share-right-btn">
+          <button type="button" class="btn-share-continue" id="share-continue-btn">CONTINUE ON WEBSITE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CASHOUT CONFIRMATION MODAL ===== -->
+  <div class="cashout-modal-backdrop" id="cashout-modal-backdrop" hidden></div>
+  <div class="cashout-modal" id="cashout-modal" hidden>
+    <div class="cashout-modal-header">
+      <span class="cashout-modal-title">Confirm Cashout</span>
+      <button type="button" class="cashout-modal-close" id="cashout-modal-close" aria-label="Close">✕</button>
+    </div>
+    <div class="cashout-modal-body">
+      <div class="cashout-modal-ticket-id" id="cashout-modal-ticket-id">Ticket ID: —</div>
+      <div class="cashout-modal-center">
+        <div class="cashout-modal-label">Total Cashout</div>
+        <div class="cashout-modal-amount" id="cashout-modal-amount">0.00 ETB</div>
+      </div>
+      <button type="button" class="cashout-modal-btn-confirm" id="cashout-modal-confirm">Confirm</button>
+      <button type="button" class="cashout-modal-btn-cancel" id="cashout-modal-cancel">Cancel</button>
+    </div>
+  </div>
+
+  <!-- THERMAL RECEIPT PRINT CONTAINER (hidden on screen, visible in native print dialog) -->
+  <div class="print-receipt-container" id="print-receipt-container" aria-hidden="true">
+    <div class="receipt-paper" id="receipt-paper">
+      <!-- Rendered dynamically for window.print() -->
+    </div>
+  </div>
+
+  <!-- ===== ADMIN FOOTER ===== -->
+  <footer class="admin-footer" id="admin-footer" hidden>
+    <div class="admin-footer-inner">
+      <span>2026</span>
+    </div>
+  </footer>
+
+  <!-- ===== ADMIN QR CODE MODAL ===== -->
+  <div class="admin-qr-modal-backdrop" id="admin-qr-modal-backdrop" hidden>
+    <div class="admin-qr-modal" id="admin-qr-modal">
+      <div class="admin-qr-modal-header">
+        <h3>Affiliation QR Code</h3>
+        <button type="button" class="admin-qr-close" id="admin-qr-close" aria-label="Close">✕</button>
+      </div>
+      <div class="admin-qr-modal-body">
+        <div id="admin-qr-code-canvas" class="admin-qr-code-canvas"></div>
+        <p class="admin-qr-url" id="admin-qr-url">https://hopebet.et/signup/?promoter_code=HB7611994</p>
+        <div class="admin-qr-actions">
+          <button type="button" class="admin-qr-btn-print" id="admin-qr-btn-print">Print</button>
+          <button type="button" class="admin-qr-btn-close" id="admin-qr-btn-close">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ADMIN NEW PLAYER MODAL ===== -->
+  <div class="admin-modal-backdrop" id="admin-new-player-backdrop" hidden>
+    <div class="admin-modal-dialog" id="admin-new-player-modal">
+      <div class="admin-modal-header">
+        <h3>+ Create New Player</h3>
+        <button type="button" class="admin-modal-close" id="admin-new-player-close" aria-label="Close">✕</button>
+      </div>
+      <form id="admin-new-player-form" class="admin-modal-form">
+        <div class="admin-form-row">
+          <div class="admin-form-group">
+            <label for="admin-np-username">Username / Mobile Phone *</label>
+            <input type="text" id="admin-np-username" required placeholder="e.g. +251911223344 or player01" />
+          </div>
+          <div class="admin-form-group">
+            <label for="admin-np-password">Password *</label>
+            <input type="password" id="admin-np-password" required minlength="6" placeholder="Min 6 characters" />
+          </div>
+        </div>
+        <div class="admin-form-row">
+          <div class="admin-form-group">
+            <label for="admin-np-firstname">First Name</label>
+            <input type="text" id="admin-np-firstname" placeholder="First Name" />
+          </div>
+          <div class="admin-form-group">
+            <label for="admin-np-lastname">Last Name</label>
+            <input type="text" id="admin-np-lastname" placeholder="Last Name" />
+          </div>
+        </div>
+        <div class="admin-form-row">
+          <div class="admin-form-group">
+            <label for="admin-np-email">Email Address</label>
+            <input type="email" id="admin-np-email" placeholder="player@example.com" />
+          </div>
+          <div class="admin-form-group">
+            <label for="admin-np-balance">Initial Balance (ETB)</label>
+            <input type="number" id="admin-np-balance" min="0" step="10" placeholder="0.00" value="0" />
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="admin-modal-btn admin-modal-btn--cancel" id="admin-np-btn-cancel">Cancel</button>
+          <button type="submit" class="admin-modal-btn admin-modal-btn--submit" id="admin-np-btn-submit">Create Player</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== ADMIN PLAYER TOP-UP MODAL ===== -->
+  <div class="admin-modal-backdrop" id="admin-topup-backdrop" hidden>
+    <div class="admin-modal-dialog admin-modal-dialog--sm" id="admin-topup-modal">
+      <div class="admin-modal-header">
+        <h3>Deposit / Top Up Balance</h3>
+        <button type="button" class="admin-modal-close" id="admin-topup-close" aria-label="Close">✕</button>
+      </div>
+      <form id="admin-topup-form" class="admin-modal-form">
+        <input type="hidden" id="admin-topup-user-id" />
+        <div class="admin-topup-target">
+          Player: <strong id="admin-topup-player-name">—</strong>
+        </div>
+        <div class="admin-topup-float-box" id="admin-topup-float-box">
+          <span class="admin-topup-float-label">🏦 Your Shop Float:</span>
+          <span class="admin-topup-float-val" id="admin-topup-admin-float">0.00 ETB</span>
+        </div>
+        <div class="admin-topup-zero-alert" id="admin-topup-zero-alert" hidden>
+          <div class="admin-topup-zero-alert-header">⚠️ Zero Float Balance</div>
+          <p class="admin-topup-zero-alert-msg">You cannot fund or top up cashiers when you have no float balance. Your balance can only be topped up by the Super Admin.</p>
+        </div>
+        <div class="admin-form-group">
+          <label for="admin-topup-amount">Amount (ETB) *</label>
+          <input type="number" id="admin-topup-amount" required min="1" step="1" placeholder="Enter amount to credit" />
+          <small class="admin-topup-hint" id="admin-topup-hint"></small>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="admin-modal-btn admin-modal-btn--cancel" id="admin-topup-btn-cancel">Cancel</button>
+          <button type="submit" class="admin-modal-btn admin-modal-btn--submit" id="admin-topup-btn-submit">Top Up Balance</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ===== ADMIN COUPON INSPECT MODAL ===== -->
+  <div class="admin-modal-backdrop" id="admin-coupon-backdrop" hidden>
+    <div class="admin-modal-dialog admin-modal-dialog--lg" id="admin-coupon-modal">
+      <div class="admin-modal-header">
+        <div class="admin-modal-title-wrap">
+          <h3 id="admin-modal-ticket-title">Bet Coupon Details</h3>
+          <span class="admin-status-badge" id="admin-modal-ticket-status">OPEN</span>
+        </div>
+        <button type="button" class="admin-modal-close" id="admin-coupon-close" aria-label="Close">✕</button>
+      </div>
+      <div class="admin-coupon-modal-body">
+        <div class="admin-coupon-meta-grid">
+          <div class="admin-coupon-meta-item">
+            <span class="admin-coupon-meta-label">Ticket ID:</span>
+            <strong id="admin-cmodal-id">—</strong>
+          </div>
+          <div class="admin-coupon-meta-item">
+            <span class="admin-coupon-meta-label">Player:</span>
+            <strong id="admin-cmodal-user">—</strong>
+          </div>
+          <div class="admin-coupon-meta-item">
+            <span class="admin-coupon-meta-label">Date Placed:</span>
+            <span id="admin-cmodal-date">—</span>
+          </div>
+          <div class="admin-coupon-meta-item">
+            <span class="admin-coupon-meta-label">Bet Type:</span>
+            <span id="admin-cmodal-mode">Multiple</span>
+          </div>
+          <div class="admin-coupon-meta-item">
+            <span class="admin-coupon-meta-label">Stake:</span>
+            <strong id="admin-cmodal-stake">0.00 ETB</strong>
+          </div>
+          <div class="admin-coupon-meta-item">
+            <span class="admin-coupon-meta-label">Total Odds:</span>
+            <strong id="admin-cmodal-odds">0.00</strong>
+          </div>
+          <div class="admin-coupon-meta-item">
+            <span class="admin-coupon-meta-label">Potential Win:</span>
+            <strong class="admin-coupon-win-highlight" id="admin-cmodal-win">0.00 ETB</strong>
+          </div>
+        </div>
+
+        <h4 class="admin-coupon-picks-title">Selections (<span id="admin-cmodal-picks-count">0</span>)</h4>
+        <div class="admin-coupon-picks-list" id="admin-cmodal-picks-list">
+          <!-- Rendered picks -->
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="admin-modal-btn admin-modal-btn--cancel" id="admin-coupon-modal-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ADMIN VOUCHER ACTION MODAL ===== -->
+  <div class="admin-modal-backdrop" id="admin-voucher-modal-backdrop" hidden></div>
+  <div class="admin-modal" id="admin-voucher-modal" hidden>
+    <div class="admin-modal-dialog admin-modal-dialog--md">
+      <div class="admin-modal-header">
+        <h3 class="admin-modal-title" id="admin-voucher-modal-title">Voucher Withdrawal</h3>
+        <button type="button" class="admin-modal-close" id="admin-voucher-modal-close">&times;</button>
+      </div>
+      <form id="admin-voucher-form">
+        <div class="admin-modal-body" style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="admin-voucher-code">Voucher Code</label>
+            <input type="text" class="admin-filter-input" id="admin-voucher-code" placeholder="e.g. VCH-ABCD-1234 (Leave blank to auto-generate)" />
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="admin-voucher-user-select">Select Player</label>
+            <div class="admin-filter-select-wrap">
+              <select class="admin-filter-select" id="admin-voucher-user-select">
+                <option value="">Walk-in Customer (No player account)</option>
+              </select>
+            </div>
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="admin-voucher-amount">Amount (ETB) *</label>
+            <input type="number" class="admin-filter-input" id="admin-voucher-amount" min="1" step="1" placeholder="Enter amount" required />
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="admin-voucher-reason">Reason / Notes</label>
+            <input type="text" class="admin-filter-input" id="admin-voucher-reason" placeholder="Cashier payout or voucher deposit note" />
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="admin-modal-btn admin-modal-btn--cancel" id="admin-voucher-btn-cancel">Cancel</button>
+          <button type="submit" class="admin-modal-btn admin-modal-btn--submit" id="admin-voucher-btn-submit">Confirm Payout</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== FLASHSCORE MATCH DETAIL MODAL ===== -->
+  <div class="flashscore-modal-backdrop" id="flashscore-modal-backdrop" hidden></div>
+  <div class="flashscore-modal" id="flashscore-modal" hidden role="dialog" aria-modal="true">
+    <div class="flashscore-modal-dialog">
+      <div class="flashscore-modal-content" id="flashscore-modal-content">
+        <!-- Dynamically rendered via renderFlashscoreModal() -->
+      </div>
+    </div>
+  </div>
+
+  <script src="./config.js?v=20260909_uefa_tomorrow_v3"></script>
+  <script src="./api-client.js?v=20260909_uefa_tomorrow_v3"></script>
+  <script src="./qrcode.min.js?v=20260909_uefa_tomorrow_v3"></script>
+  <script src="./game.js?v=20260909_odds_red_v19"></script>
+</body>
+
+</html>

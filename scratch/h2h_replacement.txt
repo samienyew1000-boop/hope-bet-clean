@@ -1,0 +1,344 @@
+
+const REAL_FS_DATA = {"leeds":[{"id":1636205,"date":"2026-09-09","league":{"name":"League Cup","code":"EFL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":49,"name":"Chelsea","logo":"https://media.api-sports.io/football/teams/49.png","winner":true},"away":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":false},"goals":{"home":6,"away":3}},{"id":1557389,"date":"2026-09-05","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":51,"name":"Brighton","logo":"https://media.api-sports.io/football/teams/51.png","winner":null},"away":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":null},"goals":{"home":1,"away":1}},{"id":1557382,"date":"2026-08-30","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":null},"away":{"id":55,"name":"Brentford","logo":"https://media.api-sports.io/football/teams/55.png","winner":null},"goals":{"home":1,"away":1}},{"id":1623100,"date":"2026-08-25","league":{"name":"League Cup","code":"EFL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":65,"name":"Nottingham Forest","logo":"https://media.api-sports.io/football/teams/65.png","winner":false},"away":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":true},"goals":{"home":0,"away":2}},{"id":1557371,"date":"2026-08-22","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":65,"name":"Nottingham Forest","logo":"https://media.api-sports.io/football/teams/65.png","winner":false},"away":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":true},"goals":{"home":0,"away":1}},{"id":1598614,"date":"2026-08-15","league":{"name":"Friendlies Clubs","code":"CF","country":"World","flag":null},"home":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":true},"away":{"id":170,"name":"FC Augsburg","logo":"https://media.api-sports.io/football/teams/170.png","winner":false},"goals":{"home":4,"away":0}},{"id":1542352,"date":"2026-08-12","league":{"name":"Friendlies Clubs","code":"CF","country":"World","flag":null},"home":{"id":33,"name":"Manchester United","logo":"https://media.api-sports.io/football/teams/33.png","winner":true},"away":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":false},"goals":{"home":1,"away":1}},{"id":1585055,"date":"2026-08-08","league":{"name":"Friendlies Clubs","code":"CF","country":"World","flag":null},"home":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":true},"away":{"id":173,"name":"RB Leipzig","logo":"https://media.api-sports.io/football/teams/173.png","winner":false},"goals":{"home":2,"away":0}},{"id":1589335,"date":"2026-08-02","league":{"name":"Premier League - Summer Series","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":40,"name":"Liverpool","logo":"https://media.api-sports.io/football/teams/40.png","winner":false},"away":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":true},"goals":{"home":2,"away":4}},{"id":1589334,"date":"2026-07-30","league":{"name":"Premier League - Summer Series","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":746,"name":"Sunderland","logo":"https://media.api-sports.io/football/teams/746.png","winner":false},"away":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":true},"goals":{"home":0,"away":1}}],"newcastle":[{"id":1635566,"date":"2026-09-08","league":{"name":"League Cup","code":"EFL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":58,"name":"Millwall","logo":"https://media.api-sports.io/football/teams/58.png","winner":false},"away":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":true},"goals":{"home":0,"away":1}},{"id":1557395,"date":"2026-09-05","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":null},"away":{"id":35,"name":"Bournemouth","logo":"https://media.api-sports.io/football/teams/35.png","winner":null},"goals":{"home":2,"away":2}},{"id":1557386,"date":"2026-08-29","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":47,"name":"Tottenham","logo":"https://media.api-sports.io/football/teams/47.png","winner":false},"away":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":true},"goals":{"home":0,"away":2}},{"id":1623089,"date":"2026-08-26","league":{"name":"League Cup","code":"EFL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":true},"away":{"id":60,"name":"West Brom","logo":"https://media.api-sports.io/football/teams/60.png","winner":false},"goals":{"home":3,"away":2}},{"id":1557375,"date":"2026-08-23","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":null},"away":{"id":40,"name":"Liverpool","logo":"https://media.api-sports.io/football/teams/40.png","winner":null},"goals":{"home":2,"away":2}},{"id":1598629,"date":"2026-08-16","league":{"name":"Friendlies Clubs","code":"CF","country":"World","flag":null},"home":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":false},"away":{"id":95,"name":"Strasbourg","logo":"https://media.api-sports.io/football/teams/95.png","winner":true},"goals":{"home":1,"away":1}},{"id":1598620,"date":"2026-08-15","league":{"name":"Friendlies Clubs","code":"CF","country":"World","flag":null},"home":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":false},"away":{"id":168,"name":"Bayer Leverkusen","logo":"https://media.api-sports.io/football/teams/168.png","winner":true},"goals":{"home":1,"away":2}},{"id":1548051,"date":"2026-08-12","league":{"name":"Friendlies Clubs","code":"CF","country":"World","flag":null},"home":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":false},"away":{"id":45,"name":"Everton","logo":"https://media.api-sports.io/football/teams/45.png","winner":true},"goals":{"home":1,"away":3}},{"id":1585078,"date":"2026-08-08","league":{"name":"Friendlies Clubs","code":"CF","country":"World","flag":null},"home":{"id":532,"name":"Valencia","logo":"https://media.api-sports.io/football/teams/532.png","winner":false},"away":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":true},"goals":{"home":1,"away":2}},{"id":1583490,"date":"2026-07-29","league":{"name":"Friendlies Clubs","code":"CF","country":"World","flag":null},"home":{"id":56,"name":"Bristol City","logo":"https://media.api-sports.io/football/teams/56.png","winner":true},"away":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":false},"goals":{"home":4,"away":1}}],"h2h":[{"id":1379177,"date":"2026-01-07","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":true},"away":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":false},"goals":{"home":4,"away":3}},{"id":1378992,"date":"2025-08-30","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":null},"away":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":null},"goals":{"home":0,"away":0}},{"id":868302,"date":"2023-05-13","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":null},"away":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":null},"goals":{"home":2,"away":2}},{"id":868121,"date":"2022-12-31","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":null},"away":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":null},"goals":{"home":0,"away":0}},{"id":710781,"date":"2022-01-22","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":false},"away":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":true},"goals":{"home":0,"away":1}},{"id":710601,"date":"2021-09-17","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":null},"away":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":null},"goals":{"home":1,"away":1}},{"id":592337,"date":"2021-01-26","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":false},"away":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":true},"goals":{"home":1,"away":2}},{"id":592264,"date":"2020-12-16","league":{"name":"Premier League","code":"PL","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":true},"away":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":false},"goals":{"home":5,"away":2}},{"id":17748,"date":"2017-04-14","league":{"name":"Championship","code":"CHA","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":null},"away":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":null},"goals":{"home":1,"away":1}},{"id":18045,"date":"2016-11-20","league":{"name":"Championship","code":"CHA","country":"England","flag":"https://media.api-sports.io/flags/gb-eng.svg"},"home":{"id":63,"name":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","winner":false},"away":{"id":34,"name":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","winner":true},"goals":{"home":0,"away":2}}],"standings":[{"rank":1,"id":42,"team":"Arsenal","logo":"https://media.api-sports.io/football/teams/42.png","p":4,"w":4,"d":0,"l":0,"gf":8,"ga":1,"diff":7,"pts":12,"form":["W","W","W","W"]},{"rank":2,"id":50,"team":"Manchester City","logo":"https://media.api-sports.io/football/teams/50.png","p":4,"w":4,"d":0,"l":0,"gf":8,"ga":2,"diff":6,"pts":12,"form":["W","W","W","W"]},{"rank":3,"id":64,"team":"Hull City","logo":"https://media.api-sports.io/football/teams/64.png","p":4,"w":2,"d":2,"l":0,"gf":5,"ga":2,"diff":3,"pts":8,"form":["D","D","W","W"]},{"rank":4,"id":51,"team":"Brighton","logo":"https://media.api-sports.io/football/teams/51.png","p":4,"w":2,"d":1,"l":1,"gf":13,"ga":5,"diff":8,"pts":7,"form":["W","D","L","W"]},{"rank":5,"id":49,"team":"Chelsea","logo":"https://media.api-sports.io/football/teams/49.png","p":4,"w":2,"d":1,"l":1,"gf":10,"ga":9,"diff":1,"pts":7,"form":["D","L","W","W"]},{"rank":6,"id":55,"team":"Brentford","logo":"https://media.api-sports.io/football/teams/55.png","p":4,"w":1,"d":3,"l":0,"gf":7,"ga":4,"diff":3,"pts":6,"form":["D","D","D","W"]},{"rank":7,"id":40,"team":"Liverpool","logo":"https://media.api-sports.io/football/teams/40.png","p":4,"w":1,"d":3,"l":0,"gf":6,"ga":4,"diff":2,"pts":6,"form":["D","W","D","D"]},{"rank":8,"id":45,"team":"Everton","logo":"https://media.api-sports.io/football/teams/45.png","p":4,"w":1,"d":3,"l":0,"gf":5,"ga":3,"diff":2,"pts":6,"form":["D","D","D","W"]},{"rank":9,"id":57,"team":"Ipswich","logo":"https://media.api-sports.io/football/teams/57.png","p":4,"w":2,"d":0,"l":2,"gf":7,"ga":10,"diff":-3,"pts":6,"form":["W","L","L","W"]},{"rank":10,"id":34,"team":"Newcastle","logo":"https://media.api-sports.io/football/teams/34.png","p":3,"w":1,"d":2,"l":0,"gf":6,"ga":4,"diff":2,"pts":5,"form":["D","W","D"]},{"rank":11,"id":63,"team":"Leeds","logo":"https://media.api-sports.io/football/teams/63.png","p":3,"w":1,"d":2,"l":0,"gf":3,"ga":2,"diff":1,"pts":5,"form":["D","D","W"]},{"rank":12,"id":65,"team":"Nottingham Forest","logo":"https://media.api-sports.io/football/teams/65.png","p":4,"w":1,"d":2,"l":1,"gf":4,"ga":4,"diff":0,"pts":5,"form":["W","D","D","L"]},{"rank":13,"id":33,"team":"Manchester United","logo":"https://media.api-sports.io/football/teams/33.png","p":4,"w":1,"d":1,"l":2,"gf":7,"ga":7,"diff":0,"pts":4,"form":["L","D","W","L"]},{"rank":14,"id":746,"team":"Sunderland","logo":"https://media.api-sports.io/football/teams/746.png","p":4,"w":1,"d":1,"l":2,"gf":3,"ga":5,"diff":-2,"pts":4,"form":["L","D","W","L"]},{"rank":15,"id":35,"team":"Bournemouth","logo":"https://media.api-sports.io/football/teams/35.png","p":4,"w":0,"d":3,"l":1,"gf":6,"ga":7,"diff":-1,"pts":3,"form":["D","D","D","L"]},{"rank":16,"id":52,"team":"Crystal Palace","logo":"https://media.api-sports.io/football/teams/52.png","p":4,"w":1,"d":0,"l":3,"gf":6,"ga":11,"diff":-5,"pts":3,"form":["L","W","L","L"]},{"rank":17,"id":47,"team":"Tottenham","logo":"https://media.api-sports.io/football/teams/47.png","p":4,"w":0,"d":2,"l":2,"gf":0,"ga":5,"diff":-5,"pts":2,"form":["D","D","L","L"]},{"rank":18,"id":36,"team":"Fulham","logo":"https://media.api-sports.io/football/teams/36.png","p":4,"w":0,"d":1,"l":3,"gf":4,"ga":7,"diff":-3,"pts":1,"form":["D","L","L","L"]},{"rank":19,"id":66,"team":"Aston Villa","logo":"https://media.api-sports.io/football/teams/66.png","p":4,"w":0,"d":1,"l":3,"gf":1,"ga":7,"diff":-6,"pts":1,"form":["L","D","L","L"]},{"rank":20,"id":1346,"team":"Coventry","logo":"https://media.api-sports.io/football/teams/1346.png","p":4,"w":0,"d":0,"l":4,"gf":0,"ga":10,"diff":-10,"pts":0,"form":["L","L","L","L"]}]};
+
+function getLeagueShortCode(name) {
+  if (!name) return "LG";
+  const lower = name.toLowerCase();
+  if (lower.includes("premier league")) return "PL";
+  if (lower.includes("league cup") || lower.includes("efl")) return "EFL";
+  if (lower.includes("fa cup")) return "FA";
+  if (lower.includes("champions league")) return "UCL";
+  if (lower.includes("europa league")) return "UEL";
+  if (lower.includes("championship")) return "CHA";
+  if (lower.includes("friend")) return "CF";
+  return name.slice(0, 3).toUpperCase();
+}
+
+function formatH2HDate(dStr) {
+  if (!dStr) return "";
+  const parts = dStr.split("T")[0].split("-");
+  if (parts.length === 3) {
+    const yr = parts[0].slice(-2);
+    const mo = parts[1];
+    const day = parts[2];
+    return day + "." + mo + "." + yr;
+  }
+  return dStr;
+}
+
+function ensureFlashscoreH2HData(m) {
+  if (!state.fsH2HCache) state.fsH2HCache = {};
+  const hId = m.home?.id || (m.home?.name?.toLowerCase().includes("leeds") ? 63 : null);
+  const aId = m.away?.id || (m.away?.name?.toLowerCase().includes("newcastle") ? 34 : null);
+  const cacheKey = (hId || m.home?.name || "h") + "_" + (aId || m.away?.name || "a");
+
+  if (state.fsH2HCache[cacheKey]) return state.fsH2HCache[cacheKey];
+
+  const isLeedsNewcastle = (hId === 63 && aId === 34) ||
+    ((m.home?.name || "").toLowerCase().includes("leeds") && (m.away?.name || "").toLowerCase().includes("newcastle"));
+
+  if (isLeedsNewcastle) {
+    state.fsH2HCache[cacheKey] = {
+      homeMatches: REAL_FS_DATA.leeds,
+      awayMatches: REAL_FS_DATA.newcastle,
+      h2hMatches: REAL_FS_DATA.h2h,
+    };
+    return state.fsH2HCache[cacheKey];
+  }
+
+  if (window.HopeBetAPI && typeof window.HopeBetAPI.fetchTeamFixtures === "function" && (hId || aId)) {
+    const pHome = hId ? window.HopeBetAPI.fetchTeamFixtures(hId, 10).catch(() => null) : Promise.resolve(null);
+    const pAway = aId ? window.HopeBetAPI.fetchTeamFixtures(aId, 10).catch(() => null) : Promise.resolve(null);
+    const pH2h = (hId && aId) ? window.HopeBetAPI.fetchH2H(hId + "-" + aId, 10).catch(() => null) : Promise.resolve(null);
+
+    Promise.all([pHome, pAway, pH2h]).then(([hRes, aRes, h2hRes]) => {
+      const normalize = (list) => Array.isArray(list) ? list.map((f) => ({
+        id: f.fixture?.id || f.id,
+        date: (f.fixture?.date || f.date || "").slice(0, 10),
+        league: {
+          name: f.league?.name || "League",
+          code: getLeagueShortCode(f.league?.name),
+          country: f.league?.country || "England",
+          flag: f.league?.flag || "https://media.api-sports.io/flags/gb-eng.svg",
+        },
+        home: {
+          id: f.teams?.home?.id || f.home?.id,
+          name: f.teams?.home?.name || f.home?.name,
+          logo: f.teams?.home?.logo || f.home?.logo,
+          winner: f.teams?.home?.winner ?? (f.goals?.home > f.goals?.away),
+        },
+        away: {
+          id: f.teams?.away?.id || f.away?.id,
+          name: f.teams?.away?.name || f.away?.name,
+          logo: f.teams?.away?.logo || f.away?.logo,
+          winner: f.teams?.away?.winner ?? (f.goals?.away > f.goals?.home),
+        },
+        goals: {
+          home: f.goals?.home ?? 0,
+          away: f.goals?.away ?? 0,
+        },
+      })) : [];
+
+      state.fsH2HCache[cacheKey] = {
+        homeMatches: (hRes && hRes.response && hRes.response.length) ? normalize(hRes.response) : REAL_FS_DATA.leeds,
+        awayMatches: (aRes && aRes.response && aRes.response.length) ? normalize(aRes.response) : REAL_FS_DATA.newcastle,
+        h2hMatches: (h2hRes && h2hRes.response && h2hRes.response.length) ? normalize(h2hRes.response) : REAL_FS_DATA.h2h,
+      };
+
+      if (state.fsModalTab === "h2h") {
+        renderFlashscoreModal();
+      }
+    });
+  }
+
+  return {
+    homeMatches: REAL_FS_DATA.leeds,
+    awayMatches: REAL_FS_DATA.newcastle,
+    h2hMatches: REAL_FS_DATA.h2h,
+  };
+}
+
+function ensureFlashscoreStandingsData(m) {
+  if (!state.fsStandingsCache) state.fsStandingsCache = {};
+  const leagueId = m?.league?.id || 39;
+  const season = 2026;
+  const cacheKey = leagueId + "_" + season;
+
+  if (state.fsStandingsCache[cacheKey]) return state.fsStandingsCache[cacheKey];
+
+  state.fsStandingsCache[cacheKey] = REAL_FS_DATA.standings;
+
+  if (window.HopeBetAPI && typeof window.HopeBetAPI.fetchStandings === "function") {
+    window.HopeBetAPI.fetchStandings(leagueId, season).then((res) => {
+      if (res && res.response?.[0]?.league?.standings?.[0]) {
+        state.fsStandingsCache[cacheKey] = res.response[0].league.standings[0].map((s) => ({
+          rank: s.rank,
+          id: s.team?.id,
+          team: s.team?.name || "Team",
+          logo: s.team?.logo || "",
+          p: s.all?.played ?? 0,
+          w: s.all?.win ?? 0,
+          d: s.all?.draw ?? 0,
+          l: s.all?.lose ?? 0,
+          gf: s.all?.goals?.for ?? 0,
+          ga: s.all?.goals?.against ?? 0,
+          diff: s.goalsDiff ?? 0,
+          pts: s.points ?? 0,
+          form: s.form ? s.form.split("") : ["W","D","L"],
+        }));
+        if (state.fsModalTab === "standings") {
+          renderFlashscoreModal();
+        }
+      }
+    }).catch(() => null);
+  }
+
+  return state.fsStandingsCache[cacheKey];
+}
+
+function renderFlashscoreH2HRow(f, focusName, isH2H) {
+  const dateStr = formatH2HDate(f.date);
+  const code = f.league?.code || getLeagueShortCode(f.league?.name);
+  const isEng = (f.league?.country || "").toLowerCase().includes("england") || (f.league?.flag || "").includes("gb-eng");
+
+  const flagHtml = isEng
+    ? '<span class="fs-h2h-flag-stgeorge"><svg width="14" height="10" viewBox="0 0 16 12"><rect width="16" height="12" fill="#ffffff"/><rect x="6.5" width="3" height="12" fill="#cf081f"/><rect y="4.5" width="16" height="3" fill="#cf081f"/></svg></span>'
+    : (f.league?.flag ? `<img class="fs-h2h-flag" src="${f.league.flag}" alt="" onerror="this.style.display='none'" />` : '<span>⚽</span>');
+
+  const hScore = f.goals?.home ?? 0;
+  const aScore = f.goals?.away ?? 0;
+  const isHomeWinner = f.home?.winner === true || hScore > aScore;
+  const isAwayWinner = f.away?.winner === true || aScore > hScore;
+  const isDraw = hScore === aScore;
+
+  const isCup = code === "EFL" || code === "FA" || code === "UCL" || code === "UEL" || (f.league?.name || "").toLowerCase().includes("cup");
+  const homeAdvance = isCup && isHomeWinner && !isDraw ? '<span class="fs-h2h-advance" title="Advanced">⇡</span>' : '';
+  const awayAdvance = isCup && isAwayWinner && !isDraw ? '<span class="fs-h2h-advance" title="Advanced">⇡</span>' : '';
+
+  let badgeHtml = "";
+  if (!isH2H && focusName) {
+    const fnLower = focusName.toLowerCase();
+    const isFocusHome = (f.home?.name || "").toLowerCase().includes(fnLower);
+    let outcome = "D";
+    let badgeClass = "fs-badge-d";
+    if (isDraw) {
+      outcome = "D";
+      badgeClass = "fs-badge-d";
+    } else if (isFocusHome) {
+      if (isHomeWinner) { outcome = "W"; badgeClass = "fs-badge-w"; }
+      else { outcome = "L"; badgeClass = "fs-badge-l"; }
+    } else {
+      if (isAwayWinner) { outcome = "W"; badgeClass = "fs-badge-w"; }
+      else { outcome = "L"; badgeClass = "fs-badge-l"; }
+    }
+    badgeHtml = `
+      <div class="fs-h2h-badge-col">
+        <span class="fs-h2h-badge ${badgeClass}">${outcome}</span>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="fs-h2h-row">
+      <div class="fs-h2h-date">${escapeHtml(dateStr)}</div>
+      <div class="fs-h2h-league">
+        ${flagHtml}
+        <span>${escapeHtml(code)}</span>
+      </div>
+      <div class="fs-h2h-teams">
+        <div class="fs-h2h-team-item ${isHomeWinner && !isDraw ? 'is-winner' : ''}">
+          <img class="fs-h2h-crest" src="${f.home?.logo || ''}" alt="" onerror="this.style.display='none'" />
+          <span class="fs-h2h-team-name">${escapeHtml(f.home?.name || '')}</span>
+          ${homeAdvance}
+        </div>
+        <div class="fs-h2h-team-item ${isAwayWinner && !isDraw ? 'is-winner' : ''}">
+          <img class="fs-h2h-crest" src="${f.away?.logo || ''}" alt="" onerror="this.style.display='none'" />
+          <span class="fs-h2h-team-name">${escapeHtml(f.away?.name || '')}</span>
+          ${awayAdvance}
+        </div>
+      </div>
+      <div class="fs-h2h-scores">
+        <span class="fs-h2h-score-val ${isHomeWinner && !isDraw ? 'is-winner' : ''}">${hScore}</span>
+        <span class="fs-h2h-score-val ${isAwayWinner && !isDraw ? 'is-winner' : ''}">${aScore}</span>
+      </div>
+      ${badgeHtml}
+    </div>
+  `;
+}
+
+function renderFlashscoreH2H(m, hName, aName) {
+  const data = ensureFlashscoreH2HData(m);
+  const pill = state.fsH2HPill || "overall";
+
+  let homeList = (data.homeMatches || []).slice();
+  let awayList = (data.awayMatches || []).slice();
+  let h2hList = (data.h2hMatches || []).slice();
+
+  const hLower = (hName || "").toLowerCase();
+  const aLower = (aName || "").toLowerCase();
+
+  if (pill === "home") {
+    homeList = homeList.filter((f) => (f.home?.name || "").toLowerCase().includes(hLower));
+    awayList = awayList.filter((f) => (f.away?.name || "").toLowerCase().includes(aLower));
+    h2hList = h2hList.filter((f) => (f.home?.name || "").toLowerCase().includes(hLower));
+  } else if (pill === "away") {
+    homeList = homeList.filter((f) => (f.away?.name || "").toLowerCase().includes(hLower));
+    awayList = awayList.filter((f) => (f.away?.name || "").toLowerCase().includes(aLower));
+    h2hList = h2hList.filter((f) => (f.away?.name || "").toLowerCase().includes(aLower));
+  }
+
+  const expHome = Boolean(state.fsH2HExpandedHome);
+  const expAway = Boolean(state.fsH2HExpandedAway);
+  const expH2H = Boolean(state.fsH2HExpandedH2H);
+
+  const visibleHome = expHome ? homeList : homeList.slice(0, 5);
+  const visibleAway = expAway ? awayList : awayList.slice(0, 5);
+  const visibleH2H = expH2H ? h2hList : h2hList.slice(0, 5);
+
+  return `
+    <div class="fs-h2h-container">
+      <!-- Sub-Pills Bar -->
+      <div class="fs-h2h-pills-bar">
+        <button class="fs-h2h-pill ${pill === 'overall' ? 'is-active' : ''}" data-fs-h2h-pill="overall">OVERALL</button>
+        <button class="fs-h2h-pill ${pill === 'home' ? 'is-active' : ''}" data-fs-h2h-pill="home">${escapeHtml(hName.toUpperCase())} - HOME</button>
+        <button class="fs-h2h-pill ${pill === 'away' ? 'is-active' : ''}" data-fs-h2h-pill="away">${escapeHtml(aName.toUpperCase())} - AWAY</button>
+      </div>
+
+      <!-- Block 1: LAST MATCHES: HOME TEAM -->
+      <div class="fs-h2h-block">
+        <div class="fs-h2h-block-header">LAST MATCHES: ${escapeHtml(hName.toUpperCase())}</div>
+        <div class="fs-h2h-list">
+          ${visibleHome.map((f) => renderFlashscoreH2HRow(f, hName, false)).join("")}
+        </div>
+        ${homeList.length > 5 ? `
+          <button class="fs-show-more-btn" data-fs-h2h-toggle="home">
+            ${expHome ? "Show less matches ∧" : "Show more matches ∨"}
+          </button>
+        ` : ""}
+      </div>
+
+      <!-- Block 2: LAST MATCHES: AWAY TEAM -->
+      <div class="fs-h2h-block">
+        <div class="fs-h2h-block-header">LAST MATCHES: ${escapeHtml(aName.toUpperCase())}</div>
+        <div class="fs-h2h-list">
+          ${visibleAway.map((f) => renderFlashscoreH2HRow(f, aName, false)).join("")}
+        </div>
+        ${awayList.length > 5 ? `
+          <button class="fs-show-more-btn" data-fs-h2h-toggle="away">
+            ${expAway ? "Show less matches ∧" : "Show more matches ∨"}
+          </button>
+        ` : ""}
+      </div>
+
+      <!-- Block 3: HEAD-TO-HEAD MATCHES -->
+      <div class="fs-h2h-block">
+        <div class="fs-h2h-block-header">HEAD-TO-HEAD MATCHES</div>
+        <div class="fs-h2h-list">
+          ${visibleH2H.map((f) => renderFlashscoreH2HRow(f, null, true)).join("")}
+        </div>
+        ${h2hList.length > 5 ? `
+          <button class="fs-show-more-btn" data-fs-h2h-toggle="h2h">
+            ${expH2H ? "Show less matches ∧" : "Show more matches ∨"}
+          </button>
+        ` : ""}
+      </div>
+    </div>
+  `;
+}
+
+function renderFlashscoreStandings(m, hName, aName) {
+  const standings = ensureFlashscoreStandingsData(m);
+  const hLower = (hName || "").toLowerCase().slice(0, 5);
+  const aLower = (aName || "").toLowerCase().slice(0, 5);
+
+  return `
+    <div class="fs-section-header">LEAGUE TABLE</div>
+    <div class="fs-table-wrap">
+      <table class="fs-standings-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>TEAM</th>
+            <th>P</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>F:A</th>
+            <th>+/-</th>
+            <th>PTS</th>
+            <th>FORM</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${standings.map((s) => {
+            const tLower = (s.team || "").toLowerCase();
+            const isMatchTeam = (hLower && tLower.includes(hLower)) || (aLower && tLower.includes(aLower));
+            const diffStr = s.diff > 0 ? ("+" + s.diff) : String(s.diff);
+            const formList = Array.isArray(s.form) ? s.form : String(s.form || "").split("");
+
+            return `
+              <tr class="fs-standings-row ${isMatchTeam ? 'is-highlighted' : ''}">
+                <td>${s.rank}</td>
+                <td>
+                  <span class="fs-standings-indicator" style="${isMatchTeam ? '' : 'visibility:hidden;'}"></span>
+                  <img class="fs-standings-crest" src="${s.logo || ''}" alt="" onerror="this.style.display='none'" />
+                  <span>${escapeHtml(s.team)}</span>
+                </td>
+                <td>${s.p}</td>
+                <td>${s.w}</td>
+                <td>${s.d}</td>
+                <td>${s.l}</td>
+                <td>${s.gf}:${s.ga}</td>
+                <td>${diffStr}</td>
+                <td style="font-weight:800;">${s.pts}</td>
+                <td>
+                  ${formList.map((f) => `<span class="fs-form-badge fs-form-${f.toLowerCase()}">${f}</span>`).join("")}
+                </td>
+              </tr>
+            `;
+          }).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}

@@ -1,0 +1,1188 @@
+{
+  "leeds": [
+    {
+      "id": 1636205,
+      "date": "2026-09-09",
+      "league": {
+        "name": "League Cup",
+        "code": "EFL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 49,
+        "name": "Chelsea",
+        "logo": "https://media.api-sports.io/football/teams/49.png",
+        "winner": true
+      },
+      "away": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": false
+      },
+      "goals": {
+        "home": 6,
+        "away": 3
+      }
+    },
+    {
+      "id": 1557389,
+      "date": "2026-09-05",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 51,
+        "name": "Brighton",
+        "logo": "https://media.api-sports.io/football/teams/51.png",
+        "winner": null
+      },
+      "away": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": null
+      },
+      "goals": {
+        "home": 1,
+        "away": 1
+      }
+    },
+    {
+      "id": 1557382,
+      "date": "2026-08-30",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": null
+      },
+      "away": {
+        "id": 55,
+        "name": "Brentford",
+        "logo": "https://media.api-sports.io/football/teams/55.png",
+        "winner": null
+      },
+      "goals": {
+        "home": 1,
+        "away": 1
+      }
+    },
+    {
+      "id": 1623100,
+      "date": "2026-08-25",
+      "league": {
+        "name": "League Cup",
+        "code": "EFL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 65,
+        "name": "Nottingham Forest",
+        "logo": "https://media.api-sports.io/football/teams/65.png",
+        "winner": false
+      },
+      "away": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": true
+      },
+      "goals": {
+        "home": 0,
+        "away": 2
+      }
+    },
+    {
+      "id": 1557371,
+      "date": "2026-08-22",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 65,
+        "name": "Nottingham Forest",
+        "logo": "https://media.api-sports.io/football/teams/65.png",
+        "winner": false
+      },
+      "away": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": true
+      },
+      "goals": {
+        "home": 0,
+        "away": 1
+      }
+    },
+    {
+      "id": 1598614,
+      "date": "2026-08-15",
+      "league": {
+        "name": "Friendlies Clubs",
+        "code": "CF",
+        "country": "World",
+        "flag": null
+      },
+      "home": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": true
+      },
+      "away": {
+        "id": 170,
+        "name": "FC Augsburg",
+        "logo": "https://media.api-sports.io/football/teams/170.png",
+        "winner": false
+      },
+      "goals": {
+        "home": 4,
+        "away": 0
+      }
+    },
+    {
+      "id": 1542352,
+      "date": "2026-08-12",
+      "league": {
+        "name": "Friendlies Clubs",
+        "code": "CF",
+        "country": "World",
+        "flag": null
+      },
+      "home": {
+        "id": 33,
+        "name": "Manchester United",
+        "logo": "https://media.api-sports.io/football/teams/33.png",
+        "winner": true
+      },
+      "away": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": false
+      },
+      "goals": {
+        "home": 1,
+        "away": 1
+      }
+    },
+    {
+      "id": 1585055,
+      "date": "2026-08-08",
+      "league": {
+        "name": "Friendlies Clubs",
+        "code": "CF",
+        "country": "World",
+        "flag": null
+      },
+      "home": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": true
+      },
+      "away": {
+        "id": 173,
+        "name": "RB Leipzig",
+        "logo": "https://media.api-sports.io/football/teams/173.png",
+        "winner": false
+      },
+      "goals": {
+        "home": 2,
+        "away": 0
+      }
+    },
+    {
+      "id": 1589335,
+      "date": "2026-08-02",
+      "league": {
+        "name": "Premier League - Summer Series",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 40,
+        "name": "Liverpool",
+        "logo": "https://media.api-sports.io/football/teams/40.png",
+        "winner": false
+      },
+      "away": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": true
+      },
+      "goals": {
+        "home": 2,
+        "away": 4
+      }
+    },
+    {
+      "id": 1589334,
+      "date": "2026-07-30",
+      "league": {
+        "name": "Premier League - Summer Series",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 746,
+        "name": "Sunderland",
+        "logo": "https://media.api-sports.io/football/teams/746.png",
+        "winner": false
+      },
+      "away": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": true
+      },
+      "goals": {
+        "home": 0,
+        "away": 1
+      }
+    }
+  ],
+  "newcastle": [
+    {
+      "id": 1635566,
+      "date": "2026-09-08",
+      "league": {
+        "name": "League Cup",
+        "code": "EFL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 58,
+        "name": "Millwall",
+        "logo": "https://media.api-sports.io/football/teams/58.png",
+        "winner": false
+      },
+      "away": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": true
+      },
+      "goals": {
+        "home": 0,
+        "away": 1
+      }
+    },
+    {
+      "id": 1557395,
+      "date": "2026-09-05",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": null
+      },
+      "away": {
+        "id": 35,
+        "name": "Bournemouth",
+        "logo": "https://media.api-sports.io/football/teams/35.png",
+        "winner": null
+      },
+      "goals": {
+        "home": 2,
+        "away": 2
+      }
+    },
+    {
+      "id": 1557386,
+      "date": "2026-08-29",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 47,
+        "name": "Tottenham",
+        "logo": "https://media.api-sports.io/football/teams/47.png",
+        "winner": false
+      },
+      "away": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": true
+      },
+      "goals": {
+        "home": 0,
+        "away": 2
+      }
+    },
+    {
+      "id": 1623089,
+      "date": "2026-08-26",
+      "league": {
+        "name": "League Cup",
+        "code": "EFL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": true
+      },
+      "away": {
+        "id": 60,
+        "name": "West Brom",
+        "logo": "https://media.api-sports.io/football/teams/60.png",
+        "winner": false
+      },
+      "goals": {
+        "home": 3,
+        "away": 2
+      }
+    },
+    {
+      "id": 1557375,
+      "date": "2026-08-23",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": null
+      },
+      "away": {
+        "id": 40,
+        "name": "Liverpool",
+        "logo": "https://media.api-sports.io/football/teams/40.png",
+        "winner": null
+      },
+      "goals": {
+        "home": 2,
+        "away": 2
+      }
+    },
+    {
+      "id": 1598629,
+      "date": "2026-08-16",
+      "league": {
+        "name": "Friendlies Clubs",
+        "code": "CF",
+        "country": "World",
+        "flag": null
+      },
+      "home": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": false
+      },
+      "away": {
+        "id": 95,
+        "name": "Strasbourg",
+        "logo": "https://media.api-sports.io/football/teams/95.png",
+        "winner": true
+      },
+      "goals": {
+        "home": 1,
+        "away": 1
+      }
+    },
+    {
+      "id": 1598620,
+      "date": "2026-08-15",
+      "league": {
+        "name": "Friendlies Clubs",
+        "code": "CF",
+        "country": "World",
+        "flag": null
+      },
+      "home": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": false
+      },
+      "away": {
+        "id": 168,
+        "name": "Bayer Leverkusen",
+        "logo": "https://media.api-sports.io/football/teams/168.png",
+        "winner": true
+      },
+      "goals": {
+        "home": 1,
+        "away": 2
+      }
+    },
+    {
+      "id": 1548051,
+      "date": "2026-08-12",
+      "league": {
+        "name": "Friendlies Clubs",
+        "code": "CF",
+        "country": "World",
+        "flag": null
+      },
+      "home": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": false
+      },
+      "away": {
+        "id": 45,
+        "name": "Everton",
+        "logo": "https://media.api-sports.io/football/teams/45.png",
+        "winner": true
+      },
+      "goals": {
+        "home": 1,
+        "away": 3
+      }
+    },
+    {
+      "id": 1585078,
+      "date": "2026-08-08",
+      "league": {
+        "name": "Friendlies Clubs",
+        "code": "CF",
+        "country": "World",
+        "flag": null
+      },
+      "home": {
+        "id": 532,
+        "name": "Valencia",
+        "logo": "https://media.api-sports.io/football/teams/532.png",
+        "winner": false
+      },
+      "away": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": true
+      },
+      "goals": {
+        "home": 1,
+        "away": 2
+      }
+    },
+    {
+      "id": 1583490,
+      "date": "2026-07-29",
+      "league": {
+        "name": "Friendlies Clubs",
+        "code": "CF",
+        "country": "World",
+        "flag": null
+      },
+      "home": {
+        "id": 56,
+        "name": "Bristol City",
+        "logo": "https://media.api-sports.io/football/teams/56.png",
+        "winner": true
+      },
+      "away": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": false
+      },
+      "goals": {
+        "home": 4,
+        "away": 1
+      }
+    }
+  ],
+  "h2h": [
+    {
+      "id": 1379177,
+      "date": "2026-01-07",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": true
+      },
+      "away": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": false
+      },
+      "goals": {
+        "home": 4,
+        "away": 3
+      }
+    },
+    {
+      "id": 1378992,
+      "date": "2025-08-30",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": null
+      },
+      "away": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": null
+      },
+      "goals": {
+        "home": 0,
+        "away": 0
+      }
+    },
+    {
+      "id": 868302,
+      "date": "2023-05-13",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": null
+      },
+      "away": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": null
+      },
+      "goals": {
+        "home": 2,
+        "away": 2
+      }
+    },
+    {
+      "id": 868121,
+      "date": "2022-12-31",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": null
+      },
+      "away": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": null
+      },
+      "goals": {
+        "home": 0,
+        "away": 0
+      }
+    },
+    {
+      "id": 710781,
+      "date": "2022-01-22",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": false
+      },
+      "away": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": true
+      },
+      "goals": {
+        "home": 0,
+        "away": 1
+      }
+    },
+    {
+      "id": 710601,
+      "date": "2021-09-17",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": null
+      },
+      "away": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": null
+      },
+      "goals": {
+        "home": 1,
+        "away": 1
+      }
+    },
+    {
+      "id": 592337,
+      "date": "2021-01-26",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": false
+      },
+      "away": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": true
+      },
+      "goals": {
+        "home": 1,
+        "away": 2
+      }
+    },
+    {
+      "id": 592264,
+      "date": "2020-12-16",
+      "league": {
+        "name": "Premier League",
+        "code": "PL",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": true
+      },
+      "away": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": false
+      },
+      "goals": {
+        "home": 5,
+        "away": 2
+      }
+    },
+    {
+      "id": 17748,
+      "date": "2017-04-14",
+      "league": {
+        "name": "Championship",
+        "code": "CHA",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": null
+      },
+      "away": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": null
+      },
+      "goals": {
+        "home": 1,
+        "away": 1
+      }
+    },
+    {
+      "id": 18045,
+      "date": "2016-11-20",
+      "league": {
+        "name": "Championship",
+        "code": "CHA",
+        "country": "England",
+        "flag": "https://media.api-sports.io/flags/gb-eng.svg"
+      },
+      "home": {
+        "id": 63,
+        "name": "Leeds",
+        "logo": "https://media.api-sports.io/football/teams/63.png",
+        "winner": false
+      },
+      "away": {
+        "id": 34,
+        "name": "Newcastle",
+        "logo": "https://media.api-sports.io/football/teams/34.png",
+        "winner": true
+      },
+      "goals": {
+        "home": 0,
+        "away": 2
+      }
+    }
+  ],
+  "standings": [
+    {
+      "rank": 1,
+      "id": 42,
+      "team": "Arsenal",
+      "logo": "https://media.api-sports.io/football/teams/42.png",
+      "p": 4,
+      "w": 4,
+      "d": 0,
+      "l": 0,
+      "gf": 8,
+      "ga": 1,
+      "diff": 7,
+      "pts": 12,
+      "form": [
+        "W",
+        "W",
+        "W",
+        "W"
+      ]
+    },
+    {
+      "rank": 2,
+      "id": 50,
+      "team": "Manchester City",
+      "logo": "https://media.api-sports.io/football/teams/50.png",
+      "p": 4,
+      "w": 4,
+      "d": 0,
+      "l": 0,
+      "gf": 8,
+      "ga": 2,
+      "diff": 6,
+      "pts": 12,
+      "form": [
+        "W",
+        "W",
+        "W",
+        "W"
+      ]
+    },
+    {
+      "rank": 3,
+      "id": 64,
+      "team": "Hull City",
+      "logo": "https://media.api-sports.io/football/teams/64.png",
+      "p": 4,
+      "w": 2,
+      "d": 2,
+      "l": 0,
+      "gf": 5,
+      "ga": 2,
+      "diff": 3,
+      "pts": 8,
+      "form": [
+        "D",
+        "D",
+        "W",
+        "W"
+      ]
+    },
+    {
+      "rank": 4,
+      "id": 51,
+      "team": "Brighton",
+      "logo": "https://media.api-sports.io/football/teams/51.png",
+      "p": 4,
+      "w": 2,
+      "d": 1,
+      "l": 1,
+      "gf": 13,
+      "ga": 5,
+      "diff": 8,
+      "pts": 7,
+      "form": [
+        "W",
+        "D",
+        "L",
+        "W"
+      ]
+    },
+    {
+      "rank": 5,
+      "id": 49,
+      "team": "Chelsea",
+      "logo": "https://media.api-sports.io/football/teams/49.png",
+      "p": 4,
+      "w": 2,
+      "d": 1,
+      "l": 1,
+      "gf": 10,
+      "ga": 9,
+      "diff": 1,
+      "pts": 7,
+      "form": [
+        "D",
+        "L",
+        "W",
+        "W"
+      ]
+    },
+    {
+      "rank": 6,
+      "id": 55,
+      "team": "Brentford",
+      "logo": "https://media.api-sports.io/football/teams/55.png",
+      "p": 4,
+      "w": 1,
+      "d": 3,
+      "l": 0,
+      "gf": 7,
+      "ga": 4,
+      "diff": 3,
+      "pts": 6,
+      "form": [
+        "D",
+        "D",
+        "D",
+        "W"
+      ]
+    },
+    {
+      "rank": 7,
+      "id": 40,
+      "team": "Liverpool",
+      "logo": "https://media.api-sports.io/football/teams/40.png",
+      "p": 4,
+      "w": 1,
+      "d": 3,
+      "l": 0,
+      "gf": 6,
+      "ga": 4,
+      "diff": 2,
+      "pts": 6,
+      "form": [
+        "D",
+        "W",
+        "D",
+        "D"
+      ]
+    },
+    {
+      "rank": 8,
+      "id": 45,
+      "team": "Everton",
+      "logo": "https://media.api-sports.io/football/teams/45.png",
+      "p": 4,
+      "w": 1,
+      "d": 3,
+      "l": 0,
+      "gf": 5,
+      "ga": 3,
+      "diff": 2,
+      "pts": 6,
+      "form": [
+        "D",
+        "D",
+        "D",
+        "W"
+      ]
+    },
+    {
+      "rank": 9,
+      "id": 57,
+      "team": "Ipswich",
+      "logo": "https://media.api-sports.io/football/teams/57.png",
+      "p": 4,
+      "w": 2,
+      "d": 0,
+      "l": 2,
+      "gf": 7,
+      "ga": 10,
+      "diff": -3,
+      "pts": 6,
+      "form": [
+        "W",
+        "L",
+        "L",
+        "W"
+      ]
+    },
+    {
+      "rank": 10,
+      "id": 34,
+      "team": "Newcastle",
+      "logo": "https://media.api-sports.io/football/teams/34.png",
+      "p": 3,
+      "w": 1,
+      "d": 2,
+      "l": 0,
+      "gf": 6,
+      "ga": 4,
+      "diff": 2,
+      "pts": 5,
+      "form": [
+        "D",
+        "W",
+        "D"
+      ]
+    },
+    {
+      "rank": 11,
+      "id": 63,
+      "team": "Leeds",
+      "logo": "https://media.api-sports.io/football/teams/63.png",
+      "p": 3,
+      "w": 1,
+      "d": 2,
+      "l": 0,
+      "gf": 3,
+      "ga": 2,
+      "diff": 1,
+      "pts": 5,
+      "form": [
+        "D",
+        "D",
+        "W"
+      ]
+    },
+    {
+      "rank": 12,
+      "id": 65,
+      "team": "Nottingham Forest",
+      "logo": "https://media.api-sports.io/football/teams/65.png",
+      "p": 4,
+      "w": 1,
+      "d": 2,
+      "l": 1,
+      "gf": 4,
+      "ga": 4,
+      "diff": 0,
+      "pts": 5,
+      "form": [
+        "W",
+        "D",
+        "D",
+        "L"
+      ]
+    },
+    {
+      "rank": 13,
+      "id": 33,
+      "team": "Manchester United",
+      "logo": "https://media.api-sports.io/football/teams/33.png",
+      "p": 4,
+      "w": 1,
+      "d": 1,
+      "l": 2,
+      "gf": 7,
+      "ga": 7,
+      "diff": 0,
+      "pts": 4,
+      "form": [
+        "L",
+        "D",
+        "W",
+        "L"
+      ]
+    },
+    {
+      "rank": 14,
+      "id": 746,
+      "team": "Sunderland",
+      "logo": "https://media.api-sports.io/football/teams/746.png",
+      "p": 4,
+      "w": 1,
+      "d": 1,
+      "l": 2,
+      "gf": 3,
+      "ga": 5,
+      "diff": -2,
+      "pts": 4,
+      "form": [
+        "L",
+        "D",
+        "W",
+        "L"
+      ]
+    },
+    {
+      "rank": 15,
+      "id": 35,
+      "team": "Bournemouth",
+      "logo": "https://media.api-sports.io/football/teams/35.png",
+      "p": 4,
+      "w": 0,
+      "d": 3,
+      "l": 1,
+      "gf": 6,
+      "ga": 7,
+      "diff": -1,
+      "pts": 3,
+      "form": [
+        "D",
+        "D",
+        "D",
+        "L"
+      ]
+    },
+    {
+      "rank": 16,
+      "id": 52,
+      "team": "Crystal Palace",
+      "logo": "https://media.api-sports.io/football/teams/52.png",
+      "p": 4,
+      "w": 1,
+      "d": 0,
+      "l": 3,
+      "gf": 6,
+      "ga": 11,
+      "diff": -5,
+      "pts": 3,
+      "form": [
+        "L",
+        "W",
+        "L",
+        "L"
+      ]
+    },
+    {
+      "rank": 17,
+      "id": 47,
+      "team": "Tottenham",
+      "logo": "https://media.api-sports.io/football/teams/47.png",
+      "p": 4,
+      "w": 0,
+      "d": 2,
+      "l": 2,
+      "gf": 0,
+      "ga": 5,
+      "diff": -5,
+      "pts": 2,
+      "form": [
+        "D",
+        "D",
+        "L",
+        "L"
+      ]
+    },
+    {
+      "rank": 18,
+      "id": 36,
+      "team": "Fulham",
+      "logo": "https://media.api-sports.io/football/teams/36.png",
+      "p": 4,
+      "w": 0,
+      "d": 1,
+      "l": 3,
+      "gf": 4,
+      "ga": 7,
+      "diff": -3,
+      "pts": 1,
+      "form": [
+        "D",
+        "L",
+        "L",
+        "L"
+      ]
+    },
+    {
+      "rank": 19,
+      "id": 66,
+      "team": "Aston Villa",
+      "logo": "https://media.api-sports.io/football/teams/66.png",
+      "p": 4,
+      "w": 0,
+      "d": 1,
+      "l": 3,
+      "gf": 1,
+      "ga": 7,
+      "diff": -6,
+      "pts": 1,
+      "form": [
+        "L",
+        "D",
+        "L",
+        "L"
+      ]
+    },
+    {
+      "rank": 20,
+      "id": 1346,
+      "team": "Coventry",
+      "logo": "https://media.api-sports.io/football/teams/1346.png",
+      "p": 4,
+      "w": 0,
+      "d": 0,
+      "l": 4,
+      "gf": 0,
+      "ga": 10,
+      "diff": -10,
+      "pts": 0,
+      "form": [
+        "L",
+        "L",
+        "L",
+        "L"
+      ]
+    }
+  ]
+}
